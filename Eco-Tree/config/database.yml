@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/duo_development.sqlite3
+  database: db/eco_development.sqlite3
 
 test:
   <<: *default

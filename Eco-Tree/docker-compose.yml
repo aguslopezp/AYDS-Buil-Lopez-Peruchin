@@ -7,4 +7,14 @@ services:
       - "4567:4567"
     volumes:
       - .:/src
-
+  monguito:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=agustin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

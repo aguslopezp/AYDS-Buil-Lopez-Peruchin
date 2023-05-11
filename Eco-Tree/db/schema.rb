@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_151416) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_005105) do
+  create_table "prueba", force: :cascade do |t|
+    t.string "atributoDePrueba"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
