@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_214532) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_223202) do
   create_table "answers", force: :cascade do |t|
-    t.integer "id_answer"
+    t.integer "option_id"
+    t.integer "user_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -20,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_214532) do
     t.boolean "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -40,4 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_214532) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "options"
+  add_foreign_key "answers", "users"
+  add_foreign_key "options", "questions"
 end
