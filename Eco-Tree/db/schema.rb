@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_125106) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_141524) do
+  create_table "option", force: :cascade do |t|
+    t.string "descr_option"
+    t.boolean "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prueba", force: :cascade do |t|
     t.string "atributoDePrueba"
+  end
+
+  create_table "question", force: :cascade do |t|
+    t.string "descr_question"
+    t.integer "time"
+    t.boolean "asked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
