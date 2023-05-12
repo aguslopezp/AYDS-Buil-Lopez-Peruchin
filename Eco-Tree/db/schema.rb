@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_11_005105) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_125106) do
   create_table "prueba", force: :cascade do |t|
     t.string "atributoDePrueba"
   end
@@ -19,6 +19,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_005105) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password"
+    t.string "username"
+    t.date "birthdate"
+    t.string "email"
+    t.integer "points"
+    t.integer "ranking_position"
   end
 
 end
