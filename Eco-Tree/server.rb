@@ -45,7 +45,6 @@ class App < Sinatra::Application
   post '/login' do
     @user = User.find_or_create_by(username: params[:username],password: params[:password])
 
-
   end
 
   get '/users' do

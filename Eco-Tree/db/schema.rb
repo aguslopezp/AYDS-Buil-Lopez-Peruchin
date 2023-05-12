@@ -10,36 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_141524) do
-  create_table "option", force: :cascade do |t|
-    t.string "descr_option"
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_153811) do
+  create_table "options", force: :cascade do |t|
+    t.string "description"
     t.boolean "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "prueba", force: :cascade do |t|
-    t.string "atributoDePrueba"
-  end
-
-  create_table "question", force: :cascade do |t|
-    t.string "descr_question"
-    t.integer "time"
+  create_table "questions", force: :cascade do |t|
+    t.string "description"
     t.boolean "asked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password"
     t.string "username"
-    t.date "birthdate"
+    t.string "password"
     t.string "email"
+    t.date "birthdate"
     t.integer "points"
     t.integer "ranking_position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
