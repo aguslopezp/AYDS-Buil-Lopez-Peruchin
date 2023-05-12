@@ -39,10 +39,18 @@ class App < Sinatra::Application
 
   get '/' do
     erb :index
+    
   end
 
   post '/login' do
-     'entro a login! bienvenido'
+    @user = User.find_or_create_by(username: params[:username],password: params[:password])
+
+  end
+
+  get '/users' do
+    @users = User.all
+
+    erb :login
   end
 end
 
