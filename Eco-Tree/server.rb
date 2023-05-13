@@ -37,20 +37,24 @@ class App < Sinatra::Application
     'Game'
   end
 
+  
   get '/' do
-    erb :index
+    erb :login
     
   end
 
   post '/login' do
     @user = User.find_or_create_by(username: params[:username],password: params[:password])
-
   end
 
   get '/users' do
     @users = User.all
-
-    erb :login
+    erb :users
   end
+
+  get '/register' do
+    erb :register
+  end
+
 end
 
