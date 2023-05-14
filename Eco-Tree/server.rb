@@ -39,7 +39,7 @@ class App < Sinatra::Application
   end
   
   get '/' do
-    erb :login    
+    erb :login  
   end
 
   post '/login' do
@@ -47,6 +47,8 @@ class App < Sinatra::Application
 
     if @user && @user.password == params[:password]
       redirect '/game'
+    elsif @user 
+      redirect '/'
     else
       redirect '/register'
     end
@@ -65,11 +67,9 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
 
     if @user.save
-      # Usuario guardado correctamente en la base de datos
-      redirect '/game'  # Redirige al usuario a la ruta '/game' después del registro exitoso
+      redirect '/game'  
     else
-      # Ocurrió un error al guardar el usuario
-      redirect '/register'  # Redirige de vuelta al formulario de registro para mostrar el error
+      redirect '/register'
     end
   end 
 end
