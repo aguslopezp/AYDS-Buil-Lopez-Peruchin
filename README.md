@@ -17,4 +17,6 @@ Create a migration to create the table: ``` sudo docker compose exec app bundle 
 
 Run the migration: ``` docker compose exec app bundle exec rake db:migrate ```
 
+Run the seeds.rb: ``` docker compose exec app bundle exec rake db:seed ```
+
 Stop runing the container: ``` sudo docker compose down ```

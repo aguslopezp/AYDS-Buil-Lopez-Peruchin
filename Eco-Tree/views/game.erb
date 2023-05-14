@@ -1,8 +1,20 @@
 <form action="/game" method="GET">
 
-<a href="/account"> Profile </a>
+<div class="profile-link">
+    <a href="/account">Profile</a>
+</div>
 
-<br>
-  <p> Lets play!! </p>
+<div class="play-section">
+    <h2>Lets play!!</h2>
+    <h3>Question 1:</h3>
+    <p><%= @question1%></p>
+
+    <div class="options">
+      <% @options.each do |option| %>
+        <div class="option-button" data-option-id="<%= option.id %>">
+          <%= option.description %>
+        </div>
+      <% end %>
+    </div>
 
 </form>
