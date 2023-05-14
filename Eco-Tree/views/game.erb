@@ -1,3 +1,7 @@
+<head>
+  <title>Eco-Tree</title>
+  <link rel="stylesheet" href="/styles/game.css" />
+</head>
 <form action="/game" method="GET">
 
 <div class="profile-link">
@@ -11,9 +15,11 @@
 
     <div class="options">
       <% @options.each do |option| %>
+      <a href="#">
         <div class="option-button" data-option-id="<%= option.id %>">
           <%= option.description %>
         </div>
+      </a>
       <% end %>
     </div>
 
