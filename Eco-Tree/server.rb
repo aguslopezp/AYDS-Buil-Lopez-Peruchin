@@ -34,26 +34,43 @@ class App < Sinatra::Application
 
   get '/game' do
     logger.info 'USANDO LOGGER INFO EN GAME PATH'
-    'Game'
+    erb :game
+    
   end
-
   
   get '/' do
     erb :login    
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username],password: params[:password])
+    @user = User.find_by(username: params[:username])
+
+    if @user && @user.password == params[:password]
+      redirect '/game'
+    else
+      redirect '/register'
+    end
   end
 
   get '/users' do
     @users = User.all
     erb :users
   end
-
+ 
   get '/register' do
     erb :register
   end
 
+  post '/register' do
+    @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+
+    if @user.save
+      # Usuario guardado correctamente en la base de datos
+      redirect '/game'  # Redirige al usuario a la ruta '/game' después del registro exitoso
+    else
+      # Ocurrió un error al guardar el usuario
+      redirect '/register'  # Redirige de vuelta al formulario de registro para mostrar el error
+    end
+  end 
 end
 
