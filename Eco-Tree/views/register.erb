@@ -1,28 +1,84 @@
-<form action="/register" method="POST">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eco-Tree</title>
+  <style>
+    body {
+      background-color: rgb(12, 12, 21);
+      text-align: center;
+    }
 
-  <p> Registrate </p>
+    h1 {
+      color: lime;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-size: 60px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      -webkit-text-stroke: none;
+      font-family: 'Steak', cursive;
+    }
 
-  <label for="username">
-    <b>Username</b>
-  </label>
-  <input type="text" name="username" id="usrname" placeholder="Enter username" required>
+    p {
+      color: lime;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-size: 18px;
+    }
 
-  <label for="pwd">
-    <b>Password</b>
-  </label>
-  <input type="password" name="password" id="pwd" placeholder="Enter your password" required>
-  
+    input[type="text"], input[type="password"], input[type="date"] {
+      color: white;
+      background-color: black;
+      border: 1px solid white;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
 
-  <label for="email">
-    <b>Email</b>
-  </label>
-  <input type="text" name="email" id="email" placeholder="Enter email" required>
+    input[type="submit"] {
+      color: black;
+      background-color: lime;
+      border: none;
+      padding: 10px 30px;
+      cursor: pointer;
+      border-radius: 20px;
+      font-family: 'Steak Barbecue', cursive;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="color: #008000; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Eco-Tree</h1>
 
-  <label for="birthdate">
-    <b>Birthdate</b>
-  </label>
-  <input type="date" name="birthdate" id="bdate" placeholder="Enter your birthdate" required>
+  <form action="/register" method="POST">
+    <p>Registrate</p>
 
-  <input type="submit" value="Create account">
-</form>
+    <label for="username">
+      <b>Username</b>
+    </label>
+    <br>
+    <input type="text" name="username" id="usrname" placeholder="Enter username" required>
+    <br>
+
+    <label for="pwd">
+      <b>Password</b>
+    </label>
+    <br>
+    <input type="password" name="password" id="pwd" placeholder="Enter your password" required>
+    <br>
+
+    <label for="email">
+      <b>Email</b>
+    </label>
+    <br>
+    <input type="text" name="email" id="email" placeholder="Enter email" required>
+    <br>
+
+    <label for="birthdate">
+      <b>Birthdate</b>
+    </label>
+    <br>
+    <input type="date" name="birthdate" id="bdate" placeholder="Enter your birthdate" required>
+    <br>
+
+    <input type="submit" value="Create account">
+  </form>
+</body>
+</html>
 
