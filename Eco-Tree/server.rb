@@ -39,12 +39,11 @@ class App < Sinatra::Application
 
   
   get '/' do
-    erb :login
-    
+    erb :login    
   end
 
   post '/login' do
-    @user = User.find_or_create_by(username: params[:username],password: params[:password])
+    @user = User.find_by(username: params[:username],password: params[:password])
   end
 
   get '/users' do
