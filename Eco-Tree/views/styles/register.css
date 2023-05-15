@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(12, 12, 21);
+    text-align: center;
+  }
+
+  h1 {
+    color: lime;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 60px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    -webkit-text-stroke: none;
+    font-family: 'Steak', cursive;
+  }
+
+  p {
+    color: lime;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+  }
+
+  b {
+    color: rgb(250, 250, 250);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+  }
+
+  input[type="text"], input[type="password"], input[type="date"] {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+    color: rgb(0, 0, 0);
+    background-color: lime;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-family: 'Steak Barbecue', cursive;
+  }
+
+  
