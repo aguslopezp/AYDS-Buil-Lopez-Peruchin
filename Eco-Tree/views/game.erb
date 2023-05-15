@@ -3,25 +3,31 @@
   <link rel="stylesheet" href="/styles/game.css" />
   <link rel="icon" href="front/icon.png"/>
 </head>
-<form action="/game" method="GET">
 
 <div class="profile-link">
     <a href="/account">Mi Perfil</a>
 </div>
 
-<div class="play-section">
+<form action="/game" method="POST">
+  <div class="play-section">
     <h2>Vamos a jugar!!</h2>
     <h3>Pregunta 1:</h3>
-    <p><%= @question1%></p>
+    <p><%= @question1 %></p>
 
     <div class="options">
       <% @options.each do |option| %>
-      <a href="#">
+      <!-- <a href="#">
         <div class="option-button" data-option-id="<%= option.id %>">
           <%= option.description %>
         </div>
       </a>
+      -->
+      <label>
+        <input type="radio" name="selected_option_id" class="option-button" value="<%= option.id %>">
+        <%= option.description %>
+      </label>
       <% end %>
+      <input type="submit" value="Seleccionar" class="option-button">
     </div>
 
 </form>

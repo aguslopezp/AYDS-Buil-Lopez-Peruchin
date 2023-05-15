@@ -43,6 +43,24 @@ class App < Sinatra::Application
     @options = Option.where(question_id: '1')
     erb :game
   end
+
+  post '/game' do
+    # Obtener la respuesta seleccionada por el usuario
+    selected_option_id = params[:selected_option_id]
+  
+    # Obtener la opción seleccionada de la base de datos
+    selected_option = Option.find(selected_option_id)
+    #Guardamos la opcion seleccionada en la tabla answers
+    #Answer.new(user_id: , option_id: )
+    # Verificar si la opción seleccionada es correcta o no
+    if selected_option.isCorrect
+      # La respuesta es correcta
+      @option_result = "¡Respuesta correcta! :)"
+    else
+      # La respuesta es incorrecta
+      @option_result = "Respuesta incorrecta! :("
+    end
+  end
   
 
   get '/' do
@@ -83,5 +101,7 @@ class App < Sinatra::Application
     @users = User.all
     erb :users
   end
+
+  
 end
 
