@@ -1,4 +1,4 @@
-body {
+ body {
   background-color: rgb(12, 12, 21);
   text-align: center;
   font-size: 32px;
@@ -6,28 +6,30 @@ body {
 }
 
 /*Contenedor de opciones*/
-.options {
+ .options {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  border: solid white;
 }
 
 /* Estilo base del botón */
-.option-button {
-  display: inline-block;
-  border: 3px solid #196d24;
-  margin: 10px;
-  padding: 10px 20px;
+ .option {
+  color: white;
+  border: 3px solid #45b354;
   border-radius: 10px;
-  background-color: #22b836;
-  text-decoration: none;
-  transition: box-shadow 0.3s;
 }
 
-/* Efecto de sombra al pasar el cursor sobre el botón */
-.option-button:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  background-color: rgb(73, 207, 73);
-  border: 3px solid #fff;
+.option:hover {
+  color: #45b354;
+  border: 3px solid #c6d1c7;
+  border-radius: 10px;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .profile-link a {

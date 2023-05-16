@@ -1,8 +1,8 @@
+require 'sinatra'
 require 'sinatra/base'
 require 'bundler/setup'
 require 'logger'
 require 'sinatra/activerecord'
-
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 
@@ -35,6 +35,12 @@ class App < Sinatra::Application
     end
   end
 
+  get '/game/:id' do
+    @question = Question.find(params[:id])
+    @options = @question.options
+    #@user = User.find(session[:user_id])
+    erb :game
+  end
 
   get '/game' do
     logger.info 'USANDO LOGGER INFO EN GAME PATH'
@@ -70,9 +76,10 @@ class App < Sinatra::Application
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-
+    
     if @user && @user.password == params[:password]
-      redirect '/game'
+      #session[:user_id] = @user.id
+      redirect '/game/1'
     elsif @user 
       redirect '/'
     else
@@ -90,7 +97,7 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
     if @user.save
-      redirect '/game'  
+      redirect '/game/1'  
     else
       redirect '/register'
     end
