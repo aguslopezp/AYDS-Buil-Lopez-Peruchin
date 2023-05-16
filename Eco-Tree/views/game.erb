@@ -4,14 +4,17 @@
     <title>Eco-Tree</title>
     <link rel="stylesheet" href="/styles/game.css" />
     <link rel="icon" href="/front/icon.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
-      <div class="profile-link">
-          <a href="/account">Mi Perfil</a>
-      </div>
+      <nav class="navigation">
+          <a href="/account" class="profile">Mi Perfil</a>
+      </nav>
     </header>
-    <div class="play-section">
+    <section class="play-section">
       <h2>Vamos a jugar!!</h2>
       <h3>Pregunta <%=@question.id%>:</h3>
       <p><%= @question.description %></p>
@@ -24,8 +27,8 @@
             </label>
           <% end %>
         </div>
-        <input type="submit" value="Responder" class="option-button">
+        <input type="submit" value="Responder" class="submit-button">
       </form>
-
+    </section>
   </body>
 </html>
