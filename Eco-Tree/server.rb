@@ -36,19 +36,17 @@ class App < Sinatra::Application
   end
 
   get '/game/:id' do
-    @question = Question.find(params[:id])
-    @options = @question.options
-    #@user = User.find(session[:user_id])
-    erb :game
-  end
+    @total_questions = 30 # Numero total de preguntas en el juego
+    @id = params[:id].to_i  # id de la pregunta a preguntar
 
-  get '/game' do
-    logger.info 'USANDO LOGGER INFO EN GAME PATH'
-    @descriptions = Question.pluck(:description)  # arreglo con las descripciones de todos los registros de la tabla
-    @question1 = @descriptions[0] # me guardo la descripcion de la primera pregunta
-    @options = Option.where(question_id: '1')
-    erb :game
-  end
+    if @id <= @total_questions
+      @question = Question.find(@id)  # pregunta de la bd con ese id
+      @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
+      erb :game
+    else  # el juego se termino
+      erb :game_finished
+    end
+  end 
 
   post '/game' do
     # Obtener la respuesta seleccionada por el usuario
@@ -56,8 +54,7 @@ class App < Sinatra::Application
   
     # Obtener la opción seleccionada de la base de datos
     selected_option = Option.find(selected_option_id)
-    #Guardamos la opcion seleccionada en la tabla answers
-    #Answer.new(user_id: , option_id: )
+
     # Verificar si la opción seleccionada es correcta o no
     if selected_option.isCorrect
       # La respuesta es correcta
@@ -67,8 +64,8 @@ class App < Sinatra::Application
       @option_result = "Respuesta incorrecta! :("
     end
   end
-  
 
+  
   get '/' do
     erb :login  
   end
@@ -78,7 +75,6 @@ class App < Sinatra::Application
     @user = User.find_by(username: params[:username])
     
     if @user && @user.password == params[:password]
-      #session[:user_id] = @user.id
       redirect '/game/1'
     elsif @user 
       redirect '/'
