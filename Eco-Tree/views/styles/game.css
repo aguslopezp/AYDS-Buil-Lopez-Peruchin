@@ -19,19 +19,17 @@ header {
   left: 0;
   width: 100%;
   padding: 20px 50px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
   z-index: 99;
 }
 
 .navigation {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background: transparent;
   font-weight: 500;
   font-size: 25px;
+  gap: 30px;
 }
 
 .profile {
@@ -40,7 +38,6 @@ header {
   line-height: 1.8;
   cursor: pointer;
   width: 130px;
-  height: 50px;
   border: 2px solid #fff;
   border-radius: 6px;
   color: #fff;
@@ -122,6 +119,31 @@ input[type="radio"]:checked {
 }
 
 .submit-button:hover {
+  background: #162938;
+  color: #fff;
+}
+
+#next-question {
+  /* display: none; */
+  visibility: hidden;
+}
+
+#next-button {
+  appearance: none;
+  text-decoration: none;
+  width: 250px;
+  height: 60px;
+  border: none;
+  background: #fff;
+  border-radius: 6px;
+  color: #162938;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 800;
+  transition: .3s;
+}
+
+#next-button:hover {
   background: #162938;
   color: #fff;
 }

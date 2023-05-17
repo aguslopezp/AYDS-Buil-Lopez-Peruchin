@@ -39,7 +39,7 @@
           }
           // Mostrar el botón "Siguiente"
           var nextQuestionDiv = document.getElementById('next-question');
-          nextQuestionDiv.style.display = 'block';
+          nextQuestionDiv.style.visibility = 'visible';
         }
       };
       
@@ -50,10 +50,10 @@
     function goToNextQuestion() {
     // Obtén el ID de la pregunta actual
     var currentQuestionId = parseInt('<%=@question.id%>');
-    
+    let currentUserId = parseInt('<%=@user.id%>');
     // Redirige al usuario a la siguiente pregunta
     var nextQuestionId = currentQuestionId + 1;
-    window.location.href = '/game/' + nextQuestionId;
+    window.location.href = '/game/' + nextQuestionId + '/' + currentUserId;
   }
   </script>
 
@@ -61,10 +61,11 @@
     <header>
       <nav class="navigation">
           <a href="/account" class="profile">Mi Perfil</a>
+          <a href="/" class="profile">Salir</a>
       </nav>
     </header>
     <section class="play-section">
-      <h2>Vamos a jugar!!</h2>
+      <h2>Vamos a jugar <%= @user.username %>!!</h2>
       <h3>Pregunta <%=@question.id%>:</h3>
       <p><%= @question.description %></p>
       <form action="/game" method="POST" id="game-form">
@@ -76,10 +77,10 @@
             </label>
           <% end %>
         </div>
-        <input type="button" value="Responder" class="submit-button" onclick="submitForm()">
+        <input type="button" value="Responder" id="submit-button" class="submit-button" onclick="submitForm()">
       </form>
 
-      <div id="next-question" style="display: none;">
+      <div id="next-question">
         <button id="next-button" onclick="goToNextQuestion()">Siguiente</button>
       </div>
     </section>

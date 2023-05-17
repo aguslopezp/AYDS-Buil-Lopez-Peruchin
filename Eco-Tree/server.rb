@@ -35,10 +35,11 @@ class App < Sinatra::Application
     end
   end
 
-  get '/game/:id' do
+  get '/game/:id/:user_id' do
     @total_questions = 30 # Numero total de preguntas en el juego
     @id = params[:id].to_i  # id de la pregunta a preguntar
-
+    user_id = params[:user_id]
+    @user = User.find(user_id)
     if @id <= @total_questions
       @question = Question.find(@id)  # pregunta de la bd con ese id
       @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
@@ -73,9 +74,9 @@ class App < Sinatra::Application
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    
     if @user && @user.password == params[:password]
-      redirect '/game/1'
+      user = User.find_by(username: params[:username])
+      redirect "/game/1/#{user.id}"
     elsif @user 
       redirect '/'
     else
@@ -93,7 +94,7 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
     if @user.save
-      redirect '/game/1'  
+      redirect "/game/1/#{user.id}"
     else
       redirect '/register'
     end
