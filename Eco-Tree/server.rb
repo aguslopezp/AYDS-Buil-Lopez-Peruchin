@@ -94,7 +94,7 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
     if @user.save
-      redirect "/game/1/#{user.id}"
+      redirect "/game/1/#{@user.id}"
     else
       redirect '/register'
     end

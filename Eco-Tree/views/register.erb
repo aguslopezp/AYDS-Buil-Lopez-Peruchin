@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Eco-Tree</title>
-  <link rel="stylesheet" href="/styles/register.css" />
-  <link rel="icon" href="front/icon.png"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrate - Eco-Tree</title>
+  <link rel="Stylesheet" href="/styles/register.css">
+  <link rel="icon" href="/front/icon.png"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <h1>Eco-Tree</h1>
 
-  <form action="/register" method="POST">
-    <p>Registrate</p>
+  <header>
+    <h2 class="logo"> ECO-TREE</h2>
+    <img class="image" src="/front/logo.png" alt="logo">
+  </header>
 
-    <label for="username">
-      <b>USUARIO</b>
-    </label>
-    <br>
-    <input type="text" name="username" id="usrname" placeholder="INGRESE SU USUARIO" required>
-    <br>
+  <div class="crear_usuario">
+    <div class="form-box login">
+      <h2>REGISTRARSE</h2>
+      <form action="/register" method="POST"> 
 
-    <label for="pwd">
-      <b>CONTRASEÑA</b>
-    </label>
-    <br>
-    <input type="password" name="password" id="pwd" placeholder="INGRESE SU CONTRASEÑA" required>
-    <br>
+        <div class="input-box">
+          <input type="Usuario" name="username">
+          <label>Usuario</label>
+        </div>
 
-    <label for="email">
-      <b>EMAIL</b>
-    </label>
-    <br>
-    <input type="text" name="email" id="email" placeholder="INGRESE SU EMAIL" required>
-    <br>
+        <div class="input-box">
+          <input type="password" name="password">
+          <label>Contraseña</label>
+        </div>
 
-    <label for="birthdate">
-      <b>FECHA DE NACIMIENTO</b>
-    </label>
-    <br>
-    <input type="date" name="birthdate" id="bdate" placeholder="INGRESE SU FECHA DE NACIMIENTO" required>
-    <br>
+        <div class="input-box">
+          <input type="email" name="email">
+          <label>Email</label>
+        </div>
 
-    <input type="submit" value="CREAR USUARIO">
-  </form>
+        <div class="input-box">
+          <input type="date" name="birthdate">
+          <label>Fecha de nacimiento</label>
+        </div>
+        <button type="submit" class="btn"> Registrarse </button>
+
+      </form>
+
+    </div>
+  </div>
+  
+ 
 </body>
 </html>
-

@@ -10,6 +10,9 @@
   </head>
     <script>
     function submitForm() {
+      let responseButton = document.getElementById('submit-button');
+          responseButton.style.visibility = 'hidden';
+
       // Obtén el formulario
       var form = document.getElementById('game-form');
       
@@ -41,6 +44,7 @@
           var nextQuestionDiv = document.getElementById('next-question');
           nextQuestionDiv.style.visibility = 'visible';
         }
+
       };
       
       // Envía los datos seleccionados al servidor
