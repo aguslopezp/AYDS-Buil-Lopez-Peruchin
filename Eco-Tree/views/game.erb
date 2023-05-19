@@ -8,59 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   </head>
-    <script>
-    function submitForm() {
-      let responseButton = document.getElementById('submit-button');
-          responseButton.style.visibility = 'hidden';
-
-      // Obtén el formulario
-      var form = document.getElementById('game-form');
-      
-      // Deshabilita el envío del formulario para evitar que la pagina se recargue
-      form.onsubmit = function() {
-        return false;
-      };
-      
-      // Se obtiene el id de la opcion seleccionada por el usuario
-      var selectedOptionId = document.querySelector('input[name="selected_option_id"]:checked').value;
-      
-      // Envía una solicitud AJAX al servidor con los datos seleccionados
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/game', true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-          // Obtén la respuesta del servidor
-          var response = xhr.responseText;
-          
-          // Manipula los estilos de la opción seleccionada
-          var selectedOption = document.getElementById('option-' + selectedOptionId);
-          if (response === '¡Respuesta correcta! :)') {
-            selectedOption.style.backgroundColor = 'green';
-          } else {
-            selectedOption.style.backgroundColor = 'red';
-          }
-          // Mostrar el botón "Siguiente"
-          var nextQuestionDiv = document.getElementById('next-question');
-          nextQuestionDiv.style.visibility = 'visible';
-        }
-
-      };
-      
-      // Envía los datos seleccionados al servidor
-      xhr.send('selected_option_id=' + encodeURIComponent(selectedOptionId));
-    }
-
-    function goToNextQuestion() {
-    // Obtén el ID de la pregunta actual
-    var currentQuestionId = parseInt('<%=@question.id%>');
-    let currentUserId = parseInt('<%=@user.id%>');
-    // Redirige al usuario a la siguiente pregunta
-    var nextQuestionId = currentQuestionId + 1;
-    window.location.href = '/game/' + nextQuestionId + '/' + currentUserId;
-  }
-  </script>
-
   <body>
     <header>
       <nav class="navigation">
@@ -72,7 +19,7 @@
       <h2>Vamos a jugar <%= @user.username %>!!</h2>
       <h3>Pregunta <%=@question.id%>:</h3>
       <p><%= @question.description %></p>
-      <form action="/game" method="POST" id="game-form">
+      <form action=<%="/game/#{@question.id}/#{@user.id}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>
             <label class="option">
@@ -81,12 +28,9 @@
             </label>
           <% end %>
         </div>
-        <input type="button" value="Responder" id="submit-button" class="submit-button" onclick="submitForm()">
+        <input type="submit" value="Responder" id="submit-button" class="submit-button" onclick="submitForm()">
       </form>
-
-      <div id="next-question">
-        <button id="next-button" onclick="goToNextQuestion()">Siguiente</button>
-      </div>
     </section>
+    <h1><%=@result %></h1>
   </body>
 </html>

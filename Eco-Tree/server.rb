@@ -38,6 +38,18 @@ class App < Sinatra::Application
   get '/game/:id/:user_id' do
     @total_questions = 30 # Numero total de preguntas en el juego
     @id = params[:id].to_i  # id de la pregunta a preguntar
+    @option_result = params[:option_result]
+    @result = ' '
+    if @option_result.nil?
+      @result = ' '
+    else
+      if @option_result
+        @result = 'Respuesta correcta'
+      else
+        @result = 'Respuesta incorrecta'
+      end
+    end
+    
     user_id = params[:user_id]
     @user = User.find(user_id)
     if @id <= @total_questions
@@ -49,23 +61,16 @@ class App < Sinatra::Application
     end
   end 
 
-  post '/game' do
-    # Obtener la respuesta seleccionada por el usuario
-    selected_option_id = params[:selected_option_id]
-  
-    # Obtener la opción seleccionada de la base de datos
-    selected_option = Option.find(selected_option_id)
+  post '/game/:question_id/:user_id' do
+    # Obtener la opción seleccionada de la base de datos a traves de los parametros
+    selected_option = Option.find(params[:selected_option_id])
+    next_question = params[:question_id].to_i + 1
 
     # Verificar si la opción seleccionada es correcta o no
-    if selected_option.isCorrect
-      # La respuesta es correcta
-      @option_result = "¡Respuesta correcta! :)"
-    else
-      # La respuesta es incorrecta
-      @option_result = "Respuesta incorrecta! :("
-    end
-  end
+    option_result = selected_option.isCorrect ? true : false
 
+    redirect "/game/#{next_question}/#{params[:user_id]}?option_result=#{option_result}"
+  end
   
   get '/' do
     erb :login
