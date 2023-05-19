@@ -114,5 +114,13 @@ image {
   font-size: 1em;
   color: #fff;
   font-weight: 500;
+  transition: background-color 1s;
 }
+
+
+.btn:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
+}
+
 

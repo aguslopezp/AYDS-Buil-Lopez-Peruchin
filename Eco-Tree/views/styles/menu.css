@@ -1,0 +1,110 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/front/fondo.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+}
+
+image {
+  height: 200px;
+}
+
+.logo{
+  font-size: 3.2em;
+  border: 2px lime;
+  border-color: rgb(14, 251, 14);
+  border-radius: 6px;
+  color: rgb(0, 0, 0);
+  user-select: none;
+  height: px;
+}
+
+.game {
+  display: block;
+  width: 360px;
+  height: 90px;
+  font-size: 2em;
+  font-weight: 700;
+  background-color: #162938;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin:  40px 160px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  transition: background-color 1s;
+}
+
+.game:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
+}
+
+
+.btn {  
+  display: block;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  background-color: #162938;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin:  20px 250px;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 1s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
+}
+
+.btnOut {  
+  display: block;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  background-color: #162938;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin:  20px 250px;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 1s;
+}
+
+.btnOut:hover {
+  box-shadow: 0 0 10px #eb5f5f;
+  color: #e30505;
+}
+
+
+
+
+

@@ -43,7 +43,7 @@ class App < Sinatra::Application
     if @option_result.nil?
       @result = ' '
     else
-      if @option_result
+      if @option_result == 'true'
         @result = 'Respuesta correcta'
       else
         @result = 'Respuesta incorrecta'
@@ -67,7 +67,7 @@ class App < Sinatra::Application
     next_question = params[:question_id].to_i + 1
 
     # Verificar si la opción seleccionada es correcta o no
-    option_result = selected_option.isCorrect ? true : false
+    option_result = selected_option.isCorrect ? 'true' : 'false'
 
     if option_result 
       user = User.find(params[:user_id])
@@ -89,8 +89,7 @@ class App < Sinatra::Application
   post '/login' do
     @user = User.find_by(username: params[:username])
     if @user && @user.password == params[:password]
-      user = User.find_by(username: params[:username])
-      redirect "/game/1/#{user.id}"
+      redirect "/menu/#{@user.id}"
     elsif @user 
       redirect '/'
     else
@@ -108,17 +107,19 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
     if @user.save
-      redirect "/game/1/#{@user.id}"
+      redirect "/menu/#{@user.id}"
     else
       redirect '/register'
     end
   end 
 
 
-  get '/users' do
-    @users = User.all
-    erb :users
-  end
+  get '/menu/:user_id' do 
+    @user = User.find_by(id: params[:user_id])
+    erb :menu
+  end 
+
+
 
   
 end
