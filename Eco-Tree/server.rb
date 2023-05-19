@@ -36,7 +36,7 @@ class App < Sinatra::Application
   end
 
   get '/game/:id/:user_id' do
-    @total_questions = 30 # Numero total de preguntas en el juego
+    @total_questions = Question.count # Numero total de preguntas en el juego
     @id = params[:id].to_i  # id de la pregunta a preguntar
     @option_result = params[:option_result]
     @result = ' '

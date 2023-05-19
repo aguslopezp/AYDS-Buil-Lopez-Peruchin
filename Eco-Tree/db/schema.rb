@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_180636) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_031455) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
     t.index ["option_id"], name: "index_answers_on_option_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "asked_questions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.index ["question_id"], name: "index_asked_questions_on_question_id"
+    t.index ["user_id"], name: "index_asked_questions_on_user_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -29,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_180636) do
 
   create_table "questions", force: :cascade do |t|
     t.string "description"
-    t.boolean "asked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,5 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_180636) do
 
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "users"
+  add_foreign_key "asked_questions", "questions"
+  add_foreign_key "asked_questions", "users"
   add_foreign_key "options", "questions"
 end
