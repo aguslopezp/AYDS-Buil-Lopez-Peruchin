@@ -69,6 +69,15 @@ class App < Sinatra::Application
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? true : false
 
+    if option_result 
+      user = User.find(params[:user_id])
+      if user.points.nil?
+        user.update(points: 10)
+      else 
+        newPoints = user.points + 10
+        user.update(points: newPoints)
+      end
+    end
     redirect "/game/#{next_question}/#{params[:user_id]}?option_result=#{option_result}"
   end
   
