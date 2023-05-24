@@ -3,14 +3,17 @@ require 'sinatra/base'
 require 'bundler/setup'
 require 'logger'
 require 'sinatra/activerecord'
+require 'sinatra/cookies'
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
-
 
 require_relative 'models/user'
 require_relative 'models/question'
 require_relative 'models/option'
 
 class App < Sinatra::Application
+  enable :sessions
+  # Configuracion de la clave secreta de sesión
+  set :session_secret, 'la_mano_de_dios'
   def initialize(app = nil)
     super()
   end
@@ -33,7 +36,7 @@ class App < Sinatra::Application
       puts 'Reloaded...'
       logger.info 'Reloaded!!!'
     end
-  end
+  end  
 
   get '/game/:id/:user_id' do
     @total_questions = Question.count # Numero total de preguntas en el juego
@@ -88,7 +91,9 @@ class App < Sinatra::Application
 
   post '/login' do
     @user = User.find_by(username: params[:username])
+    
     if @user && @user.password == params[:password]
+      session[:user_id] = @user.id
       redirect "/menu/#{@user.id}"
     elsif @user 
       redirect '/'
@@ -115,12 +120,9 @@ class App < Sinatra::Application
 
 
   get '/menu/:user_id' do 
-    @user = User.find_by(id: params[:user_id])
-    erb :menu
+    user_id = session[:user_id]
+    erb :menu, :locals => {:user_id => user_id}
   end 
-
-
-
   
 end
 
