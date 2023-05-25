@@ -9,6 +9,7 @@ require 'sinatra/reloader' if Sinatra::Base.environment == :development
 require_relative 'models/user'
 require_relative 'models/question'
 require_relative 'models/option'
+require_relative 'models/asked_question'
 
 class App < Sinatra::Application
   enable :sessions
@@ -73,7 +74,7 @@ class App < Sinatra::Application
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
     
-    if option_result 
+    if option_result == 'true'
       user = User.find(params[:user_id])
       if user.points.nil?
         user.update(points: 10)
