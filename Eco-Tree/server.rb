@@ -121,13 +121,20 @@ class App < Sinatra::Application
   post '/login' do
     @user = User.find_by(username: params[:username])
     
-    if @user && @user.password == params[:password]
-      session[:user_id] = @user.id
-      redirect '/menu'
-    elsif @user 
-      redirect '/'
+    @confPass = (@user.password == params[:passwordTwo])
+
+    if  @confPass 
+      if @user && @user.password == params[:password]
+        session[:user_id] = @user.id
+        redirect '/menu'
+      elsif @user 
+        redirect '/'
+      else
+        redirect '/register'
+      end
+
     else
-      redirect '/register'
+      redirect '/login'
     end
   end
 
