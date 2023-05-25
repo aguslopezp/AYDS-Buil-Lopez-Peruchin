@@ -19,25 +19,31 @@
 
       <form action="/profile" method="POST"> 
         <div class="modificar">
-          <h2 class="old">Su usuario actual:</h2>
-          <input type="Usuario" name="username">
-          <label>Nuevo nombre de usuario</label>
-           <input type="Usuario" name="newUsername">
+          <div class="user">
+            <h2 class="old">Su usuario actual:</h2>
+            <input type="Usuario" name="username">
+            <label>Nuevo nombre de usuario</label>
+            <input type="Usuario" name="newUsername">
+          </div>
+        
+          <div class="pass">
+            <label>Contraseña antigua</label>
+            <input type="password" name="password">
+            <label>Nueva Contraseña</label>
+            <input type="password" name="newPassword">
+          </div>
+        
+          <div class="email">
+            <h2 class="old">Su email actual:</h2>
+            <input type="Email" name="email">
+            <label>Nuevo email de usuario</label>
+            <input type="Email" name="newEmail">
+          </div>
         
 
-          <input type="password" name="password">
-          <label>Contraseña antigua</label>
-          <input type="password" name="newPassword">
-          <label>Nueva Contraseña</label>
-        
-              
-          <h2 class="old">Su email actual:</h2>
-          <input type="Email" name="email">
-          <label>Nuevo email de usuario</label>
-          <input type="Email" name="newEmail">
-        
-
-         <button type="submit" class="btn"> Ingresar </button>
+          <button type="submit" class="btn"> Guardar </button>
+         
+        </div>
       </form>
      
     </section>
