@@ -5,12 +5,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
+body{
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #6d8ba0;
+  background: url('/front/fondoQuestion.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 header {
@@ -49,15 +51,31 @@ header {
 
 .profile:hover {
   background: #fff;
-  color: #162938;
+  color: #aec5d7;
 }
 
 .play-section {
-  font-size: 35px;
-  display: flex;
   flex-direction: column;
+  font-size: 35px;
+  position: relative;
+  width: 1200px;
+  height: 670px;
+  color: #fff;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255,  .5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.des {
+  border: 2px solid rgba(255, 255, 255,  .5);
+  color: #162938;  
+  
 }
 
 /*Contenedor de opciones y boton*/
@@ -74,7 +92,9 @@ form {
 .options {
   display: flex;
   flex-direction: column;
+  align-items:center ;
   width: 100%;
+  color: #fff;
   gap: 10px;
 }
 
@@ -146,4 +166,19 @@ input[type="radio"]:checked {
 #next-button:hover {
   background: #162938;
   color: #fff;
+}
+
+.points {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 190px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255,  .5);
+  border-radius: 10px;
+  align-items: center;
+  background: transparent;
+  box-shadow: #81f2c9;
+  color: #fff;
+  backdrop-filter: blur(15px);
 }

@@ -71,7 +71,7 @@ class App < Sinatra::Application
 
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
-
+    
     if option_result 
       user = User.find(params[:user_id])
       if user.points.nil?
