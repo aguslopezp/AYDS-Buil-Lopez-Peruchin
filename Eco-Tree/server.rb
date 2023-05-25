@@ -53,7 +53,7 @@ class App < Sinatra::Application
       end
     end
     
-    user_id = params[:user_id]
+    user_id = session[:user_id] 
     @user = User.find(user_id)
     if @id <= @total_questions
       @question = Question.find(@id)  # pregunta de la bd con ese id
