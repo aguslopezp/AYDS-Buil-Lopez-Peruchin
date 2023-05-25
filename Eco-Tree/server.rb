@@ -38,9 +38,10 @@ class App < Sinatra::Application
     end
   end  
 
-  get '/game/:id/:user_id' do
+
+  get '/game/:id_question/:user_id' do
     @total_questions = Question.count # Numero total de preguntas en el juego
-    @id = params[:id].to_i  # id de la pregunta a preguntar
+    @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
     @option_result = params[:option_result]
     @result = ' '
     if @option_result.nil?
@@ -55,8 +56,8 @@ class App < Sinatra::Application
     
     user_id = session[:user_id] 
     @user = User.find(user_id)
-    if @id <= @total_questions
-      @question = Question.find(@id)  # pregunta de la bd con ese id
+    if @id_question  <= @total_questions
+      @question = Question.find(@id_question)  # pregunta de la bd con ese id
       @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
       erb :game
     else  # el juego se termino
@@ -64,10 +65,10 @@ class App < Sinatra::Application
     end
   end 
 
+
   post '/game/:question_id/:user_id' do
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
-    next_question = params[:question_id].to_i + 1
 
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
@@ -81,29 +82,40 @@ class App < Sinatra::Application
         user.update(points: newPoints)
       end
     end
-    redirect "/game/#{next_question}/#{params[:user_id]}?option_result=#{option_result}"
+    redirect "/asked/#{params[:question_id]}/#{params[:user_id]}/#{option_result}"
   end
 
-  #get '/asked/:question_id/:user_id' do
-   # erb :asked
-  #end
-  
-  #
-  #post '/asked/:question_id/:user_id' do
-   # user_id = session[:user_id]
-    #selected_option = Option.find(params[:selected_option_id])
-    #next_question = params[:question_id].to_i + 1 
 
-    #redirect "/game/#{next_question}/#{user_id}?option_result=#{option_result}"
-  #end
+  get '/asked/:question_id/:user_id/:option_result' do
+    @question = Question.find(params[:question_id])
+    @user = User.find(params[:user_id])
+    @result = params[:option_result]
+    if @result == 'true'
+      @respuesta = 'Respuesta correcta! :)'
+    else
+      @respuesta = 'Respuesta incorrecta! :('
+    end
+    erb :asked
+  end
   
+  
+  post '/asked/:question_id/:user_id' do
+    #user_id = session[:user_id]
+    next_question = params[:question_id].to_i + 1 
+
+    redirect "/game/#{next_question}/#{params[:user_id]}"
+  end
+  
+
   get '/' do
     erb :start
   end
 
+
   get '/login' do
     erb :login
   end
+
 
   post '/login' do
     @user = User.find_by(username: params[:username])
@@ -127,7 +139,7 @@ class App < Sinatra::Application
   post '/register' do
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
-    if @user.save
+    if @user.save # se guardo correctamente ese nuevo usuario a la tabla
       redirect '/menu'
     else
       redirect '/register'
@@ -137,16 +149,14 @@ class App < Sinatra::Application
 
   get '/menu' do 
     user_id = session[:user_id]
+    @user = User.find(user_id)
     erb :menu, :locals => {:user_id => user_id}
   end 
+
 
   get '/profile' do
     erb :profile
   end
 
-  
-
-  
-  
 end
 
