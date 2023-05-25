@@ -10,6 +10,7 @@ require_relative 'models/user'
 require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/asked_question'
+require_relative 'models/answer'
 
 class App < Sinatra::Application
   enable :sessions
@@ -43,24 +44,33 @@ class App < Sinatra::Application
   get '/game/:id_question/:user_id' do
     @total_questions = Question.count # Numero total de preguntas en el juego
     @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
-    @option_result = params[:option_result]
-    @result = ' '
-    if @option_result.nil?
-      @result = ' '
-    else
-      if @option_result == 'true'
-        @result = 'Respuesta correcta'
-      else
-        @result = 'Respuesta incorrecta'
-      end
-    end
+
     
     user_id = session[:user_id] 
     @user = User.find(user_id)
-    if @id_question  <= @total_questions
+
+    # consultamos si esa pregunta habia sido preguntada
+    asked_question = AskedQuestion.find_by(user_id: user_id, question_id: @id_question)
+
+    if @id_question  <= @total_questions && asked_question.nil?
       @question = Question.find(@id_question)  # pregunta de la bd con ese id
       @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
       erb :game
+    # Buscamos la siguiente pregunta que no haya sido preguntada
+    elsif @id_question <= @total_questions && !asked_question.nil?
+      i = @id_question
+      while i <= @total_questions && !asked_question.nil?
+        i += 1
+        asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
+      end
+      if i > @total_questions #no hay mas preguntas para hacer, todas fueron preguntadas
+        erb :game_finished
+      else 
+        @id_question = i  # nueva pregunta a ser preguntada
+        @question = Question.find(@id_question)  # pregunta de la bd con ese id
+        @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
+        erb :game
+      end
     else  # el juego se termino
       erb :game_finished
     end
@@ -74,6 +84,7 @@ class App < Sinatra::Application
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
     
+    # Calculo puntos del usuario
     if option_result == 'true'
       user = User.find(params[:user_id])
       if user.points.nil?
@@ -83,6 +94,13 @@ class App < Sinatra::Application
         user.update(points: newPoints)
       end
     end
+
+    # Guardo en la tabla answers la respuesta del usuario
+    Answer.create(user_id: params[:user_id], option_id: params[:selected_option_id])
+
+    # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
+    AskedQuestion.create(user_id: params[:user_id], question_id: params[:question_id])
+    
     redirect "/asked/#{params[:question_id]}/#{params[:user_id]}/#{option_result}"
   end
 
@@ -121,23 +139,15 @@ class App < Sinatra::Application
   post '/login' do
     @user = User.find_by(username: params[:username])
     
-    @confPass = (@user.password == params[:passwordTwo])
-
-    if  @confPass 
-      if @user && @user.password == params[:password]
-        session[:user_id] = @user.id
-        redirect '/menu'
-      elsif @user 
-        redirect '/'
-      else
-        redirect '/register'
-      end
-
+    if @user && @user.password == params[:password]
+      session[:user_id] = @user.id
+      redirect '/menu'
+    elsif @user 
+        redirect '/login'
     else
-      redirect '/login'
+      redirect '/register'
     end
-  end
-
+  end 
   
   get '/register' do
     erb :register
@@ -145,8 +155,8 @@ class App < Sinatra::Application
 
 
   post '/register' do
-    @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
-    
+    @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+    session[:user_id] = @user.id
     if @user.save # se guardo correctamente ese nuevo usuario a la tabla
       redirect '/menu'
     else
