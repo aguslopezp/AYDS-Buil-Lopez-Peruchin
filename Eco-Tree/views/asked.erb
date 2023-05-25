@@ -2,37 +2,23 @@
 <html>
   <head>
     <title>Eco-Tree</title>
-    <link rel="stylesheet" href="/styles/game.css" />
+    <link rel="stylesheet" href="/styles/asked.css" />
     <link rel="icon" href="/front/icon.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <nav class="navigation">
-          <a href="/account" class="profile">Mi Perfil</a>
-          <div class="points">
-            puntos: <%= @user.points %>
-          </div>
-          <a href=<%="/menu/#{@user.id}"%> class="profile">Salir</a>
-      </nav>
-    </header>
-    <section class="play-section">
+    
+    <section class="asked">
       <h3>Pregunta <%=@question.id%>:</h3>
       <p><%= @question.description %></p>
-      <form action=<%="/game/#{@question.id}/#{@user.id}"%> method="POST" id="game-form">
-        <div class="options">
-          <% @options.each do |option| %>
-            <label class="option">
-              <input type="radio" name="selected_option_id" class="option-button" value="<%= option.id %>" id="option-<%= option.id %>">
-              <%= option.description %>
-            </label>
-          <% end %>
+      
+        <div class="options">            
+          <h1><%=@result %></h1>
+          <input type="submit" value="Siguente pregunta" id="submit-button" class="submit-button" onclick="submitForm()">
         </div>
-        <input type="submit" value="Responder" id="submit-button" class="submit-button" onclick="submitForm()">
-      </form>
+      
     </section>
-   <h1><%=@result %></h1>
   </body>
 </html>

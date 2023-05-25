@@ -83,6 +83,19 @@ class App < Sinatra::Application
     end
     redirect "/game/#{next_question}/#{params[:user_id]}?option_result=#{option_result}"
   end
+
+  #get '/asked/:question_id/:user_id' do
+   # erb :asked
+  #end
+  
+  #
+  #post '/asked/:question_id/:user_id' do
+   # user_id = session[:user_id]
+    #selected_option = Option.find(params[:selected_option_id])
+    #next_question = params[:question_id].to_i + 1 
+
+    #redirect "/game/#{next_question}/#{user_id}?option_result=#{option_result}"
+  #end
   
   get '/' do
     erb :start
@@ -126,6 +139,14 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     erb :menu, :locals => {:user_id => user_id}
   end 
+
+  get '/profile' do
+    erb :profile
+  end
+
+  
+
+  
   
 end
 
