@@ -97,7 +97,7 @@ class App < Sinatra::Application
     
     if @user && @user.password == params[:password]
       session[:user_id] = @user.id
-      redirect "/menu/#{@user.id}"
+      redirect '/menu'
     elsif @user 
       redirect '/'
     else
@@ -115,14 +115,14 @@ class App < Sinatra::Application
     @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
     
     if @user.save
-      redirect "/menu/#{@user.id}"
+      redirect '/menu'
     else
       redirect '/register'
     end
   end 
 
 
-  get '/menu/:user_id' do 
+  get '/menu' do 
     user_id = session[:user_id]
     erb :menu, :locals => {:user_id => user_id}
   end 

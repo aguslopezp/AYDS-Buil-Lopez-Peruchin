@@ -27,16 +27,14 @@ header{
   z-index: 99;
 }
 
-image {
-  height: 200px;
-}
 
 .logo{
   font-size: 3.2em;
   border: 2px lime;
   border-color: rgb(14, 251, 14);
   border-radius: 6px;
-  color: rgb(0, 0, 0);
+  color: #162938;
+  ;
   user-select: none;
   height: px;
 }
@@ -104,7 +102,18 @@ image {
   color: #e30505;
 }
 
-
-
+.Question_Box {
+  position: relative;
+  width: 800px;
+  height: 490px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255,  .5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
