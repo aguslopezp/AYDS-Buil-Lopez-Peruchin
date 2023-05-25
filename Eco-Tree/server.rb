@@ -109,6 +109,7 @@ class App < Sinatra::Application
     @question = Question.find(params[:question_id])
     @user = User.find(params[:user_id])
     @result = params[:option_result]
+    @answer = params[:selected_option]
     if @result == 'true'
       @respuesta = 'Respuesta correcta! :)'
     else
@@ -154,11 +155,22 @@ class App < Sinatra::Application
   end
 
 
+  get '/register' do
+    erb :register
+  end
+
+
   post '/register' do
-    @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
-    session[:user_id] = @user.id
-    if @user.save # se guardo correctamente ese nuevo usuario a la tabla
-      redirect '/menu'
+    @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+    
+    @confPass = (@user.password == params[:passwordTwo])
+
+    if  @confPass 
+      if @user.save # se guardo correctamente ese nuevo usuario a la tabla
+        redirect '/menu'
+      else
+        redirect '/register'
+      end
     else
       redirect '/register'
     end

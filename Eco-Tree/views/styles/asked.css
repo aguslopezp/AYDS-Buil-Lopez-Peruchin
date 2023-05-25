@@ -54,21 +54,22 @@ header {
   color: #aec5d7;
 }
 
-.play-section {
+.asked {
   flex-direction: column;
   font-size: 35px;
   position: relative;
   width: 1200px;
   height: 670px;
-  color: #fff;
+  color: #ffffff;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255,  .5);
+  border: 2px solid rgba(142, 252, 173, 0.607);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(5px);
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   gap: 20px;
 }
 
@@ -126,7 +127,7 @@ input[type="radio"]:checked {
 .submit-button {
   appearance: none;
   text-decoration: none;
-  width: 250px;
+  width: 390px;
   height: 60px;
   border: none;
   background: #fff;
@@ -136,49 +137,12 @@ input[type="radio"]:checked {
   font-size: 1.1em;
   font-weight: 800;
   transition: .3s;
+  margin: 40px;
+  margin-top: 190px;
 }
 
 .submit-button:hover {
-  background: #162938;
-  color: #fff;
+  background: #59ff9b;
+  color: #000000;
 }
 
-#next-question {
-  /* display: none; */
-  visibility: hidden;
-}
-
-#next-button {
-  appearance: none;
-  text-decoration: none;
-  width: 250px;
-  height: 60px;
-  border: none;
-  background: #fff;
-  border-radius: 6px;
-  color: #162938;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}
-
-#next-button:hover {
-  background: #162938;
-  color: #fff;
-}
-
-.points {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 190px;
-  height: 50px;
-  border: 2px solid rgba(255, 255, 255,  .5);
-  border-radius: 10px;
-  align-items: center;
-  background: transparent;
-  box-shadow: #81f2c9;
-  color: #fff;
-  backdrop-filter: blur(15px);
-}

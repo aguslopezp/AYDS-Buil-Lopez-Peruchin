@@ -41,7 +41,7 @@ header {
   line-height: 1.8;
   cursor: pointer;
   width: 500px;
-  height: 650px;
+  height: 700px;
   border: 2px solid #fff;
   border-radius: 6px;
   color: #fff;
@@ -60,7 +60,7 @@ header {
   cursor: pointer;
   width: 500px;
   height: 200px;
-  border: 2px solid #fff;
+  border: transparent;
   border-radius: 6px;
   color: #fff;
   outline: none;
@@ -77,7 +77,7 @@ header {
   cursor: pointer;
   width: 500px;
   height: 150px;
-  border: 2px solid #fff;
+  border: transparent;
   border-radius: 6px;
   color: #fff;
   outline: none;
@@ -94,7 +94,7 @@ header {
   cursor: pointer;
   width: 500px;
   height: 150px;
-  border: 2px solid #fff;
+  border: transparent;
   border-radius: 6px;
   color: #fff;
   outline: none;
@@ -116,9 +116,36 @@ header {
   font-size: 1.1em;
   font-weight: 800;
   transition: .3s;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .btn:hover {
+  background: #162938;
+  color: #fff;
+}
+
+.profile {
+  appearance: none;
+  text-decoration: none;
+  width: 200px;
+  height: 40px;
+  border: none;
+  background: #fff;
+  border-radius: 6px;
+  color: #162938;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 800;
+  transition: .3s;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.profile:hover {
   background: #162938;
   color: #fff;
 }

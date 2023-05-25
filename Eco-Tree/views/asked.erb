@@ -12,13 +12,16 @@
     
     <section class="asked">
       <h3>Pregunta <%=@question.id%>:</h3>
-      <p><%= @question.description %></p>
-        <form action=<%="/asked/#{@question.id}/#{@user.id}"%> method="POST" id="asked-form">
-          <div class="options">            
-            <h1><%=@respuesta %></h1>
-            <input type="submit" value="Siguente pregunta" id="submit-button" class="submit-button" onclick="submitForm()">
-          </div>
-        </form>
+      <h2><%= @question.description %></h2>
+      <h1><%= @answer %></h1>
+
+      <form action=<%="/asked/#{@question.id}/#{@user.id}"%> method="POST" id="asked-form">
+        <div class="options">            
+          <h1><%=@respuesta %></h1>
+          <input type="submit" value="Siguente pregunta" id="submit-button" class="submit-button" onclick="submitForm()">
+        </div>
+      </form>
+      
     </section>
   </body>
 </html>

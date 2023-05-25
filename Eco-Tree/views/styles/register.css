@@ -25,6 +25,7 @@ header{
   justify-content: space-between;
   align-items: center;
   z-index: 99;
+  margin-top: -15px;
 }
 
 image {
@@ -58,6 +59,7 @@ image {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 80px;
 }
 
 .crear_usuario .form-box {
