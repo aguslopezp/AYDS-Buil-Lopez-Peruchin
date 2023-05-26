@@ -155,14 +155,9 @@ class App < Sinatra::Application
   end
 
 
-  get '/register' do
-    erb :register
-  end
-
-
   post '/register' do
-    @user = User.new(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
-    
+    @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+    session[:user_id] = @user.id
     @confPass = (@user.password == params[:passwordTwo])
 
     if  @confPass 
