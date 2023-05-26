@@ -71,16 +71,11 @@ class App < Sinatra::Application
         erb :game
       end
     else  # el juego se termino
-      @points = User.find(user_id) #puntos finales del jugador
       erb :game_finished
     end
   end 
 
-  get '/game_finished' do 
-
-  end
-
-
+  
   post '/game/:question_id/:user_id' do
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
@@ -184,7 +179,16 @@ class App < Sinatra::Application
 
 
   get '/profile' do
+    @user = User.find(session[:user_id])
     erb :profile
+  end
+
+  #falta revisar  
+  post '/profile' do
+    @user = session[:user_id]
+
+    if @user.password == params[:newPassword]
+
   end
 
   get '/start' do

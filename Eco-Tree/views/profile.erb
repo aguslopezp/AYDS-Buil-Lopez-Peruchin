@@ -21,6 +21,7 @@
         <div class="modificar">
           <div class="user">
             <h2 class="old">Su usuario actual:</h2>
+            <h2 class="old"><%= @user.username %></h2>
             <h2>Nuevo nombre de usuario</h2>
             <input type="Usuario" name="newUsername">
           </div>
@@ -33,7 +34,8 @@
           </div>
         
           <div class="email">
-            <h2 class="old">Su email actual</h2>
+            <h2 class="old">Su email actual:</h2>
+            <h2 class="old"><%= @user.email %></h2>
             <h2>Nuevo email de usuario</h2>
             <input type="Email" name="newEmail">
           </div>
