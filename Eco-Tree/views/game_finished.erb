@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminaste el juego!!</title>
-  <link rel="Stylesheet" href="/styles/register.css">
+  <title>GAME OVER</title>
+  <link rel="Stylesheet" href="/styles/game_finished.css">
   <link rel="icon" href="/front/icon.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,17 +16,18 @@
 <body>
 
   <header>
-    <h2 class="logo"> ECO-TREE</h2>
-    <img class="image" src="/front/logo.png" alt="logo">
+     <nav class="nav">
+      <a href="/menu">VOLVER A JUGAR</a>
+      <a href="/tree">MI ARBOL</a>
+      <a href="/ranking">RANKING</a>
+      <a href="/start">SALIR</a>
+    </nav>
   </header>
 
-      <form action="/game_finished" method="POST"> 
-
-        <h1> Terminaste el juego!! </h1>
-
-      </form>
-
-    </div>
+   
+  <div class="finish">
+    <h1 class="end">Terminaste el juego!! </h1>
+    <h1 class="points"> Tu puntaje: <%= @user.points %> </h1>
   </div>
   
  

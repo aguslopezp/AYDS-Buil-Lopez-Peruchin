@@ -67,14 +67,18 @@ class App < Sinatra::Application
         erb :game_finished
       else 
         @id_question = i  # nueva pregunta a ser preguntada
-        @question = Question.find(@id_question)  # pregunta de la bd con ese id
-        @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
+        @question = Question.find(@id_question)  # pregunta de la bd con ese id    # arreglo de opciones que pertenecen a esta @question con ese id
         erb :game
       end
     else  # el juego se termino
+      @points = User.find(user_id) #puntos finales del jugador
       erb :game_finished
     end
   end 
+
+  get '/game_finished' do 
+
+  end
 
 
   post '/game/:question_id/:user_id' do
@@ -181,6 +185,10 @@ class App < Sinatra::Application
 
   get '/profile' do
     erb :profile
+  end
+
+  get '/start' do
+    erb :start
   end
 
 end

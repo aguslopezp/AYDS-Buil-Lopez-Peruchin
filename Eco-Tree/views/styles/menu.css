@@ -34,7 +34,6 @@ header{
   border-color: rgb(14, 251, 14);
   border-radius: 6px;
   color: #162938;
-  ;
   user-select: none;
   height: px;
 }
@@ -54,6 +53,7 @@ header{
   text-align: center;
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   transition: background-color 1s;
+  
 }
 
 .game:hover {
@@ -84,7 +84,7 @@ header{
 
 .btnOut {  
   display: block;
-  width: 150px;
+  width: 160px;
   height: 50px;
   text-align: center;
   background-color: #162938;
@@ -100,6 +100,7 @@ header{
 .btnOut:hover {
   box-shadow: 0 0 10px #eb5f5f;
   color: #e30505;
+  
 }
 
 .Question_Box {
