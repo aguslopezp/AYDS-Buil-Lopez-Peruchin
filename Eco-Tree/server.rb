@@ -183,13 +183,6 @@ class App < Sinatra::Application
     erb :profile
   end
 
-  #falta revisar  
-  post '/profile' do
-    @user = session[:user_id]
-
-    if @user.password == params[:newPassword]
-
-  end
 
   get '/start' do
     erb :start

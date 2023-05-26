@@ -12,9 +12,9 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/front/fondo.jpg') no-repeat;
   background-size: cover;
   background-position: center;
+  background: url('/front/inicio.jpg');
 }
 
 header{
@@ -38,7 +38,7 @@ image {
   border: 2px lime;
   border-color: rgb(14, 251, 14);
   border-radius: 6px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   user-select: none;
   height: px;
 }
@@ -48,7 +48,7 @@ image {
 .nav a{
   position: relative;
   font-size: 1.1em;
-  color: #162938;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
@@ -62,7 +62,7 @@ image {
   bottom: -6px;
   width: 100%;
   height: 3px;
-  background: #3a976c;
+  background: #b7e8d1;
   border-radius: 5px;
   transform: scaleX(0);
   transition: transform .5s;
@@ -72,4 +72,68 @@ image {
   transform: scaleX(1);
 }
 
+.sub {
+  font-size: 34px;
+  font-weight: 600;
+  min-width: 280px;
+  position: absolute;
+  color: #ffffff;
+  margin-top: 510px;
+  margin-left: -190px;
+  right: 800px;
 
+}
+
+.sub span {
+  position: relative;
+}
+
+.sub span::before {
+  content: ' Eco';
+  color: rgb(79, 219, 156);
+  animation: words 20s infinite;
+}
+
+.sub span::after {
+  content: '';
+  background-color: black;
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 100%;
+  border-left: 2px solid rgb(79, 219, 156);
+  right: -8px;
+  animation: cursor .6s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+  to {
+    border-left: 2px transparent;
+  }
+}
+
+@keyframes words {
+  0%, 20% {
+    content: ' Eco';
+  }
+  21%, 40% {
+    content: ' Educative';
+  }
+  41%, 60% {
+    content: ' Eco';
+  }
+  61%, 80% {
+    content: ' Educative';
+  }
+  81%, 100% {
+    content: ' Eco';
+  }
+}
+
+@keyframes typing {
+  10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+    width: 0;
+  }
+  5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+    width: calc(100% + 8px);
+  }
+}
