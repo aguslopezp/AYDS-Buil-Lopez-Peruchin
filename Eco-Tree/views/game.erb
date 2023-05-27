@@ -15,14 +15,14 @@
           <div class="points">
             puntos: <%= @user.points %>
           </div>
-          <a href=<%="/menu"%> class="profile">Salir</a>
+          <a href=<%="/menu"%> class="profile">Menu</a>
       </nav>
     </header>
     <section class="play-section">
       <h2 class ="tle">Vamos a jugar <%= @user.username %>!!</h2>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
       <p clas="des"> <%= @question.description %> </p>
-      <form action=<%="/game/#{@question.id}/#{@user.id}"%> method="POST" id="game-form">
+      <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>
             <label class="option">

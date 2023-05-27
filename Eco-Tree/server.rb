@@ -41,7 +41,7 @@ class App < Sinatra::Application
   end  
 
 
-  get '/game/:id_question/:user_id' do
+  get '/game/:id_question' do
     @total_questions = Question.count # Numero total de preguntas en el juego
     @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
 
@@ -52,22 +52,24 @@ class App < Sinatra::Application
     # consultamos si esa pregunta habia sido preguntada
     asked_question = AskedQuestion.find_by(user_id: user_id, question_id: @id_question)
 
+    # Es un id de pregunta valido y nunca fue preguntada a ese usuario
     if @id_question  <= @total_questions && asked_question.nil?
-      @question = Question.find(@id_question)  # pregunta de la bd con ese id
-      @options = @question.options    # arreglo de opciones que pertenecen a esta @question con ese id
+      @question = Question.find_by(id: @id_question)  # pregunta de la bd con ese id
+      @options = Option.where(question_id: @question.id) # arreglo de opciones que pertenecen a esta @question con ese id
       erb :game
-    # Buscamos la siguiente pregunta que no haya sido preguntada
+    # Esa pregunta ya se le pregunto al usuario, buscamos la siguiente pregunta que no haya sido preguntada
     elsif @id_question <= @total_questions && !asked_question.nil?
       i = @id_question
       while i <= @total_questions && !asked_question.nil?
         i += 1
         asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
       end
-      if i > @total_questions #no hay mas preguntas para hacer, todas fueron preguntadas
+      if i > @total_questions # no hay mas preguntas para hacer, todas fueron preguntadas
         erb :game_finished
-      else 
+      else # encontramos una pregunta que no se le hizo nunca al usuario
         @id_question = i  # nueva pregunta a ser preguntada
-        @question = Question.find(@id_question)  # pregunta de la bd con ese id    # arreglo de opciones que pertenecen a esta @question con ese id
+        @question = Question.find_by(id: @id_question)  
+        @options = Option.where(question_id: @question.id)
         erb :game
       end
     else  # el juego se termino
@@ -76,16 +78,16 @@ class App < Sinatra::Application
   end 
 
   
-  post '/game/:question_id/:user_id' do
+  post '/game/:question_id' do
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
-
+    user_id = session[:user_id]
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
     
     # Calculo puntos del usuario
     if option_result == 'true'
-      user = User.find(params[:user_id])
+      user = User.find(user_id)
       if user.points.nil?
         user.update(points: 10)
       else 
@@ -95,18 +97,18 @@ class App < Sinatra::Application
     end
 
     # Guardo en la tabla answers la respuesta del usuario
-    Answer.create(user_id: params[:user_id], option_id: params[:selected_option_id])
+    Answer.create(user_id: user_id, option_id: params[:selected_option_id])
 
     # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
-    AskedQuestion.create(user_id: params[:user_id], question_id: params[:question_id])
+    AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
     
-    redirect "/asked/#{params[:question_id]}/#{params[:user_id]}/#{option_result}"
+    redirect "/asked/#{params[:question_id]}/#{option_result}"
   end
 
 
-  get '/asked/:question_id/:user_id/:option_result' do
+  get '/asked/:question_id/:option_result' do
     @question = Question.find(params[:question_id])
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @result = params[:option_result]
     @answer = params[:selected_option]
     if @result == 'true'
@@ -118,11 +120,10 @@ class App < Sinatra::Application
   end
   
   
-  post '/asked/:question_id/:user_id' do
+  post '/asked/:question_id' do
     #user_id = session[:user_id]
-    next_question = params[:question_id].to_i + 1 
-
-    redirect "/game/#{next_question}/#{params[:user_id]}"
+    next_question = params[:question_id].to_i + 1
+    redirect "/game/#{next_question}"
   end
   
 
@@ -149,6 +150,7 @@ class App < Sinatra::Application
     end
   end 
   
+
   get '/register' do
     erb :register
   end
@@ -183,11 +185,6 @@ class App < Sinatra::Application
   get '/profile' do
     @user = User.find(session[:user_id])
     erb :profile
-  end
-
-
-  get '/start' do
-    erb :start
   end
 
 end
