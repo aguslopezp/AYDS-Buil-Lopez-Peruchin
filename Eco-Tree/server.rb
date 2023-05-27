@@ -182,6 +182,32 @@ class App < Sinatra::Application
   end 
 
 
+  get '/practicar' do
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    
+    # array de todas los id de las preguntas que se le hicieron al usuario
+    @questions_asked = AskedQuestion.where(user_id: user_id).pluck(:question_id) 
+    session[:questions_asked] = @questions_asked
+
+    #indice de la current question a practicar
+    @question_index = 0 
+    session[:question_index] = @question_index
+    erb :practice
+  end
+
+
+  post '/practicar' do
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    @question_index = session[:question_index].to_i + 1
+    session[:question_index] = @question_index
+    @questions_asked = session[:questions_asked]
+    erb :practice
+  end
+
+
+  
   get '/profile' do
     @user = User.find(session[:user_id])
     erb :profile
