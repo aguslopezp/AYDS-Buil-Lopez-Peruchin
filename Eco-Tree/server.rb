@@ -88,10 +88,10 @@ class App < Sinatra::Application
     # Calculo puntos del usuario
     if option_result == 'true'
       user = User.find(user_id)
-      if user.points.nil?
-        user.update(points: 10)
+      if user.points.nil? # este if ya no hace falta
+        user.update(points: 1)
       else 
-        newPoints = user.points + 10
+        newPoints = user.points + 1
         user.update(points: newPoints)
       end
     end
@@ -258,6 +258,12 @@ class App < Sinatra::Application
     redirect '/profile'
   end
 =end
+
+  get '/tree' do
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    erb :tree
+  end
 
 end
 
