@@ -56,10 +56,10 @@ Option.create(description: 'Rosa', isCorrect: false, question_id: 9)
 Option.create(description: 'Negra', isCorrect: true, question_id: 9)
 
 Question.create(description: '¿Qué pájaro tiene ojos más grandes que su cerebro?')
-Option.create(description: 'Rana', isCorrect: false, question_id: 10)
-Option.create(description: 'Salmón', isCorrect: false, question_id: 10)
+Option.create(description: 'Gorrión', isCorrect: false, question_id: 10)
+Option.create(description: 'Aguila', isCorrect: false, question_id: 10)
 Option.create(description: 'Avestruz', isCorrect: true, question_id: 10)
-Option.create(description: 'Cobra', isCorrect: false, question_id: 10)
+Option.create(description: 'Cóndor', isCorrect: false, question_id: 10)
 
 Question.create(description: '¿Qué suele regalarle un pingüino macho a una hembra para conquistarla?')
 Option.create(description: 'Una rama', isCorrect: false, question_id: 11)

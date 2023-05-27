@@ -1,0 +1,19 @@
+## Cosas para preguntar 
+
+- Verificar si es correcto guardar en la session no solamente el id del usuario sino otras variables, como se hace en la seccion /practicar. Ej: `` session[:question_index] ``
+- Es correcto que en las rutas pasemos tambien el question_id y option_result (esto se hace en la seccion /asked) o deberia tambien manejarse con la session?
+
+
+## Cosas por hacer
+- /profile (los nuevos datos ingresados deberian actualizarse en la base de datos del usuario).
+- Agregar el resto de las preguntas para que en total queden 30.
+- Agregar a la option correcta de cada pregunta, una descripcion con datos sobre la pregunta para mostrarla en la seccion de Practicar
+- Hacer el ranking
+- Hacer el arbol de cada usuario
+- Setear las columnas de la base de datos con sus valores por default
+- Agregar cartel para cuando el usuario ponga mal su password
+- Agregar cartel para cuando el usuario se intente registrar y elige un nombre de usuario ya existente
+- Agregar cartel para cuando el usuario se intenta registrar y sus password no coniciden en la confirmacion de estas
+
+### Front-End
+- vista practice.erb
