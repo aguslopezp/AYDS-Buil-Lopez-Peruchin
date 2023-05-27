@@ -155,17 +155,19 @@ class App < Sinatra::Application
 
 
   post '/register' do
-    @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
-    session[:user_id] = @user.id
-    @confPass = (@user.password == params[:passwordTwo])
-
-    if  @confPass 
-      if @user.save # se guardo correctamente ese nuevo usuario a la tabla
+    # ya existe un jugador en la base de datos con ese usuario
+    if !User.find_by(username: params[:username]).nil? 
+      redirect '/register'
+    end
+    if params[:password] == params[:passwordTwo]
+      @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+      session[:user_id] = @user.id
+      if @user.save # se guardo correctamente ese nuevo usuario en la tabla
         redirect '/menu'
       else
         redirect '/register'
       end
-    else
+    else 
       redirect '/register'
     end
   end 
