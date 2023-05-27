@@ -22,22 +22,20 @@
           <div class="user">
             <h2 class="old">Su usuario actual:</h2>
             <h2 class="old"><%= @user.username %></h2>
-            <h2>Nuevo nombre de usuario</h2>
             <input type="Usuario" name="newUsername">
+            <h5>Ingrese su nuevo nombre de usuario</h5>
           </div>
         
           <div class="pass">
-            <h2>Contraseña antigua</h2>
-            <input type="password" name="password">
-            <h2>Nueva Contraseña</h2>
+            <input type="password" name="currentPassword">
+            <h5>Ingrese su contraseña actual</h5>
             <input type="password" name="newPassword">
+            <h5>Ingrese su nueva contraseña</h5>
           </div>
         
           <div class="email">
-            <h2 class="old">Su email actual:</h2>
-            <h2 class="old"><%= @user.email %></h2>
-            <h2>Nuevo email de usuario</h2>
             <input type="Email" name="newEmail">
+            <h5>Ingrese su nuevo email</h5>
           </div>
      
 

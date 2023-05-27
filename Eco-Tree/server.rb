@@ -174,6 +174,11 @@ class App < Sinatra::Application
     end
   end 
 
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end 
+
 
   get '/menu' do 
     user_id = session[:user_id]
@@ -206,12 +211,53 @@ class App < Sinatra::Application
     erb :practice
   end
 
+  get '/ranking' do
+    @users = User.order(points: :desc) # arreglo de usuarios ordenados de manera descendente
+    erb :ranking
+  end
 
-  
   get '/profile' do
     @user = User.find(session[:user_id])
     erb :profile
   end
+  
+=begin
+  # NO ANDA BIEN, el nuevo email y contrasena no se actualizan correctamente en la base de datos
+  post '/profile' do
+    user_id = session[:user_id]
+    user = User.find_by(id: user_id)
+
+    newUsername = params[:newUsername]
+    currentPassword = params[:currentPassword]
+    newPassword = params[:newPassword]
+    newEmail = params[:newEmail]
+
+    if newUsername != "" && User.find_by(username: newUsername).nil?
+      user.update(username: newUsername)
+    else 
+      redirect '/profile'
+    end
+
+    if newEmail != ""
+      user.update(email: newEmail)
+    end
+
+    if currentPassword != "" && newPassword != ""
+      if currentPassword == user.password
+        user.update(password: newPassword)
+      else
+        redirect '/profile'
+      end
+    end
+
+
+    if !user.save
+      redirect '/profile'
+    end
+
+    redirect '/profile'
+  end
+=end
 
 end
 
