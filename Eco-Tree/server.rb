@@ -144,11 +144,10 @@ class App < Sinatra::Application
       session[:user_id] = @user.id
       redirect '/menu'
     elsif @user 
-        @password_error = "contraseña incorrecta"
+        @password_error = "*contraseña incorrecta"
         erb :login
-        #redirect '/login'
     else
-      @password_error = "datos ingresados no pertenecen a ninguna cuenta"
+      @password_error = "*datos ingresados no pertenecen a ninguna cuenta"
       erb :login
     end
   end 

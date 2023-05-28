@@ -26,10 +26,11 @@
       <h2>INICIAR SESION</h2>
       <form action="/login" method="POST"> 
 
-        <div class="input-box">
-          <input type="Usuario" name="username">
+        <div class="input-box <%= 'error' if @account_error %>">
+          <input type="Usuario" name="username" id="username">
           <label>Usuario</label>
-        </div>
+          <span id="account-error" class="error-message"><%= @account_error %></span>
+        </div>   
 
         <div class="input-box <%= 'error' if @password_error %>">
           <input type="password" name="password" id="password">
