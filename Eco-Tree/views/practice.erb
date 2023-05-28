@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Practicar</title>
+   <link rel="Stylesheet" href="/styles/practice.css">
   <link rel="icon" href="/front/icon.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,31 +16,29 @@
 <body>
 <header>
       <nav class="navigation">
-          <a href="/profile" class="profile">Mi Perfil</a>
-          <a href=<%="/menu"%> class="profile">Menu</a>
+          <a href=<%="/menu"%> class="profile">Volver</a>
       </nav>
     </header>
   <section class="practice-section">
-      <h2 class ="tle">Vamos a practicar <%= @user.username %>!!</h2>
       <div class="Question_Box">
       <% if !@questions_asked.nil? %>
         <% if @question_index < @questions_asked.length%>
           <% question_id = @questions_asked[@question_index] %>
             <% question = Question.find(question_id) %>
             <div class="question">
+              <h2 class ="tle">Estas son las respuestas correctas <%= @user.username %>!!</h2>
               <h3>Pregunta: <%= question.id %></h3>
               <p><%= question.description %></p>
               <ul>
                 <% correctOption = Option.where(question_id: question_id, isCorrect: true).first %>
-                <p> <%= correctOption.description %> </p>
+                <p class="correct"> <%= correctOption.description %> </p>
               </ul>
               <form action="/practicar" method="POST" >
-                <input type="submit" value="Siguiente">
+                <input type="submit" value="Siguiente" class="next-button">
               </form>
             </div>
         <% else %>
-          <p> No hay mas preguntas por practicar! </p>
-          <a class="btn" href="/menu"> Menu </a>
+          <p> No hay preguntas por practicar! </p>
         <% end %>
       <% else %>
         <p>No haz jugado aún. ¡Empieza a responder preguntas para poder practicar!</p>
