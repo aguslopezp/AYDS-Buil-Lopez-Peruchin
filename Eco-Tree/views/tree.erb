@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tree</title>
+  <link rel="Stylesheet" href="/styles/tree.css">     
+  <link rel="icon" href="/front/icon.png"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <a class="btn" href="/menu"> Menu </a>
+    <img src="/front/arbol.png" alt="Tree" class="tree-image">
+    <% @user.points.times do |i|%>
+      <img src="/front/icon.png" alt="Leaf" class="leaf-image leaf-<%= i + 1 %>">
+    <% end %>
+
+</body>
+</html>

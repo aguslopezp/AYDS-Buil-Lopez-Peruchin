@@ -1,0 +1,89 @@
+.tree-image {
+    width: 700px;
+    height: 800px;
+    position: absolute;
+    top: 100px;
+    left: 600px;
+}
+
+/* Estilo comun de todas las hojas */
+.leaf-image {
+    width: 70px;
+    height: 100px;
+    position: absolute;
+}
+
+/* Estilo especifico de la primer hoja*/
+.leaf-1 {
+    top: 280px;
+    left: 660px;
+    transform: rotate(330deg) scaleY(-1);
+}
+
+.leaf-2 {
+    top: 259px;
+    left: 789px;
+    transform: rotate(220deg);
+}
+
+.leaf-3 {
+    top: 350px;
+    left: 852px;
+    transform: rotate(180deg);
+}
+
+.leaf-4 {
+    top: 280px;
+    left: 1210px;
+    transform: rotate(180deg);
+}
+
+.btn {  
+    display: block;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    background-color: #162938;
+    border-radius: 10px;
+    padding: 15px 30px;
+    margin:  20px 70px;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 1s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px #5feb9c;
+    color: #5feb9c;
+}
+
+.btnOut {  
+    display: block;
+    width: 160px;
+    height: 50px;
+    text-align: center;
+    background-color: #162938;
+    border-radius: 10px;
+    padding: 15px 30px;
+    margin:  20px 250px;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 1s;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    background: url('/front/treeBackground.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
