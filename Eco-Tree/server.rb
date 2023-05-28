@@ -144,9 +144,12 @@ class App < Sinatra::Application
       session[:user_id] = @user.id
       redirect '/menu'
     elsif @user 
-        redirect '/login'
+        @password_error = "contraseña incorrecta"
+        erb :login
+        #redirect '/login'
     else
-      redirect '/register'
+      @password_error = "datos ingresados no pertenecen a ninguna cuenta"
+      erb :login
     end
   end 
   
@@ -173,6 +176,7 @@ class App < Sinatra::Application
       redirect '/register'
     end
   end 
+
 
   get '/logout' do
     session.clear
@@ -211,10 +215,12 @@ class App < Sinatra::Application
     erb :practice
   end
 
+
   get '/ranking' do
     @users = User.order(points: :desc) # arreglo de usuarios ordenados de manera descendente
     erb :ranking
   end
+
 
   get '/profile' do
     @user = User.find(session[:user_id])

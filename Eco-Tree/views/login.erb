@@ -31,12 +31,11 @@
           <label>Usuario</label>
         </div>
 
-        <div class="input-box">
-          <input type="password" name="password">
+        <div class="input-box <%= 'error' if @password_error %>">
+          <input type="password" name="password" id="password">
           <label>Contraseña</label>
-        </div>
-
-        
+          <span id="password-error" class="error-message"><%= @password_error %></span>
+        </div>        
 
         <button type="submit" class="btn"> Ingresar </button>
 

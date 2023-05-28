@@ -149,3 +149,12 @@ image {
 .login-register p a:hover{
   text-decoration: underline;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}
+
+.input-box.error input {
+  border-color: red;
+}
