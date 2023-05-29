@@ -21,7 +21,7 @@
     <section class="play-section">
       <h2 class ="tle">Vamos a jugar <%= @user.username %>!!</h2>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
-      <p clas="des"> <%= @question.description %> </p>
+      <p clas="description"> <%= @question.description %> </p>
       <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>

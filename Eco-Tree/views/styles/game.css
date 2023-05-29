@@ -70,13 +70,9 @@ header {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 50px;
 }
 
-.des {
-  border: 2px solid rgba(255, 255, 255,  .5);
-  color: #162938;  
-  
-}
 
 /*Contenedor de opciones y boton*/
 form {

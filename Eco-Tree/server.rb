@@ -102,19 +102,20 @@ class App < Sinatra::Application
     # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
     AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
     
-    redirect "/asked/#{params[:question_id]}/#{option_result}"
+    redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"
   end
 
 
-  get '/asked/:question_id/:option_result' do
+  get '/asked/:question_id/:option_result/:selected_option_id' do
     @question = Question.find(params[:question_id])
     @user = User.find(session[:user_id])
     @result = params[:option_result]
-    @answer = params[:selected_option]
+    selected_option = Option.find(params[:selected_option_id])
+    @answer = selected_option.description
     if @result == 'true'
-      @respuesta = 'Respuesta correcta! :)'
+      @respuesta = 'es CORRECTA'
     else
-      @respuesta = 'Respuesta incorrecta! :('
+      @respuesta = 'es INCORRECTA'
     end
     erb :asked
   end

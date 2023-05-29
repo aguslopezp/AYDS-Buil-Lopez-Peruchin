@@ -70,13 +70,9 @@ header {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 50px;
 }
 
-.des {
-  border: 2px solid rgba(255, 255, 255,  .5);
-  color: #162938;  
-  
-}
 
 /*Contenedor de opciones y boton*/
 form {
@@ -98,30 +94,7 @@ form {
   gap: 10px;
 }
 
-input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 30px;
-  height: 10px;
-  margin: 5px;
-  background: #162938;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 6px;
-}
 
-input[type="radio"]:hover {
-  background: #bfc2db;
-  color: #162938;
-}
-
-input[type="radio"]:checked {
-  background: #bfc2db;
-  color: #162938;
-}
 
 .submit-button {
   appearance: none;
@@ -168,23 +141,8 @@ input[type="radio"]:checked {
   color: #fff;
 }
 
-.points {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 190px;
-  height: 50px;
-  border: 2px solid rgba(255, 255, 255,  .5);
-  border-radius: 10px;
-  align-items: center;
-  background: transparent;
-  box-shadow: #81f2c9;
-  color: #fff;
-  backdrop-filter: blur(15px);
-}
 
 .correct{
   color: #81f2c9;
   align-items: center;
-
 }
