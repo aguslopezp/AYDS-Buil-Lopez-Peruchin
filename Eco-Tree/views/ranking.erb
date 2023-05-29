@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ranking</title>
+  <link rel="Stylesheet" href="/styles/ranking.css">
   <link rel="icon" href="/front/icon.png"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,25 +15,26 @@
 
 <body>
 <header>
-      <nav class="navigation">
-          <a href="/profile" class="profile">Mi Perfil</a>
-          <a href=<%="/menu"%> class="profile">Menu</a>
-      </nav>
-    </header>
-  <section class="ranking-section">
-      <h2 class ="tle">Ranking Mundial</h2>
-      <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Puntaje</th>
-        </tr>
-        <% @users.each do |user| %>
-            <tr>
-            <td><%= user.username %></td>
-            <td><%= user.points %></td>
-            </tr>
-        <% end %>
-        </table>
-    </section> 
+  <nav class="navigation">
+      <a href=<%="/menu"%> class="profile">Volver</a>
+<h2 class ="tle">RANKING</h2>
+  </nav>
+</header>
+
+
+<section class="ranking-section">
+  <table class="table">
+    <tr>
+      <th>Nombre</th>
+      <th>Puntaje</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+      <td class="names"><%= user.username %></td>
+      <td class="points"><%= user.points %></td>
+      </tr>
+    <% end %>
+    </table>
+  </section> 
 </body>
 </html>

@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/front/practice.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 50px;
+  z-index: 99;
+}
+
+.points{
+  color: lightgreen;
+  text-align: center;
+  left: 100;
+}
+
+.names{
+  color: rgb(255, 255, 255);
+  text-align: center;
+  left: 100;
+}
+
+.tle{
+  color:#fff;
+  text-align: center;
+  font-size: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ranking-section{
+    color: white;
+    position: relative;
+    width: 600px;
+    height: 700px;
+    background: url('/front/black.jpg') no-repeat;
+    border: 2px solid rgba(80, 80, 80, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    top: 20px;
+}
+
+
+
+.profile {
+  font-size: .9em;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+}
+
+.profile p a{
+  color: #5feb9c;
+  text-decoration: none;
+  font-weight: 600;
+  border: 15px ;
+  border-radius: 6px;
+}
+
+
+.profile p a:hover{
+  text-decoration: underline;
+}
+
+
+
+/* Estilos para la tabla de ranking */
+.ranking-section {
+  margin-top: 40px;
+}
+
+
+
+
+
+
+
