@@ -50,8 +50,8 @@ image {
 
 .crear_usuario {
   position: relative;
-  width: 400px;
-  height: 440px;
+  width: 500px;
+  height: 540px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255,  .5);
   border-radius: 20px;
@@ -88,10 +88,11 @@ image {
   left: 5px;
   transform:  translateY(-50%);
   font-size: 1em;
-  color: #000000;
+  color: #8adbbc;
   font-weight: 500;
   pointer-events: none;
   transition: .5s;
+  text-shadow: #162938 6px;
 }
 
 .input-box input:focus~label, 
