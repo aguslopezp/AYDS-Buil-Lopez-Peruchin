@@ -49,7 +49,7 @@ header {
     position: relative;
     width: 600px;
     height: 700px;
-    background: url('/front/black.jpg') no-repeat;
+    background: black;
     border: 2px solid rgba(80, 80, 80, 0.5);
     border-radius: 20px;
     backdrop-filter: blur(15px);
@@ -57,39 +57,49 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
+    margin-top: 20px;
     top: 20px;
 }
 
 
 
-.profile {
-  font-size: .9em;
-  color: #fff;
-  text-align: center;
-  font-weight: 500;
-  margin: 25px 0 10px;
-}
-
-.profile p a{
-  color: #5feb9c;
+.nav a{
+  position: relative;
+  font-size: 1.1em;
+  color: #ffffff;
   text-decoration: none;
-  font-weight: 600;
-  border: 15px ;
-  border-radius: 6px;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 5s;
 }
 
-
-.profile p a:hover{
-  text-decoration: underline;
+.nav a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #b7e8d1;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform .5s;
 }
 
-
-
-/* Estilos para la tabla de ranking */
-.ranking-section {
-  margin-top: 40px;
+.nav a:hover:after{
+  transform: scaleX(1);
 }
+
+.table{
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.tr {
+  font-size: 500px;
+  margin: 10px;
+}
+
 
 
 
