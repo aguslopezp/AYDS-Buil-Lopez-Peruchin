@@ -104,7 +104,7 @@ class App < Sinatra::Application
     
     redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"
   end
-
+  
 
   get '/asked/:question_id/:option_result/:selected_option_id' do
     @question = Question.find(params[:question_id])
@@ -127,6 +127,10 @@ class App < Sinatra::Application
     redirect "/game/#{next_question}"
   end
   
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end 
 
   get '/' do
     erb :start
@@ -178,10 +182,6 @@ class App < Sinatra::Application
   end 
 
 
-  get '/logout' do
-    session.clear
-    redirect '/'
-  end 
 
 
   get '/menu' do 

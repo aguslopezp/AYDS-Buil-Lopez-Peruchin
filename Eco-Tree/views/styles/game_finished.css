@@ -27,11 +27,27 @@ header{
   z-index: 99;
 }
 
+.finish {
+  position: relative;
+  width: 1200px;
+  height: 550px;
+  background: rgba(2, 28, 12, 0.184);
+  border: 2px solid rgba(5, 246, 134, 0.617);
+  border-radius: 20px;
+  backdrop-filter: blur(9px);
+  box-shadow: 0 0 30px rgba(46, 248, 177, 0.327);
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+  color: #ffffff;
+}
 
 .nav a{
   position: relative;
   font-size: 1.1em;
-  color: #c9f8e8;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   margin-left: 60px;
@@ -57,8 +73,11 @@ header{
   transform: scaleX(1);
 }
 
+.end{
+  color: #ffffff;
+}
 
-.div end{
-  align-items: center;
-  width: 900px;
+.prac{
+  color: #27ffb3d8;
+  text-decoration: none;
 }

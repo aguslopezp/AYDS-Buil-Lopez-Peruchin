@@ -45,20 +45,15 @@ header {
 }
 
 .ranking-section{
-    color: white;
-    position: relative;
-    width: 600px;
-    height: 700px;
-    background: black;
-    border: 2px solid rgba(80, 80, 80, 0.5);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    top: 20px;
+  color: white;
+  width: 600px;
+  height: 700px;
+  background: rgba(0, 0, 0, 0.839);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(80, 80, 80, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  margin-top: 40px;
 }
 
 
@@ -91,16 +86,18 @@ header {
 }
 
 .table{
-  border-collapse: collapse;
-  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  width: 70%;
 }
 
-.tr {
-  font-size: 500px;
-  margin: 10px;
+.titulos {
+  font-size: 30px;
 }
 
-
+.valores {
+  font-size: 20px;
+}
 
 
 

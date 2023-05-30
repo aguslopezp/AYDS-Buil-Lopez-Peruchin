@@ -20,7 +20,7 @@ header{
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 100px;
+  padding: 20px 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,18 +28,24 @@ header{
   margin-top: -15px;
 }
 
-image {
-  height: 200px;
+.volver {  
+  display: block;
+  width: 180px;
+  height: 50px;
+  text-align: center;
+  background-color: #162938;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin:  40px -5px;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 1s;
 }
 
-.logo{
-  font-size: 3.2em;
-  border: 2px lime;
-  border-color: rgb(14, 251, 14);
-  border-radius: 6px;
-  color: rgb(0, 0, 0);
-  user-select: none;
-  height: px;
+.volver:hover {
+  box-shadow: 0 0 10px #000000c8;
+  color: #16f7a8;  
 }
 
 
@@ -50,16 +56,17 @@ image {
 .crear_usuario {
   position: relative;
   width: 400px;
-  height: 550px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255,  .5);
+  height: 590px;
+  background: #0000004d;
+  border: 2px solid rgba(0, 250, 133, 0.222);
   border-radius: 20px;
   backdrop-filter: blur(15px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 30px rgba(2, 255, 108, 0.303);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 50px;
+  left: -200px;
 }
 
 .crear_usuario .form-box {
@@ -78,7 +85,10 @@ image {
   width: 100%;
   height: 50px;
   border-bottom: 2px solid #162938;
-  margin: 30px 0;
+  margin: 35px 0;
+  color: red;
+  padding: -100px;
+  font-size: 15px;
 }
 
 .input-box label {
@@ -86,8 +96,8 @@ image {
   top: 50%;
   left: 5px;
   transform:  translateY(-160%);
-  font-size: 1em;
-  color: #8adbbc;
+  font-size: 1.1em;
+  color: #5cf2b8e7;
   font-weight: 500;
   pointer-events: none;
 }
@@ -125,4 +135,7 @@ image {
   color: #5feb9c;
 }
 
-
+.image{
+  width: 890px;
+  margin-right: 400px;
+}

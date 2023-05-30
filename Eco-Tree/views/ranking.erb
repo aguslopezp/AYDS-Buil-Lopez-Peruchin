@@ -24,12 +24,12 @@
 
 <section class="ranking-section">
   <table class="table">
-    <tr>
+    <tr class="titulos">
       <th>Nombre</th>
       <th>Puntaje</th>
     </tr>
     <% @users.each do |user| %>
-      <tr>
+      <tr class="valores">
       <td class="names"><%= user.username %></td>
       <td class="points"><%= user.points %></td>
       </tr>
