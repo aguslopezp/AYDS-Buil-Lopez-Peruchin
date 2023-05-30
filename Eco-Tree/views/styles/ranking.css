@@ -52,7 +52,7 @@ header {
   backdrop-filter: blur(15px);
   border: 2px solid rgba(80, 80, 80, 0.5);
   border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 30px rgba(26, 242, 127, 0.371);
   margin-top: 40px;
 }
 
