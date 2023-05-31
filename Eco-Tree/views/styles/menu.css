@@ -10,7 +10,7 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/front/fondo.jpg') no-repeat;
+  background: url('/front/lago.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -30,12 +30,9 @@ header{
 
 .logo{
   font-size: 3.2em;
-  border: 2px lime;
-  border-color: rgb(14, 251, 14);
-  border-radius: 6px;
-  color: #162938;
+  color: #ffffff;
   user-select: none;
-  height: px;
+  height: 10px;
 }
 
 .game {
@@ -51,7 +48,7 @@ header{
   color: #fff;
   text-decoration: none;
   text-align: center;
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   transition: background-color 1s;
   
 }
@@ -110,7 +107,7 @@ header{
   border: 2px solid rgba(255, 255, 255,  .5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 255, 179, 0.399);
   display: flex;
   justify-content: center;
   align-items: center;

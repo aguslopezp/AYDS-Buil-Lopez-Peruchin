@@ -51,7 +51,7 @@ header {
 
 .profile:hover {
   background: #fff;
-  color: #aec5d7;
+  color: #102534;
 }
 
 .play-section {
@@ -171,11 +171,11 @@ input[type="radio"]:checked {
   position: relative;
   width: 190px;
   height: 50px;
-  border: 2px solid rgba(255, 255, 255,  .5);
+  border: 2px solid rgba(240, 16, 16, 0.65);
   border-radius: 10px;
   align-items: center;
   background: transparent;
-  box-shadow: #81f2c9;
+  box-shadow: 0 0 10px #fde631b9;
   color: #fff;
   backdrop-filter: blur(15px);
 }

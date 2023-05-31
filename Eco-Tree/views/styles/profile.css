@@ -43,6 +43,8 @@ header {
   width: 500px;
   height: 700px;
   border: 2px solid #fff;
+  backdrop-filter: blur(10px);
+  background-color: #1629382a;
   border-radius: 6px;
   color: #fff;
   outline: none;

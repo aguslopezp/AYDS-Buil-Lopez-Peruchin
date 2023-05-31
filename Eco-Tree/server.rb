@@ -243,8 +243,7 @@ class App < Sinatra::Application
     erb :profile
   end
   
-=begin
-  # NO ANDA BIEN, el nuevo email y contrasena no se actualizan correctamente en la base de datos
+
   post '/profile' do
     user_id = session[:user_id]
     user = User.find_by(id: user_id)
@@ -277,9 +276,9 @@ class App < Sinatra::Application
       redirect '/profile'
     end
 
-    redirect '/profile'
+    redirect '/menu'
   end
-=end
+
 
   get '/tree' do
     if session[:user_id].nil?
