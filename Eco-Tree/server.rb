@@ -15,7 +15,8 @@ require_relative 'models/answer'
 class App < Sinatra::Application
   enable :sessions
   # Configuracion de la clave secreta de sesión
-  set :session_secret, 'la_mano_de_dios'
+  set :session_secret, 'la_pelota_no_se_mancha'
+
   def initialize(app = nil)
     super()
   end
@@ -42,6 +43,9 @@ class App < Sinatra::Application
 
 
   get '/game/:id_question' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     @total_questions = Question.count # Numero total de preguntas en el juego
     @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
 
@@ -107,6 +111,9 @@ class App < Sinatra::Application
   
 
   get '/asked/:question_id/:option_result/:selected_option_id' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     @question = Question.find(params[:question_id])
     @user = User.find(session[:user_id])
     @result = params[:option_result]
@@ -185,6 +192,9 @@ class App < Sinatra::Application
 
 
   get '/menu' do 
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     user_id = session[:user_id]
     @user = User.find(user_id)
     erb :menu, :locals => {:user_id => user_id}
@@ -217,12 +227,18 @@ class App < Sinatra::Application
 
 
   get '/ranking' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     @users = User.order(points: :desc) # arreglo de usuarios ordenados de manera descendente
     erb :ranking
   end
 
 
   get '/profile' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     @user = User.find(session[:user_id])
     erb :profile
   end
@@ -266,6 +282,9 @@ class App < Sinatra::Application
 =end
 
   get '/tree' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     user_id = session[:user_id]
     @user = User.find(user_id)
     erb :tree
