@@ -100,29 +100,22 @@ form {
   gap: 10px;
 }
 
-input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 30px;
-  height: 10px;
-  margin: 5px;
-  background: #162938;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 6px;
+.descrip{
+  padding-top: 40px;
 }
 
-input[type="radio"]:hover {
-  background: #bfc2db;
-  color: #162938;
+.red{
+  color: red;
 }
 
-input[type="radio"]:checked {
-  background: #bfc2db;
-  color: #162938;
+
+.green{
+  color: rgb(12, 231, 67);
+}
+
+.correct{
+  padding-top: 40px;
+  font-size: 25px;
 }
 
 .submit-button {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eco-Tree</title>
+    <link rel="stylesheet" href="/styles/profile_change.css" />
+    <link rel="icon" href="/front/icon.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav class="navigation">
+          <a href=<%="/profile"%> class="profile">Volver</a>
+      </nav>
+    </header>
+    <section class="settings">
+      <h2 class ="tle">MODIFICAR PERFIL</h2>
+
+      <form action="/profile" method="POST"> 
+        <div class="modificar">
+          <div class="user">
+            <h2 class="old">Su usuario actual:</h2>
+            <h2 class="old"><%= @user.username %></h2>
+            <input type="Usuario" name="newUsername">
+            <h5>Ingrese su nuevo nombre de usuario</h5>
+          </div>
+        
+          <div class="pass">
+            <input type="password" name="currentPassword">
+            <h5>Ingrese su contraseña actual</h5>
+            <input type="password" name="newPassword">
+            <h5>Ingrese su nueva contraseña</h5>
+          </div>
+        
+          <div class="email">
+            <input type="Email" name="newEmail">
+            <h5>Ingrese su nuevo email</h5>
+          </div>
+     
+
+          <button type="submit" class="btn"> Guardar </button>
+         
+        </div>
+      </form>
+     
+    </section>
+  </body>
+</html>

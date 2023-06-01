@@ -11,13 +11,17 @@
   <body>
     
     <section class="asked">
-      <h3>Pregunta <%=@question.id%>:</h3>
-      <h3><%= @question.description %></h3>
-      <h5>Tu respuesta "<%= @answer %> "</h5>
+      <h3 class="descrip"><%= @question.description %></h3>
+      <h5>" <%= @answer %> "</h5>
 
       <form action=<%="/asked/#{@question.id}"%> method="POST" id="asked-form">
-        <div class="options">            
-          <h2><%=@respuesta %></h2>
+        <div class="options">  
+          <% if @respuesta =='RESPUESTA INCORRECTA' %> 
+            <h2 class="red"><%=@respuesta %></h2>
+            <h2 class="correct"> Respuesta correcta: <%=@correct %></h2>
+          <% else %>   
+            <h2 class="green"><%=@respuesta %></h2>
+          <% end %>            
           <input type="submit" value="Siguente pregunta" id="submit-button" class="submit-button" onclick="submitForm()">
         </div>
       </form>

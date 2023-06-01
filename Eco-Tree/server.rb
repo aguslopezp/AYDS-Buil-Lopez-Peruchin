@@ -119,10 +119,12 @@ class App < Sinatra::Application
     @result = params[:option_result]
     selected_option = Option.find(params[:selected_option_id])
     @answer = selected_option.description
+
+    @correct = Option.find_by(isCorrect: 1, question_id: params[:question_id])&.description
     if @result == 'true'
-      @respuesta = 'es CORRECTA'
+      @respuesta = 'RESPUESTA CORRECTA'
     else
-      @respuesta = 'es INCORRECTA'
+      @respuesta = 'RESPUESTA INCORRECTA'
     end
     erb :asked
   end
@@ -235,6 +237,14 @@ class App < Sinatra::Application
   end
 
 
+  get '/profile_change' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+    @user = User.find(session[:user_id])
+    erb :profile_change
+  end
+
   get '/profile' do
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
@@ -244,7 +254,7 @@ class App < Sinatra::Application
   end
   
 
-  post '/profile' do
+  post '/profile_change' do
     user_id = session[:user_id]
     user = User.find_by(id: user_id)
 
@@ -253,27 +263,26 @@ class App < Sinatra::Application
     newPassword = params[:newPassword]
     newEmail = params[:newEmail]
 
-    if newUsername != "" && User.find_by(username: newUsername).nil?
-      user.update(username: newUsername)
-    else 
-      redirect '/profile'
-    end
-
-    if newEmail != ""
-      user.update(email: newEmail)
-    end
-
-    if currentPassword != "" && newPassword != ""
-      if currentPassword == user.password
-        user.update(password: newPassword)
-      else
-        redirect '/profile'
+    #No permite modificar ningun campo si no esta todo bien    
+    if User.find_by(username: newUsername).nil? #si el usuario nuevo ya existe
+      if User.find_by(email: newEmail).nil?  #si el email ya existe
+        if currentPassword == user.password #si la contrasenia es la misma
+          user.update(password: newPassword)
+          user.update(email: newEmail)
+          user.update(username: newUsername)
+        else 
+          redirect '/profile_change'
+        end
+      else 
+        redirect '/profile_change'
       end
+    else 
+      redirect '/profile_change'
     end
 
-
+   
     if !user.save
-      redirect '/profile'
+      redirect '/profile_change'
     end
 
     redirect '/menu'
@@ -289,5 +298,32 @@ class App < Sinatra::Application
     erb :tree
   end
 
+=begin
+  get '/play/:id_question' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+  
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    
+    @total_questions = Question.count # Numero total de preguntas en el juego
+    @id_question = params[:id_question]
+    @question = Question.find_by(id: @id_question)
+    @options = Option.where(question_id: @question.id)
+    @user.update(points: 0)
+    
+    i = @id_question
+    while i <= @total_questions
+      i += 1
+      asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
+      if asked_question
+        asked_question.destroy
+      end
+    end
+  
+    erb :game
+  end
+=end
 end
 

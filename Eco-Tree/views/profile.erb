@@ -17,32 +17,18 @@
     <section class="settings">
       <h2 class ="tle">MI PERFIL</h2>
 
-      <form action="/profile" method="POST"> 
-        <div class="modificar">
-          <div class="user">
-            <h2 class="old">Su usuario actual:</h2>
-            <h2 class="old"><%= @user.username %></h2>
-            <input type="Usuario" name="newUsername">
-            <h5>Ingrese su nuevo nombre de usuario</h5>
-          </div>
-        
-          <div class="pass">
-            <input type="password" name="currentPassword">
-            <h5>Ingrese su contraseña actual</h5>
-            <input type="password" name="newPassword">
-            <h5>Ingrese su nueva contraseña</h5>
-          </div>
-        
-          <div class="email">
-            <input type="Email" name="newEmail">
-            <h5>Ingrese su nuevo email</h5>
-          </div>
-     
 
-          <button type="submit" class="btn"> Guardar </button>
+
+      <div class="files">
+        <h2 class="user">Nombre de usuario:  <%= @user.username %></h2>
+
+        <h2 class="birthdate">Fecha de nacimiento:  <%= @user.birthdate %></h2>
+
+        <h2 class="email">Email:  <%= @user.email %></h2>
+      </div>
+
+      <a href="/profile_change" class="btn"> Modificar datos </a>
          
-        </div>
-      </form>
      
     </section>
   </body>

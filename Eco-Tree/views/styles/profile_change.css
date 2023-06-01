@@ -39,70 +39,83 @@ header {
   text-decoration: none;
   text-align: center;
   line-height: 1.8;
-  width: 900px;
-  height: 600px;
+  cursor: pointer;
+  width: 500px;
+  height: 700px;
   border: 2px solid #fff;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
   background-color: #1629382a;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   border-radius: 6px;
   color: #fff;
   outline: none;
   font-size: 1.1em;
   font-weight: 800;
   transition: .3s;
-  padding-top: 30px;
-}
-
-.tle{
-  font-size: 2.6em;
-  text-shadow:  0 0 15px #162938;
-  padding-bottom: 70px;
-}
-
-.files{
-  display:grid;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-  padding-bottom: 90px;
 }
 
 .user {
-  display:grid;
-  justify-content: center;
-  align-items: center;
-  text-align: center; 
-  padding: 10px;
-}
-
-.birthdate {
-  display:grid;
-  justify-content: center;
-  align-items: center;
+  display: table;
+  text-decoration: none;
   text-align: center;
-  padding: 10px;
+  align-items: center;
+  line-height: 1.8;
+  cursor: pointer;
+  width: 500px;
+  height: 200px;
+  border: transparent;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 800;
+  transition: .3s;
+}
+.pass {
+  display: table;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  line-height: 1.8;
+  cursor: pointer;
+  width: 500px;
+  height: 150px;
+  border: transparent;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 800;
+  transition: .3s;
 }
 .email {
-  display:grid;
-  justify-content: center;
-  align-items: center;
+  display: table;
+  text-decoration: none;
   text-align: center;
-  padding: 10px;
+  align-items: center;
+  line-height: 1.8;
+  cursor: pointer;
+  width: 500px;
+  height: 150px;
+  border: transparent;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+  font-size: 1.1em;
+  font-weight: 800;
+  transition: .3s;
 }
 
 .btn {
   appearance: none;
   text-decoration: none;
-  width: 300px;
-  height: 90px;
-  border: 2px white;
+  width: 250px;
+  height: 60px;
+  border: none;
   background: #fff;
   border-radius: 6px;
   color: #162938;
   outline: none;
-  font-size: 1.7em;
+  font-size: 1.1em;
   font-weight: 800;
   transition: .3s;
   align-items: center;
@@ -115,7 +128,6 @@ header {
   color: #fff;
 }
 
-
 .profile {
   appearance: none;
   text-decoration: none;
@@ -124,7 +136,7 @@ header {
   border: none;
   background: #fff;
   border-radius: 6px;
-  color: #162938; 
+  color: #162938;
   outline: none;
   font-size: 1.1em;
   font-weight: 800;
@@ -138,5 +150,5 @@ header {
 .profile:hover {
   background: #162938;
   color: #fff;
-  box-shadow: 0 0 15px #16fa90a8;
 }
+
