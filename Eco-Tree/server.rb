@@ -301,7 +301,7 @@ class App < Sinatra::Application
   end
 
 
-  get '/play/:id_question' do
+  get '/play' do
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
@@ -310,12 +310,9 @@ class App < Sinatra::Application
     @user = User.find(user_id)
     
     @total_questions = Question.count # Numero total de preguntas en el juego
-    @id_question = 1
-    @question = Question.find_by(id: @id_question)
-    @options = Option.where(question_id: @question.id)
     @user.update(points: 0)
     
-    i = @id_question
+    i = 1
     while i <= @total_questions
       asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
       if asked_question
@@ -324,7 +321,7 @@ class App < Sinatra::Application
       i += 1
     end
   
-    erb :game
+    redirect '/game/1'
   end
 
 end
