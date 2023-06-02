@@ -19,7 +19,9 @@
       </nav>
     </header>
     <section class="play-section">
+    <%if @question.id == 1%>
       <h2 class ="tle">Vamos a jugar <%= @user.username %>!!</h2>
+    <% end %>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
       <p clas="description"> <%= @question.description %> </p>
       <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">

@@ -107,7 +107,7 @@ class App < Sinatra::Application
     # Guardo en la tabla answers la respuesta del usuario
     Answer.create(user_id: user_id, option_id: params[:selected_option_id])
 
-    # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
+    # Respuesta preguntada se marcara como preguntada para no volver a preguntarse (para no ser preguntada nuevamente, en una nueva ocasion)
     AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
     
     redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"

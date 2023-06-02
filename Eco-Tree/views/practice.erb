@@ -26,7 +26,9 @@
           <% question_id = @questions_asked[@question_index] %>
             <% question = Question.find(question_id) %>
             <div class="question">
+              <%if question.id == 1%>
               <h2 class ="tle">Estas son las respuestas correctas <%= @user.username %>!!</h2>
+              <% end %>
               <h3>Pregunta: <%= question.id %></h3>
               <p><%= question.description %></p>
               <ul>
