@@ -236,7 +236,16 @@ class App < Sinatra::Application
     erb :ranking
   end
 
+  
+  get '/profile' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+    @user = User.find(session[:user_id])
+    erb :profile
+  end
 
+  
   get '/profile_change' do
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
@@ -245,14 +254,6 @@ class App < Sinatra::Application
     erb :profile_change
   end
 
-  get '/profile' do
-    if session[:user_id].nil?
-      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
-    end
-    @user = User.find(session[:user_id])
-    erb :profile
-  end
-  
 
   post '/profile_change' do
     user_id = session[:user_id]
@@ -263,29 +264,30 @@ class App < Sinatra::Application
     newPassword = params[:newPassword]
     newEmail = params[:newEmail]
 
-    #No permite modificar ningun campo si no esta todo bien    
-    if User.find_by(username: newUsername).nil? #si el usuario nuevo ya existe
-      if User.find_by(email: newEmail).nil?  #si el email ya existe
-        if currentPassword == user.password #si la contrasenia es la misma
-          user.update(password: newPassword)
-          user.update(email: newEmail)
-          user.update(username: newUsername)
-        else 
-          redirect '/profile_change'
-        end
-      else 
-        redirect '/profile_change'
-      end
-    else 
+    if newUsername != "" && !User.find_by(username: newUsername).nil?
       redirect '/profile_change'
     end
+    if newPassword != "" && !currentPassword.nil? && currentPassword != user.password
+      redirect '/profile_change'
+    end 
 
+    if newUsername != ""
+      user.update_column(:username, newUsername)
+    end
+
+    if newPassword != "" && currentPassword != ""
+      user.update_column(:password, newPassword)
+    end
+
+    if newEmail != ""
+      user.update_column(:email, newEmail)
+    end
    
     if !user.save
-      redirect '/profile_change'
+      redirect '/menu'
     end
 
-    redirect '/menu'
+    redirect '/profile'
   end
 
 
