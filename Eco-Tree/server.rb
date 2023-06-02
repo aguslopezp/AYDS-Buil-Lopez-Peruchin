@@ -83,6 +83,10 @@ class App < Sinatra::Application
 
   
   post '/game/:question_id' do
+    if params[:selected_option_id].nil?
+      question_id = params[:question_id]
+      redirect "/game/#{question_id}"
+    end
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
     user_id = session[:user_id]
