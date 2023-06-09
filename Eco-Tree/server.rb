@@ -238,6 +238,7 @@ class App < Sinatra::Application
     end
     @users = User.order(points: :desc).limit(10) # arreglo de usuarios ordenados de manera descendente
     user = User.find(session[:user_id])
+    @position = User.order(points: :desc).pluck(:id).find_index(session[:user_id]) + 1
     
     erb :ranking, :locals => {:user => user}
   end
