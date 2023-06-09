@@ -35,6 +35,10 @@
                 <% correctOption = Option.where(question_id: question_id, isCorrect: true).first %>
                 <p class="correct"> <%= correctOption.description %> </p>
               </ul>
+              <ul>
+                <% detail = question.detail %>
+                <p class="detail"> <%= detail %> </p>
+              </ul>
               <form action="/practicar" method="POST" >
                 <input type="submit" value="Siguiente" class="next-button">
               </form>
