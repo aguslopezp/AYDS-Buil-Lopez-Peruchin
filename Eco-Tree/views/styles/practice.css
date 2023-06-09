@@ -94,74 +94,27 @@ form {
   gap: 10px;
 }
 
-
-
-.submit-button {
-  appearance: none;
+.next-button {
   text-decoration: none;
-  width: 250px;
-  height: 60px;
-  border: none;
-  background: #fff;
-  border-radius: 6px;
-  color: #162938;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}
-
-.submit-button:hover {
-  background: #162938;
-  color: #fff;
-}
-
-#next-question {
-  /* display: none; */
-  visibility: hidden;
-}
-
-/*#next-button {
-  appearance: none;
-  text-decoration: none;
-  width: 400px;
-  height: 250px;
-  border: none;
-  background: #ffffff00;
-  border-radius: 6px;
-  color: #162938;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}*/
-
-.next-button {  
-  display: block;
-  width: 150px;
-  height: 50px;
   text-align: center;
-  background-color: #16293800;
-  border-radius: 10px;
-  padding: 15px 30px;
-  margin:  20px 250px;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: background-color 1s;
+  line-height: 1.8;
+  cursor: pointer;
+  width: 130px;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: #01231600;
+  outline: none;
+  font-size: 0.5em;
+  font-weight: 800;
+  transition: .3s;
 }
-
 
 .next-button:hover {
-  box-shadow: 0 0 10px #5feb9c;
-  color: #5feb9c;
+  background: #ffffff;
+  color: #0f0e0e;
 }
 
-/*#next-button:hover {
-  background: #81f2c9;
-  color: #81f2c9;
-}
-*/
 
 .correct{
   color: #81f2c9;

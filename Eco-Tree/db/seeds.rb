@@ -7,7 +7,7 @@ Option.create(description: 'El guepardo', isCorrect: false, question_id: 1)
 Option.create(description: 'El antílope', isCorrect: false, question_id: 1)
 Option.create(description: 'El tigre siberiano', isCorrect: false, question_id: 1)
 
-Question.create(description: '¿Qué pájaro pone el huevo más pequeño?', detail: 'Los huevos del colibrí son casi del tamaño de una de tic tac, pueden estar entre los 8 y 10 mm.')
+Question.create(description: '¿Qué pájaro pone el huevo más pequeño?', detail: 'Los huevos del colibrí son casi del tamaño de una pastilla de tic tac, pueden estar entre los 8 y 10 mm.')
 Option.create(description: 'El colibrí', isCorrect: true, question_id: 2)
 Option.create(description: 'El chipe azul', isCorrect: false, question_id: 2)
 Option.create(description: 'El jilguero', isCorrect: false, question_id: 2)

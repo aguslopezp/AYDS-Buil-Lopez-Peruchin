@@ -39,9 +39,6 @@
                 <% detail = question.detail %>
                 <p class="detail"> <%= detail %> </p>
               </ul>
-              <form action="/practicar" method="POST" >
-                <input type="submit" value="Siguiente" class="next-button">
-              </form>
             </div>
         <% else %>
           <p> No hay preguntas por practicar! </p>
@@ -50,6 +47,11 @@
         <p>No haz jugado aún. ¡Empieza a responder preguntas para poder practicar!</p>
       <% end %>
       </div>
+      <form action="/practicar" method="POST" >
+      <% if @question_index < @questions_asked.length%>
+        <input type="submit" value="Siguiente" class="next-button">
+      <% end %>
+      </form>
       
     </section>
  
