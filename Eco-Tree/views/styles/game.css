@@ -61,7 +61,7 @@ header {
   width: 1200px;
   height: 670px;
   color: #fff;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.309);
   border: 2px solid rgba(255, 255, 255,  .5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -89,35 +89,48 @@ form {
   display: flex;
   flex-direction: column;
   align-items:center ;
+  padding-right: 57px;
+  margin-bottom: 60px;
+  padding-top: 10px;
   width: 100%;
   color: #fff;
   gap: 10px;
+  
+}
+
+.option{
+  font-size: 30px;
+}
+
+.option:hover{
+  color: rgba(17, 255, 84, 0.898);
 }
 
 input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 30px;
-  height: 10px;
+  width: 31px;
+  height: 30px;
   margin: 5px;
-  background: #162938;
+  background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   color: #fff;
   border-radius: 6px;
+  
 }
 
 input[type="radio"]:hover {
-  background: #bfc2db;
-  color: #162938;
+  background: url(/front/icon.png);   
+  background-size: 30px;
+  
 }
 
 input[type="radio"]:checked {
-  background: #bfc2db;
-  color: #162938;
-  
+  background: url(/front/icon.png);   
+  background-size: 30px;
 }
 
 .submit-button {

@@ -37,6 +37,7 @@ header {
 }
 
 .tle{
+  position: relative;
   color:#fff;
   text-align: center;
   font-size: 50px;
@@ -47,7 +48,7 @@ header {
 .ranking-section{
   color: white;
   width: 600px;
-  height: 700px;
+  height: 470px;
   background: rgba(0, 0, 0, 0.839);
   backdrop-filter: blur(15px);
   border: 2px solid rgba(80, 80, 80, 0.5);
@@ -87,20 +88,31 @@ header {
 
 .table{
   margin: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   width: 70%;
 }
 
 .titulos {
-  font-size: 30px;
+  font-size: 37px;
 }
 
 .valores {
   font-size: 20px;
 }
 
+tr{
+  margin: 100px;
+}
 
-
+.position{
+  font-size: 40px;
+  position:absolute;
+  margin-top: 700px;
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

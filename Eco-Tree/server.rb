@@ -236,8 +236,10 @@ class App < Sinatra::Application
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
-    @users = User.order(points: :desc) # arreglo de usuarios ordenados de manera descendente
-    erb :ranking
+    @users = User.order(points: :desc).limit(10) # arreglo de usuarios ordenados de manera descendente
+    user = User.find(session[:user_id])
+    
+    erb :ranking, :locals => {:user => user}
   end
 
   

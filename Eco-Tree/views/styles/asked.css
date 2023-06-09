@@ -61,7 +61,7 @@ header {
   width: 1200px;
   height: 670px;
   color: #ffffff;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.657);
   border: 2px solid rgba(142, 252, 173, 0.607);
   border-radius: 20px;
   backdrop-filter: blur(5px);
