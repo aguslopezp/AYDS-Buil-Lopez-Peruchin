@@ -40,7 +40,8 @@ header {
   position: relative;
   color:#fff;
   text-align: center;
-  font-size: 50px;
+  font-size: 80px;
+  text-shadow: 0 0 30px solid black;
   justify-content: center;
   align-items: center;
 }
@@ -65,6 +66,7 @@ header {
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
+  font-size: 30px;
   margin-left: 40px;
   transition: 5s;
 }
@@ -112,7 +114,20 @@ tr{
   text-align: center;
   justify-content: center;
   align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgba(0, 0, 0, 0.366);
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(3, 255, 154, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(26, 242, 127, 0.371);
 }
 
+.position:hover{
+  border: 2px solid rgba(3, 255, 154, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(26, 242, 127, 0.371);
+}
 
 

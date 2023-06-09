@@ -108,6 +108,7 @@ header {
   align-items: center;
   text-align: center;
   margin-top: 15px;
+  padding: 8px;
 }
 
 .btn:hover {

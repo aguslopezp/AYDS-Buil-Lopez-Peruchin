@@ -10,7 +10,7 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/front/lago.jpg') no-repeat;
+  background: url('/front/lago-min.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }

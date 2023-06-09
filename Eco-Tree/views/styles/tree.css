@@ -1,19 +1,32 @@
 .tree-image {
     width: 700px;
     height: 800px;
-    position: absolute;
     top: 100px;
     left: 600px;
 }
 
+.arbol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-
+.ramas {
+    margin: auto;
+    width: 800px;
+    height: 550px;
+    position: absolute;
+    border-radius: 40%;
+    top: 100px;
+    border: solid white;
+}
 
 /* Estilo comun de todas las hojas */
 .leaf-image {
     width: 70px;
     height: 100px;
-    position: absolute;
+    position: relative;
 }
 
 /* Estilo especifico de la primer hoja*/
@@ -36,6 +49,30 @@
 }
 
 .leaf-4 {
+    top: 280px;
+    left: 1210px;
+    transform: rotate(180deg);
+}
+
+.leaf-5 {
+    top: 320px;
+    left: 410px;
+    transform: rotate(180deg);
+}
+
+.leaf-6 {
+    top: 280px;
+    left: 1210px;
+    transform: rotate(180deg);
+}
+
+.leaf-7 {
+    top: 280px;
+    left: 1210px;
+    transform: rotate(180deg);
+}
+
+.leaf-8 {
     top: 280px;
     left: 1210px;
     transform: rotate(180deg);
@@ -76,7 +113,7 @@
     transition: background-color 1s;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -84,8 +121,6 @@
 }
 
 body{
-    display: flex;
-    min-height: 100vh;
     background: url('/front/treeBackground.jpg') no-repeat;
     background-size: cover;
     background-position: center;

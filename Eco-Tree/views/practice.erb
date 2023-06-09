@@ -29,15 +29,15 @@
               <%if question.id == 1%>
               <h2 class ="tle">Estas son las respuestas correctas <%= @user.username %>!!</h2>
               <% end %>
-              <h3>Pregunta: <%= question.id %></h3>
-              <p><%= question.description %></p>
+              <h3 class="pregunta">Pregunta <%= question.id %></h3>
+              <p class="descripcion"><%= question.description %></p>
               <ul>
                 <% correctOption = Option.where(question_id: question_id, isCorrect: true).first %>
                 <p class="correct"> <%= correctOption.description %> </p>
               </ul>
               <ul>
                 <% detail = question.detail %>
-                <p class="detail"> <%= detail %> </p>
+                <p class="detail"> DATO: <%= detail %> </p>
               </ul>
             </div>
         <% else %>
@@ -47,13 +47,13 @@
         <p>No haz jugado aún. ¡Empieza a responder preguntas para poder practicar!</p>
       <% end %>
       </div>
+      
+    </section>
       <form action="/practicar" method="POST" >
       <% if @question_index < @questions_asked.length%>
         <input type="submit" value="Siguiente" class="next-button">
       <% end %>
       </form>
-      
-    </section>
  
 </body>
 </html>
