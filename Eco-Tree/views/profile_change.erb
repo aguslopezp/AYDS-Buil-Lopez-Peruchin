@@ -20,14 +20,13 @@
       <form action="/profile_change" method="POST"> 
         <div class="modificar">
           <div class="user">
-            <h2 class="old">Su usuario actual:</h2>
-            <h2 class="old"><%= @user.username %></h2>
-            <input type="Usuario" name="newUsername">
+            <h2 class="old">Su usuario actual: <%= @user.username %></h2>
+            <input type="Usuario" name="newUsername" class="newUser">
             <h5>Ingrese su nuevo nombre de usuario</h5>
           </div>
         
           <div class="pass">
-            <input type="password" name="currentPassword">
+            <input type="password" name="currentPassword" class="input">
             <h5>Ingrese su contraseña actual</h5>
             <input type="password" name="newPassword">
             <h5>Ingrese su nueva contraseña</h5>

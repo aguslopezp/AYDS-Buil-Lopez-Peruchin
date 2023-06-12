@@ -71,6 +71,14 @@ header {
   margin-top: 750px;
 }
 
+.next-button:hover {
+  border: 2px solid rgba(2, 156, 33, 0.739);
+  box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
+  font-size: 41px;
+  padding: 5px;
+  width: 210px;
+
+}
 
 .practice-section {
   flex-direction: column;
@@ -113,10 +121,7 @@ form {
 }
 
 
-.next-button:hover {
-  border: 2px solid rgba(2, 156, 33, 0.739);
-  box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
-}
+
 
 .tle{
   color: #00ff44;
