@@ -1,4 +1,5 @@
-/*@import url(https://fonts.google.com/specimen/Poppins?preview.text=ECO-TREE&preview.text_type=custom);*/
+/*@import url(https://fonts.google.com/specimen/Poppins?preview.text=ECO
+-TREE&preview.text_type=custom);*/
 
 *{
   margin: 0;
@@ -11,10 +12,14 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
-  background: url('/front/inicio.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('/front/inicio.jpg');
 }
 
 header{
@@ -29,12 +34,12 @@ header{
   z-index: 99;
 }
 
-image {
-  height: 200px;
+.image {
+  width: 1200px;
 }
 
 .logo{
-  font-size: 3.2em;
+  font-size: 3em;
   border: 2px lime;
   border-color: rgb(14, 251, 14);
   border-radius: 6px;
@@ -42,8 +47,6 @@ image {
   user-select: none;
   height: px;
 }
-
-
 
 .nav a{
   position: relative;
@@ -75,13 +78,8 @@ image {
 .sub {
   font-size: 34px;
   font-weight: 600;
-  min-width: 280px;
-  position: absolute;
-  color: #ffffff;
-  margin-top: 510px;
-  margin-left: -190px;
-  right: 800px;
-
+  width: 280px;
+  color: #ffffff; 
 }
 
 .sub span {
