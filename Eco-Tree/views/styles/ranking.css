@@ -38,15 +38,21 @@ header {
 
 .tle{
   position: relative;
-  color:#fff;
-  text-align: center;
-  font-size: 80px;
-  text-shadow: 0 0 30px solid black;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 80px;
+  color:#fff;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 310px;
+  z-index: 99;
+  left: 540px;
 }
 
 .ranking-section{
+  position: relative;
+  justify-content: center;
   color: white;
   width: 600px;
   height: 470px;
@@ -55,7 +61,9 @@ header {
   border: 2px solid rgba(80, 80, 80, 0.5);
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(26, 242, 127, 0.371);
-  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  right: 420px;
 }
 
 
