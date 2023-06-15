@@ -54,6 +54,7 @@ header {
 
 
 .settings {
+  position: relative;
   text-decoration: none;
   text-align: center;
   line-height: 1.8;
@@ -70,10 +71,12 @@ header {
   font-weight: 800;
   transition: .3s;
   padding-top: 30px;
+  left: 130px;
 }
 
 .tle{
   font-size: 2.6em;
+  font-weight: 900px;
   text-shadow:  0 0 15px #162938;
   padding-bottom: 70px;
 }
@@ -111,31 +114,32 @@ header {
 }
 
 .btn {
-  appearance: none;
+  position: relative;
   text-decoration: none;
+  outline: none;
   width: 300px;
-  height: 90px;
+  height: 60px;
+  top: 300px;
   border: 2px white;
   background: #fff;
   border-radius: 6px;
   color: #162938;
-  outline: none;
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 700;
   transition: .3s;
   align-items: center;
   text-align: center;
-  margin-top: 15px;
+  z-index: 100;
+  right: 460px;
   padding: 8px;
 }
 
 .btn:hover {
-
   border: 2px solid rgba(2, 156, 33, 0.739);
   box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
-  font-size: 35px;
+  font-size: 31px;
   padding: 5px;
-  width: 310px;
+  width: 302px;
   
 }
 
