@@ -271,12 +271,16 @@ class App < Sinatra::Application
     newPassword = params[:newPassword]
     newEmail = params[:newEmail]
 
-    if newUsername != "" && !User.find_by(username: newUsername).nil?
+    
+    if newUsername != "" && (!User.find_by(username: newUsername).nil? || newUsername.include?(" "))
       redirect '/profile_change'
     end
-    if newPassword != "" && !currentPassword.nil? && currentPassword != user.password
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password || newPassword.include?(" "))
       redirect '/profile_change'
     end 
+    if newEmail != "" && newEmail.include?(" ")
+      redirect '/profile_change'
+    end
 
     if newUsername != ""
       user.update_column(:username, newUsername)
