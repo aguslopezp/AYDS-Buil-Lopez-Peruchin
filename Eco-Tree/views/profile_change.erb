@@ -16,33 +16,35 @@
     </header>
     <h2 class ="tle">MODIFICAR PERFIL</h2>
     
-    <section class="settings">
-      <form action="/profile_change" method="POST"> 
-        <div class="modificar">
-          <div class="user">
-            <h2 class="old">Su usuario actual: <%= @user.username %></h2>
-            <input type="Usuario" name="newUsername" class="newUser">
-            <h5>Ingrese su nuevo nombre de usuario</h5>
-          </div>
-        
-          <div class="pass">
-            <input type="password" name="currentPassword" class="input">
-            <h5>Ingrese su contraseña actual</h5>
-            <input type="password" name="newPassword">
-            <h5>Ingrese su nueva contraseña</h5>
-          </div>
-        
-          <div class="email">
-            <input type="Email" name="newEmail">
-            <h5>Ingrese su nuevo email</h5>
-          </div>
-     
-            <button type="submit" class="btn"> Guardar </button>
+    <div class="crear_usuario">
+      <div class="form-box login">
+        <form action="/profile_change" method="POST"> 
+  
+          <div class="input-box">
+            <input type="Usuario" name="username" id="username">
+            <label>Nuevo usuario</label>
+          </div>   
+  
+          <div class="input-box ">
+            <input type="password" name="currentPassword">
+            <label>Ingrese su contraseña actual</label>
+          </div>  
 
-         
-        </div>
-      </form>
-     
-    </section>
+           <div class="input-box ">
+            <input type="password" name="newPassword">
+            <label>Ingrese su nueva contraseña</label>
+          </div>  
+          
+          <div class="input-box ">
+            <input type="Email" name="newEmail">
+            <label>Ingrese su nuevo email</label>
+          </div>   
+  
+          <button type="submit" class="btn"> Modificar </button>
+  
+        </form>
+      </div>
+    </div>
+    
   </body>
 </html>
