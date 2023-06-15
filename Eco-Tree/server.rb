@@ -272,13 +272,13 @@ class App < Sinatra::Application
     newEmail = params[:newEmail]
 
     
-    if newUsername != "" && (!User.find_by(username: newUsername).nil? || newUsername.include?(" "))
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
       redirect '/profile_change'
     end
-    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password || newPassword.include?(" "))
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
       redirect '/profile_change'
     end 
-    if newEmail != "" && newEmail.include?(" ")
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
       redirect '/profile_change'
     end
 
