@@ -143,13 +143,6 @@ header {
   text-shadow: #162938 6px;
 }
 
-.tle2{
-  font-size: 15px;
-  font-weight: 400;
-  padding-top: 10px;
-  color: #00ff26;
-}
-
 .input-box input {
   width: 100%;
   height: 100%;
@@ -159,4 +152,12 @@ header {
   font-size: 17px;
   color: #00ff6eeb;
   font-weight: 600;
+}
+
+
+.tle2{
+  font-size: 15px;
+  font-weight: 400;
+  padding-top: 10px;
+  color: #00ff26;
 }
