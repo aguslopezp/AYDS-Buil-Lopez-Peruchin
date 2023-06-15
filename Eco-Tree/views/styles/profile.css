@@ -130,7 +130,7 @@ header {
   border-radius: 6px;
   color: #162938;
   font-size: 30px;
-  font-weight: 700;
+  font-weight: 800;
   transition: .3s;
   align-items: center;
   text-align: center;
@@ -144,8 +144,7 @@ header {
   box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
   font-size: 31px;
   padding: 5px;
-  width: 302px;
-  
+  width: 302px;  
 }
 
 

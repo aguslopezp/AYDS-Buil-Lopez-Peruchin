@@ -25,136 +25,93 @@ header {
   z-index: 99;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background: transparent;
-  font-weight: 500;
-  font-size: 25px;
-  gap: 30px;
-}
 
 .settings {
+  position: relative;
   text-decoration: none;
   text-align: center;
+  align-items: center;
   line-height: 1.8;
-  cursor: pointer;
-  width: 1200px;
-  height: 700px;
+  width: 900px;
+  height: 600px;
   border: 2px solid #fff;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   background-color: #1629382a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   border-radius: 6px;
   color: #fff;
   outline: none;
   font-size: 1.1em;
   font-weight: 800;
   transition: .3s;
+  padding-top: 30px;
+  right: 250px; 
 }
 
-.user {
-  display: table;
-  text-decoration: none;
-  text-align: center;
-  align-items: center;
-  line-height: 1.8;
-  cursor: pointer;
-  width: 500px;
-  height: 200px;
-  border: transparent;
-  border-radius: 6px;
-  color: #fff;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}
-.pass {
-  display: table;
-  text-decoration: none;
-  text-align: center;
-  align-items: center;
-  line-height: 1.8;
-  cursor: pointer;
-  width: 500px;
-  height: 150px;
-  border: transparent;
-  border-radius: 6px;
-  color: #fff;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}
-.email {
-  display: table;
-  text-decoration: none;
-  text-align: center;
-  align-items: center;
-  line-height: 1.8;
-  cursor: pointer;
-  width: 500px;
-  height: 150px;
-  border: transparent;
-  border-radius: 6px;
-  color: #fff;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-}
 
 .btn {
-  appearance: none;
+  position: relative;
   text-decoration: none;
-  width: 100px;
-  height: 50px;
-  border: none;
+  outline: none;
+  width: 300px;
+  height: 60px;
+  top: 260px;
+  border: 2px white;
   background: #fff;
   border-radius: 6px;
   color: #162938;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: 700;
   transition: .3s;
   align-items: center;
   text-align: center;
-  margin-top: 15px;
+  z-index: 100;
+  padding: 8px;
 }
 
 .btn:hover {
-  background: #162938;
-  color: #fff;
+  border: 2px solid rgba(2, 156, 33, 0.739);
+  box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
+  font-size: 31px;
+  padding: 5px;
+  width: 302px;  
 }
 
-.profile {
-  appearance: none;
+.nav a{
+  position: relative;
+  color: #ffffff;
   text-decoration: none;
-  width: 200px;
-  height: 40px;
-  border: none;
-  background: #fff;
-  border-radius: 6px;
-  color: #162938;
-  outline: none;
-  font-size: 1.1em;
-  font-weight: 800;
-  transition: .3s;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 15px;
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: 40px;
+  transition: 5s;
 }
 
-.profile:hover {
-  background: #162938;
-  color: #fff;
+.nav a::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #b7e8d1;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform .5s;
+}
+
+.nav a:hover:after{
+  transform: scaleX(1);
 }
 
 .tle{
-  font-size: 50px;
-  padding-bottom: 80px;
+  position: relative;
+  bottom: 300px;
+  left: 470px;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 900px;
+  text-shadow:  0 0 15px #000000;
+  padding-bottom: 70px;
 }
-
 
