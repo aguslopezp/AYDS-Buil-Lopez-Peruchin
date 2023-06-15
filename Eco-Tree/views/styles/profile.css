@@ -57,6 +57,7 @@ header {
   position: relative;
   text-decoration: none;
   text-align: center;
+  align-items: center;
   line-height: 1.8;
   width: 900px;
   height: 600px;
@@ -71,13 +72,16 @@ header {
   font-weight: 800;
   transition: .3s;
   padding-top: 30px;
-  left: 130px;
 }
 
 .tle{
-  font-size: 2.6em;
+  position: relative;
+  bottom: 300px;
+  left: 580px;
+  color: #fff;
+  font-size: 60px;
   font-weight: 900px;
-  text-shadow:  0 0 15px #162938;
+  text-shadow:  0 0 15px #000000;
   padding-bottom: 70px;
 }
 
@@ -91,6 +95,7 @@ header {
 }
 
 .user {
+  margin-top: 100px;
   display:grid;
   justify-content: center;
   align-items: center;
@@ -130,7 +135,7 @@ header {
   align-items: center;
   text-align: center;
   z-index: 100;
-  right: 460px;
+  right: 580px;
   padding: 8px;
 }
 
