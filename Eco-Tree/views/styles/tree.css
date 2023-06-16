@@ -54,8 +54,8 @@
 }
 
 .leaf-7 {
-  top: 259px;
-  left: 1079px;
+  top: 388px;
+  left: 1146px;
   transform: rotate(220deg);
 }
 
@@ -87,6 +87,32 @@
   top: 450px;
   left: 902px;
   transform: rotate(160deg);
+}
+
+.pajaro{
+  width: 200px;
+  height: 200px;
+}
+
+.pajaro2{
+  width: 140px;
+  height: 140px;
+  left: 40px;
+}
+
+.arbusto{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 745px;
+  left: 752px;
+}
+
+.borde{
+  position: absolute;
+  width: 1000px;
+  height: 948px;
+  left: 920px;
 }
 
 
