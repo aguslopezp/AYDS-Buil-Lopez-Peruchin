@@ -335,5 +335,10 @@ class App < Sinatra::Application
     redirect '/game/1'
   end
 
+  
+  get '/store' do
+    erb :store
+  end
+
 end
 
