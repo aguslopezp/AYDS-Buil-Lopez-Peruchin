@@ -43,6 +43,7 @@ class App < Sinatra::Application
 
 
   get '/game/:id_question' do
+    session[:tree] = true #de arbol vuelve a game
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
@@ -198,6 +199,7 @@ class App < Sinatra::Application
 
 
   get '/menu' do 
+    session[:tree] = false
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
@@ -308,6 +310,7 @@ class App < Sinatra::Application
     end
     user_id = session[:user_id]
     @user = User.find(user_id)
+    @tree = session[:tree]
     erb :tree
   end
 
@@ -335,7 +338,7 @@ class App < Sinatra::Application
     redirect '/game/1'
   end
 
-  
+
   get '/store' do
     erb :store
   end

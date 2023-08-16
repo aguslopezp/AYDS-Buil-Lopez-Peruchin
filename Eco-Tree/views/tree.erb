@@ -17,7 +17,11 @@
 
 <header>
   <nav class="nav">
+  <% if @tree == false%>
     <a href=<%="/menu"%> class="profile">Volver</a>
+  <% else %>
+    <a href=<%="/game/1"%> class="profile">Volver</a>
+  <% end %>
   </nav>
 </header>
 
