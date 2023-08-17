@@ -340,6 +340,9 @@ class App < Sinatra::Application
 
 
   get '/store' do
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    @coin = @user.coin
     erb :store
   end
 

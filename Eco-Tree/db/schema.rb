@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_203425) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_16_203058) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_203425) do
     t.integer "points", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "coin", default: 50
   end
 
   add_foreign_key "answers", "options"
