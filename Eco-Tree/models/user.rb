@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   validates :email, presence: true
   validates :birthdate, presence: true
+  validates :points, presence: true
 end
 
 

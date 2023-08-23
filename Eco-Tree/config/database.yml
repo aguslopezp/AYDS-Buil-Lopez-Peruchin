@@ -1,17 +1,25 @@
+# Create a file to configure the DB
+# config/database.yml
+
 default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
 
 development:
-  <<: *default
+  adapter: sqlite3
   database: db/eco_development.sqlite3
+  pool: 5
+  timeout: 5000
 
 test:
-  <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
-  <<: *default
+  adapter: sqlite3
   database: db/production.sqlite3
-
+  pool: 5
+  timeout: 5000

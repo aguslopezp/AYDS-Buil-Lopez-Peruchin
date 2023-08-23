@@ -12,6 +12,7 @@ end
 gem 'sinatra-activerecord'
 gem 'sqlite3'
 gem 'rake'
+gem 'simplecov'
 
 group :test do
   gem 'rspec'
