@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :birthdate, presence: true
   validates :points, presence: true
   validate :points_non_negative
-  validate :suma_points
+
   
   
   def suma_points
