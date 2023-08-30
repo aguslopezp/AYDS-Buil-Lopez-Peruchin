@@ -64,7 +64,6 @@
       "/src/models/init.rb": {
         "lines": [
           1,
-          1,
           1
         ]
       },
@@ -108,6 +107,6 @@
         ]
       }
     },
-    "timestamp": 1692748520
+    "timestamp": 1693318249
   }
 }

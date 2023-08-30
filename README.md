@@ -21,6 +21,7 @@ Run the seeds.rb: ``` sudo docker compose exec app bundle exec rake db:seed ```
 
 Stop runing the container: ``` sudo docker compose down ```
 
+## Commands for tests 
 Run the migration for db test: ``` docker compose exec app bundle exec rake db:migrate RACK_ENV=test ```
 
 ``` sudo docker compose exec -e RACK_ENV=test app bundle exec rspec --format doc ```
