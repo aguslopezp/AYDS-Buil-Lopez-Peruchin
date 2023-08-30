@@ -11,6 +11,7 @@ describe 'Option' do
       it 'requires an isCorrect field' do
         option = Option.new(description: 'description test', isCorrect: nil)
         expect(option.valid?).to eq(false)
+        expect(option.errors[:isCorrect]).to include("isCorrect must be true or false")
       end
 
     end
