@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
   validates :birthdate, presence: true
   validates :points, presence: true
   validate :points_non_negative
+  validate :suma_points
+  
+  
+  def suma_points
+    self.points += 1  
+    save
+  end
 
   private
 
@@ -15,10 +22,6 @@ class User < ActiveRecord::Base
     if points.nil? || points < 0
       errors.add(:points, "must be greater than or equal to 0")
     end
-  end
-
-  def suma_points
-    points = points + 1 
   end
   
 end

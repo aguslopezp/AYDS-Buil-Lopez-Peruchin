@@ -97,12 +97,7 @@ class App < Sinatra::Application
     # Calculo puntos del usuario
     if option_result == 'true'
       user = User.find(user_id)
-      if user.points.nil? # este if ya no hace falta
-        user.update(points: 1)
-      else 
-        newPoints = user.points + 1
-        user.update(points: newPoints)
-      end
+      user.suma_points
     end
 
     # Guardo en la tabla answers la respuesta del usuario

@@ -47,5 +47,13 @@ describe 'User' do
       expect(user.errors[:password]).to include("password must be at least 6 characters")
     end
 
+=begin
+    it 'when you win a point, only one point is gained ' do
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12')
+      expect(user.valid?).to eq(false)
+      expect(user.errors[:password]).to include("password must be at least 6 characters")
+    end
+=end
+
   end
 end
