@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'logger'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
+require 'bcrypt'
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 require_relative 'models/user'
@@ -153,8 +154,8 @@ class App < Sinatra::Application
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    
-    if @user && @user.password == params[:password]
+    input_password = params[:password]
+    if @user && @user.compare_password(@user.password, input_password)
       session[:user_id] = @user.id
       redirect '/menu'
     elsif @user 
@@ -165,6 +166,8 @@ class App < Sinatra::Application
       erb :login
     end
   end 
+
+
   
 
   get '/register' do
@@ -173,12 +176,21 @@ class App < Sinatra::Application
 
 
   post '/register' do
+    #encripta la password
+    def hash_password(password)
+      salt = BCrypt::Engine.generate_salt
+      hashed_password = BCrypt::Engine.hash_secret(password, salt)
+      return hashed_password
+    end
+
     # ya existe un jugador en la base de datos con ese usuario
     if !User.find_by(username: params[:username]).nil? 
       redirect '/register'
     end
     if params[:password] == params[:passwordTwo]
-      @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+      password = hash_password(params[:password])
+   
+      @user = User.create(username: params[:username], password: password, email: params[:email], birthdate: params[:birthdate])
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
         redirect '/menu'
@@ -188,6 +200,8 @@ class App < Sinatra::Application
     else 
       redirect '/register'
     end
+
+
   end 
 
 

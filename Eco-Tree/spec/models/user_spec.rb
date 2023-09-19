@@ -1,4 +1,5 @@
 require 'sinatra/activerecord'
+require 'bcrypt'
 require_relative '../../models/init.rb'
 
 
@@ -51,6 +52,28 @@ describe 'User' do
       user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5)
       user.suma_points
       expect(user.points).to eq(6)
+    end 
+    
+    it 'when a user register, her password is hashed' do
+      #hash the password
+      password = '123456'
+      salt = BCrypt::Engine.generate_salt
+      hashed_password = BCrypt::Engine.hash_secret(password, salt)
+ 
+      user = User.new(username: 'usertest', password: hashed_password, email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+      no_hash_pass = user.compare_password(user.password, password)
+      expect(no_hash_pass).to eq(true)
+    end  
+
+    it 'when a user login, her password is hashed' do
+      #hash the password
+      password = '123456'
+      salt = BCrypt::Engine.generate_salt
+      hashed_password = BCrypt::Engine.hash_secret(password, salt)
+ 
+      user = User.new(username: 'usertest', password: hashed_password, email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+      no_hash_pass = (user.password == password)
+      expect(no_hash_pass).to eq(false)
     end  
 
   end
