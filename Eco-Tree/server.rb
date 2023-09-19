@@ -5,6 +5,7 @@ require 'logger'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
 require 'bcrypt'
+require 'mail' 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 require_relative 'models/user'
@@ -177,31 +178,71 @@ class App < Sinatra::Application
 
   post '/register' do
     #encripta la password
-    def hash_password(password)
+    def hash_password(pass)
       salt = BCrypt::Engine.generate_salt
-      hashed_password = BCrypt::Engine.hash_secret(password, salt)
+      hashed_password = BCrypt::Engine.hash_secret(pass, salt)
       return hashed_password
     end
 
+    def generate_random_code(length)
+      characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
+      code = (0...length).map { characters[rand(characters.length)] }.join
+    end
+  
+    #genera un codigo de 6 caracteres 
+    code_random = generate_random_code(6)
+    session[:code] = code_random
+
+    # Método para enviar el correo de bienvenida
+    def send_verificated_email(email)
+      codigo = session[:code]
+      options = {
+        address: 'smtp.gmail.com', 
+        port: 587,
+        user_name: 'eco.treeOk@gmail.com',
+        password: password = 'dcbr arax jeax jmpp',
+        authentication: 'plain',
+        enable_starttls_auto: true
+      }
+
+      Mail.defaults do
+        delivery_method :smtp, options
+      end
+
+      mail = Mail.new do
+        from    'eco.treeOk@gmail.com'
+        to      email 
+        subject 'Bienvenido a Eco'
+        body    "Felicidades, eres parte de la familia Eco.\n
+                Este es el código de seguridad, no lo compartas con nadie\n
+                Código: #{codigo}" 
+      end
+
+      mail.deliver      
+    end
+
+
     # ya existe un jugador en la base de datos con ese usuario
     if !User.find_by(username: params[:username]).nil? 
-      redirect '/register'
+     redirect '/register'
     end
     if params[:password] == params[:passwordTwo]
-      password = hash_password(params[:password])
-   
-      @user = User.create(username: params[:username], password: password, email: params[:email], birthdate: params[:birthdate])
+      passw = hash_password(params[:password])
+      
+      #envia el email
+      
+      @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate])
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
-        redirect '/menu'
+        @user.save
+        send_verificated_email(@user.email)
+        redirect '/validate'
       else
         redirect '/register'
       end
     else 
       redirect '/register'
     end
-
-
   end 
 
 
@@ -347,7 +388,6 @@ class App < Sinatra::Application
     redirect '/game/1'
   end
 
-
   get '/store' do
     user_id = session[:user_id]
     @user = User.find(user_id)
@@ -355,5 +395,16 @@ class App < Sinatra::Application
     erb :store
   end
 
-end
+  get '/validate' do
+    erb :validate
+  end
 
+  post '/validate' do    
+    if session[:code] == params[:code]
+      session[:verifica] = true
+      redirect '/menu'
+    end
+
+  end
+
+end

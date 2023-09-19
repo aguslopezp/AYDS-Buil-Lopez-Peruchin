@@ -31,15 +31,32 @@ GEM
       tzinfo (~> 2.0)
     bcrypt (3.1.19)
     concurrent-ruby (1.2.2)
+    date (3.3.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.8.1)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
+    mail (2.8.1)
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+    mini_mime (1.1.5)
     mini_portile2 (2.8.1)
     minitest (5.18.0)
     multi_json (1.15.0)
     mustermann (1.1.2)
       ruby2_keywords (~> 0.0.1)
+    net-imap (0.3.7)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     rack (2.2.7)
     rake (13.0.6)
     rspec (3.12.0)
@@ -69,6 +86,7 @@ GEM
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.2-arm64-darwin)
     tilt (2.1.0)
+    timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
 
@@ -78,6 +96,8 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  dotenv
+  mail
   multi_json
   rake
   rspec
