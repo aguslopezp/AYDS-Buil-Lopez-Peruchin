@@ -84,13 +84,26 @@ class App < Sinatra::Application
 
   
   post '/game/:question_id' do
-    if params[:selected_option_id].nil?
+    user_id = session[:user_id]
+    if params[:selected_option_id].nil? && params[:timeout] == 'false'
       question_id = params[:question_id]
       redirect "/game/#{question_id}"
     end
+
+    if params[:selected_option_id].nil? && params[:timeout] == 'true'
+
+      # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
+      AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
+      option_result = 'nil'
+      selected_option_id = 999999
+
+      # Guardo en la tabla answers la respuesta del usuario, la cual fue nil. No lo crea
+      #Answer.create(user_id: user_id, option_id: nil)
+
+      redirect "/asked/#{params[:question_id]}/#{option_result}/#{selected_option_id}"
+    end
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
-    user_id = session[:user_id]
     # Verificar si la opción seleccionada es correcta o no
     option_result = selected_option.isCorrect ? 'true' : 'false'
     
@@ -117,14 +130,21 @@ class App < Sinatra::Application
     @question = Question.find(params[:question_id])
     @user = User.find(session[:user_id])
     @result = params[:option_result]
-    selected_option = Option.find(params[:selected_option_id])
-    @answer = selected_option.description
+    
+    if @result == 'nil'
+      @answer = 'Respuesta no contestada'
+    else
+      selected_option = Option.find(params[:selected_option_id])
+      @answer = selected_option.description
+    end
 
     @correct = Option.find_by(isCorrect: 1, question_id: params[:question_id])&.description
     if @result == 'true'
       @respuesta = 'RESPUESTA CORRECTA'
-    else
+    elsif @result == 'false'
       @respuesta = 'RESPUESTA INCORRECTA'
+    else 
+      @respuesta = 'SE AGOTO EL TIEMPO'
     end
     erb :asked
   end
