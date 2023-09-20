@@ -1,0 +1,136 @@
+/*@import url(https://fonts.google.com/specimen/Poppins?preview.text=ECO-TREE&preview.text_type=custom);*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('/front/fondo.jpg');
+}
+
+.navigation .btn_Login:hover {
+  transform: scaleX(1);
+}
+
+
+
+.validate {
+  width: 400px;
+  height: 490px;
+  background: #0000004d;
+  border: 2px solid rgba(0, 250, 133, 0.222);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(2, 255, 108, 0.303);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.validate .form-box {
+  width: 100%;
+  padding: 40px;
+}
+
+.form-box h2 {
+  font-size: 2em;
+  color: #000502;
+  text-align: center;
+}
+
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #162938;
+  margin: 50px 0;
+  padding: -100px;
+  font-size: 15px;
+}
+
+.input-box label {
+  position: absolute;
+  top: 55%;
+  left: 5px;
+  transform:  translateY(-50%);
+  font-size: 1em;
+  color: #8adbbc;
+  font-weight: 500;
+  pointer-events: none;
+  transition: .5s;
+  text-shadow: #162938 6px;
+}
+
+.input-box input:focus~label, 
+.input-box input:valid~label {
+  top: -10px;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 3em;
+  color: #5feb9c;
+  font-weight: 600;
+}
+
+.btn {
+  width: 100%;
+  height: 45px;
+  background: #162938;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+  transition: background-color 2s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
+}
+
+.recomend {
+  font-size: .9em;
+  color: #91a2b2;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+}
+
+.recomend p a{
+  color: #5feb9c;
+  text-decoration: none;
+  font-weight: 600;
+  border: 15px ;
+  border-radius: 6px;
+}
+
+
+.recomend p a:hover{
+  text-decoration: underline;
+}
+
+
+
+

@@ -4,6 +4,8 @@ require 'bundler/setup'
 require 'logger'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
+require 'bcrypt'
+require 'mail' 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 require_relative 'models/user'
@@ -11,6 +13,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/asked_question'
 require_relative 'models/answer'
+require_relative 'methods'
 
 class App < Sinatra::Application
   enable :sessions
@@ -173,8 +176,8 @@ class App < Sinatra::Application
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    
-    if @user && @user.password == params[:password]
+    input_password = params[:password]
+    if @user && @user.compare_password(@user.password, input_password)
       session[:user_id] = @user.id
       redirect '/menu'
     elsif @user 
@@ -185,23 +188,34 @@ class App < Sinatra::Application
       erb :login
     end
   end 
-  
 
+  
   get '/register' do
     erb :register
   end
 
 
   post '/register' do
+
+    #genera un codigo de 6 caracteres 
+    code_random = generate_random_code(6)
+    session[:code] = code_random
+
+
     # ya existe un jugador en la base de datos con ese usuario
-    if !User.find_by(username: params[:username]).nil? 
+    if !(User.find_by(username: params[:username]).nil?) 
       redirect '/register'
     end
+
     if params[:password] == params[:passwordTwo]
-      @user = User.create(username: params[:username], password: params[:password], email: params[:email], birthdate: params[:birthdate])
+      passw = hash_password(params[:password])
+      
+      @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate])
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
-        redirect '/menu'
+        #envia el email
+        send_verificated_email(@user.email, session[:code])
+        redirect '/validate'
       else
         redirect '/register'
       end
@@ -266,6 +280,7 @@ class App < Sinatra::Application
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
     @user = User.find(session[:user_id])
+    @verificated = @user.valid_email
     erb :profile
   end
 
@@ -283,6 +298,7 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     user = User.find_by(id: user_id)
 
+   
     newUsername = params[:newUsername]
     currentPassword = params[:currentPassword]
     newPassword = params[:newPassword]
@@ -306,6 +322,7 @@ class App < Sinatra::Application
     if newPassword != "" && currentPassword != ""
       user.update_column(:password, newPassword)
     end
+    
 
     if newEmail != ""
       user.update_column(:email, newEmail)
@@ -353,13 +370,30 @@ class App < Sinatra::Application
     redirect '/game/1'
   end
 
-
   get '/store' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     user_id = session[:user_id]
     @user = User.find(user_id)
     @coin = @user.coin
     erb :store
   end
 
-end
+  get '/validate' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+    erb :validate
+  end
 
+  post '/validate' do    
+    if session[:code] == params[:codigo]
+      user = User.find(session[:user_id])
+      user.update_column(:valid_email, true)
+    end
+    redirect '/menu'
+
+  end
+
+end

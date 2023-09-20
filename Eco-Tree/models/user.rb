@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
     save
   end
 
+  #desencripta password y la compara con la ingresada
+  def compare_password(hash_pass, password)
+    return BCrypt::Password.new(hash_pass) == password
+  end
+
   private
 
   def points_non_negative

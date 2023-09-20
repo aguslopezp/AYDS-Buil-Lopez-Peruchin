@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_16_203058) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_203058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "coin", default: 50
+    t.boolean "valid_email", default: false
   end
 
   add_foreign_key "answers", "options"
