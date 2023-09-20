@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     save
   end
 
+
   def add_streak_to_points(streak)
     self.points += streak 
     save
@@ -30,6 +31,11 @@ class User < ActiveRecord::Base
   def reset_streak
     self.streak = 0
     save
+  end 
+  
+  #desencripta password y la compara con la ingresada
+  def compare_password(hash_pass, password)
+    return BCrypt::Password.new(hash_pass) == password
   end
 
   private
