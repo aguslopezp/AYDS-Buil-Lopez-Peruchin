@@ -95,10 +95,17 @@ class App < Sinatra::Application
     option_result = selected_option.isCorrect ? 'true' : 'false'
     
     # Calculo puntos del usuario
+    user = User.find(user_id)
     if option_result == 'true'
-      user = User.find(user_id)
-      user.suma_points
+      user.sum_points
+      user.sum_streak
+      if (user.streak % 3) == 0
+        user.add_streak_to_points(user.streak / 3)
+      end
+    else
+      user.reset_streak
     end
+
 
     # Guardo en la tabla answers la respuesta del usuario
     Answer.create(user_id: user_id, option_id: params[:selected_option_id])
@@ -320,6 +327,8 @@ class App < Sinatra::Application
     
     @total_questions = Question.count # Numero total de preguntas en el juego
     @user.update(points: 0)
+
+    @user.reset_streak
     
     i = 1
     while i <= @total_questions
