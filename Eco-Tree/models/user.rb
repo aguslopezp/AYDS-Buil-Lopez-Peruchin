@@ -7,15 +7,32 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "invalid email format" }
   validates :birthdate, presence: true
   validates :points, presence: true
+  validates :streak, presence: true
   validate :points_non_negative
 
   
   
-  def suma_points
+  def sum_points
     self.points += 1  
     save
   end
 
+
+  def add_streak_to_points(streak)
+    self.points += streak 
+    save
+  end
+  
+  def sum_streak
+    self.streak += 1
+    save
+  end
+
+  def reset_streak
+    self.streak = 0
+    save
+  end 
+  
   #desencripta password y la compara con la ingresada
   def compare_password(hash_pass, password)
     return BCrypt::Password.new(hash_pass) == password
