@@ -13,7 +13,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/asked_question'
 require_relative 'models/answer'
-require_relative 'metodos'
+require_relative 'methods'
 
 class App < Sinatra::Application
   enable :sessions
@@ -260,7 +260,7 @@ class App < Sinatra::Application
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
     @user = User.find(session[:user_id])
-    @verificated = session[:valid]
+    @verificated = @user.valid_email
     erb :profile
   end
 
@@ -351,6 +351,9 @@ class App < Sinatra::Application
   end
 
   get '/store' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     user_id = session[:user_id]
     @user = User.find(user_id)
     @coin = @user.coin
@@ -358,12 +361,16 @@ class App < Sinatra::Application
   end
 
   get '/validate' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
     erb :validate
   end
 
   post '/validate' do    
     if session[:code] == params[:codigo]
-      session[:valid] = true
+      user = User.find(session[:user_id])
+      user.update_column(:valid_email, true)
     end
     redirect '/menu'
 
