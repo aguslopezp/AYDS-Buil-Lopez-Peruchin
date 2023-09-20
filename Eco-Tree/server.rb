@@ -13,6 +13,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/asked_question'
 require_relative 'models/answer'
+require_relative 'metodos'
 
 class App < Sinatra::Application
   enable :sessions
@@ -175,49 +176,10 @@ class App < Sinatra::Application
 
 
   post '/register' do
-    #encripta la password
-    def hash_password(pass)
-      salt = BCrypt::Engine.generate_salt
-      hashed_password = BCrypt::Engine.hash_secret(pass, salt)
-      return hashed_password
-    end
 
-    def generate_random_code(length)
-      characters = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-      code = (0...length).map { characters[rand(characters.length)] }.join
-    end
-  
     #genera un codigo de 6 caracteres 
     code_random = generate_random_code(6)
     session[:code] = code_random
-
-    # Método para enviar el correo de bienvenida
-    def send_verificated_email(email)
-      codigo = session[:code]
-      options = {
-        address: 'smtp.gmail.com', 
-        port: 587,
-        user_name: 'eco.treeOk@gmail.com',
-        password: password = 'dcbr arax jeax jmpp',
-        authentication: 'plain',
-        enable_starttls_auto: true
-      }
-
-      Mail.defaults do
-        delivery_method :smtp, options
-      end
-
-      mail = Mail.new do
-        from    'eco.treeOk@gmail.com'
-        to      email 
-        subject 'Bienvenido a Eco-Tree'
-        body    "Felicidades, eres parte de la familia Eco.\n
-                Te enviamos el codigo para que ingreses, esto es necesario para validar tu email.\n
-                Este es el código de seguridad, no lo compartas con nadie\n
-                Código: #{codigo}" 
-      end
-      mail.deliver      
-    end
 
 
     # ya existe un jugador en la base de datos con ese usuario
@@ -232,7 +194,7 @@ class App < Sinatra::Application
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
         #envia el email
-        send_verificated_email(@user.email)
+        send_verificated_email(@user.email, session[:code])
         redirect '/validate'
       else
         redirect '/register'
@@ -317,7 +279,6 @@ class App < Sinatra::Application
     user = User.find_by(id: user_id)
 
    
-
     newUsername = params[:newUsername]
     currentPassword = params[:currentPassword]
     newPassword = params[:newPassword]
