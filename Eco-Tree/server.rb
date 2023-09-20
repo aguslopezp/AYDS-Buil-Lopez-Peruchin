@@ -168,9 +168,7 @@ class App < Sinatra::Application
     end
   end 
 
-
   
-
   get '/register' do
     erb :register
   end
@@ -212,29 +210,28 @@ class App < Sinatra::Application
       mail = Mail.new do
         from    'eco.treeOk@gmail.com'
         to      email 
-        subject 'Bienvenido a Eco'
+        subject 'Bienvenido a Eco-Tree'
         body    "Felicidades, eres parte de la familia Eco.\n
+                Te enviamos el codigo para que ingreses, esto es necesario para validar tu email.\n
                 Este es el código de seguridad, no lo compartas con nadie\n
                 Código: #{codigo}" 
       end
-
       mail.deliver      
     end
 
 
     # ya existe un jugador en la base de datos con ese usuario
-    if !User.find_by(username: params[:username]).nil? 
-     redirect '/register'
+    if !(User.find_by(username: params[:username]).nil?) 
+      redirect '/register'
     end
+
     if params[:password] == params[:passwordTwo]
       passw = hash_password(params[:password])
-      
-      #envia el email
       
       @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate])
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
-        @user.save
+        #envia el email
         send_verificated_email(@user.email)
         redirect '/validate'
       else
@@ -301,6 +298,7 @@ class App < Sinatra::Application
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
     @user = User.find(session[:user_id])
+    @verificated = session[:valid]
     erb :profile
   end
 
@@ -317,6 +315,8 @@ class App < Sinatra::Application
   post '/profile_change' do
     user_id = session[:user_id]
     user = User.find_by(id: user_id)
+
+   
 
     newUsername = params[:newUsername]
     currentPassword = params[:currentPassword]
@@ -341,6 +341,7 @@ class App < Sinatra::Application
     if newPassword != "" && currentPassword != ""
       user.update_column(:password, newPassword)
     end
+    
 
     if newEmail != ""
       user.update_column(:email, newEmail)
@@ -400,10 +401,10 @@ class App < Sinatra::Application
   end
 
   post '/validate' do    
-    if session[:code] == params[:code]
-      session[:verifica] = true
-      redirect '/menu'
+    if session[:code] == params[:codigo]
+      session[:valid] = true
     end
+    redirect '/menu'
 
   end
 
