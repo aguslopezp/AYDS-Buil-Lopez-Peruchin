@@ -12,16 +12,23 @@
     
     <section class="asked">
       <h3 class="descrip"><%= @question.description %></h3>
-      <h5>" <%= @answer %> "</h5>
-
+      <% if @answer !='Respuesta no contestada' %> 
+        <h5>"<%= @answer %>"</h5>
+      <% end %> 
+      
       <form action=<%="/asked/#{@question.id}"%> method="POST" id="asked-form">
         <div class="options">  
+          <% if @respuesta =='SE AGOTO EL TIEMPO' %> 
+            <h2 class="red"><%=@respuesta %></h2>
+            <h2 class="correct"> Respuesta correcta: <%=@correct %></h2>
+          <% end %>   
           <% if @respuesta =='RESPUESTA INCORRECTA' %> 
             <h2 class="red"><%=@respuesta %></h2>
             <h2 class="correct"> Respuesta correcta: <%=@correct %></h2>
-          <% else %>   
+          <% end %>   
+          <% if @respuesta =='RESPUESTA CORRECTA' %> 
             <h2 class="green"><%=@respuesta %></h2>
-          <% end %>            
+          <% end %>           
           <input type="submit" value="Siguiente pregunta" id="submit-button" class="submit-button" onclick="submitForm()">
         </div>
       </form>

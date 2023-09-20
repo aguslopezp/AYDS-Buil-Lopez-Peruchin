@@ -19,11 +19,9 @@
       </nav>
     </header>
     <section class="play-section">
-    <%if @question.id == 1%>
-      <h2 class ="tle">Vamos a jugar <%= @user.username %>!!</h2>
-    <% end %>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
-      <p clas="description"> <%= @question.description %> </p>
+      <p class="description"> <%= @question.description %> </p>
+      <h5 id="timer" style="color: red;"> </h5>
       <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>
@@ -33,8 +31,60 @@
             </label>
           <% end %>
         </div>
-        <input type="submit" value="Responder" id="submit-button" class="submit-button">
+        <input type="submit" value="Responder" id="submit-button" class="submit-button" disabled>
+        <input type="hidden" name="timeout" value="false">
       </form>
     </section>
+
+    <script>
+      let secondsRemaining = 30;
+
+      // Función para actualizar el contador de tiempo en la página
+      function updateTimer() {
+        document.getElementById("timer").textContent = `Tiempo restante: ${secondsRemaining}s`;
+      }
+
+      // Función para reducir el tiempo y redirigir cuando se agota
+      function countdown() {
+        updateTimer();
+        secondsRemaining--;
+
+        if (secondsRemaining < 0) {
+          // El tiempo se ha agotado, redirigir al usuario a /timeout
+          document.querySelector('#game-form input[name="timeout"]').value = 'true'; 
+          document.getElementById("game-form").submit();
+        } else {
+          // Programa una llamada recursiva para actualizar el contador cada segundo
+          setTimeout(countdown, 1000);
+        }
+      }
+
+      // Inicia el contador cuando la página está lista
+      document.addEventListener("DOMContentLoaded", function () {
+        countdown();
+      });
+
+
+      // Obtén una lista de todos los botones de radio (opciones) por su nombre
+      const optionButtons = document.querySelectorAll('input[type="radio"][name="selected_option_id"]');
+
+      // Obtén el botón de "Responder" por su ID
+      const submitButton = document.getElementById('submit-button');
+
+      // Agrega un controlador de eventos para cada botón de radio
+      optionButtons.forEach(function (optionButton) {
+        optionButton.addEventListener('change', function () {
+          // Verifica si al menos una opción ha sido seleccionada
+          const anyOptionSelected = [...optionButtons].some(function (button) {
+            return button.checked;
+          });
+
+          // Habilita o deshabilita el botón de "Responder" según si se ha seleccionado alguna opción
+          submitButton.disabled = !anyOptionSelected;
+        });
+      });
+
+
+    </script>
   </body>
 </html>
