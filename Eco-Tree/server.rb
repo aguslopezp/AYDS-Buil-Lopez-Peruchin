@@ -112,22 +112,24 @@ class App < Sinatra::Application
     
     # Calculo puntos del usuario
     user = User.find(user_id)
-    if option_result == 'true'
-      user.sum_points
-      user.sum_streak
-      if (user.streak % 3) == 0
-        user.add_streak_to_points(user.streak / 3)
+    if AskedQuestion.find_by(user_id: user_id, question_id: params[:question_id]).nil?
+      if option_result == 'true'
+        user.sum_points
+        user.sum_streak
+        if (user.streak % 3) == 0
+          user.add_streak_to_points(user.streak / 3)
+        end
+      else
+        user.reset_streak
       end
-    else
-      user.reset_streak
+
+      # Guardo en la tabla answers la respuesta del usuario
+      Answer.create(user_id: user_id, option_id: params[:selected_option_id])
+      
+      # Respuesta preguntada se marcara como preguntada para no volver a preguntarse (para no ser preguntada nuevamente, en una nueva ocasion)
+      AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
+
     end
-
-
-    # Guardo en la tabla answers la respuesta del usuario
-    Answer.create(user_id: user_id, option_id: params[:selected_option_id])
-
-    # Respuesta preguntada se marcara como preguntada para no volver a preguntarse (para no ser preguntada nuevamente, en una nueva ocasion)
-    AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
     
     redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"
   end
@@ -147,6 +149,8 @@ class App < Sinatra::Application
       selected_option = Option.find(params[:selected_option_id])
       @answer = selected_option.description
     end
+    
+    @streak = @user.streak
 
     @correct = Option.find_by(isCorrect: 1, question_id: params[:question_id])&.description
     if @result == 'true'
