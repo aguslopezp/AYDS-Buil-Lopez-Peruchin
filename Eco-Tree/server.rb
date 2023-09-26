@@ -147,6 +147,8 @@ class App < Sinatra::Application
       selected_option = Option.find(params[:selected_option_id])
       @answer = selected_option.description
     end
+    
+    @streak = @user.streak
 
     @correct = Option.find_by(isCorrect: 1, question_id: params[:question_id])&.description
     if @result == 'true'
