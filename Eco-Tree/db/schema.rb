@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_151821) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
     t.datetime "updated_at", null: false
     t.string "detail"
     t.string "image"
+    t.integer "level"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "coin", default: 50
+    t.integer "streak", default: 0
     t.boolean "valid_email", default: false
   end
 
