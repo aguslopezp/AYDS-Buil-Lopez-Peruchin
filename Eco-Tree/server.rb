@@ -406,7 +406,14 @@ class App < Sinatra::Application
       user.update_column(:valid_email, true)
     end
     redirect '/menu'
+  end
 
+  get '/buySkin' do 
+    erb :buySkin
+  end
+
+  get '/buyFondo' do
+    erb :buyFondo
   end
 
 end
