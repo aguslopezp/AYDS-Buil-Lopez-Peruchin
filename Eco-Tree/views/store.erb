@@ -13,14 +13,20 @@
    <header>
     <nav class="nav">
       <a href="/menu" class="menu">Volver</a>
-      <a href="/buySkin" class="skin">Comprar Hoja</a>
-      <a href="/buyFondo" class="fondo">Comprar fondo</a>
+      <div class="eco_coin">
+        Eco-coin: <strong > <%= @coin %> </strong> 
+      </div>
+      
     </nav>
   </header>
-    <h1 class="cant"> <%= @coin %> </h1>
-    <img class="image" src="/front/EcoCoin.png" alt="ecoCoin"> 
+  
+  <div class="options">
     <img class="logo" src="/front/logoStore.png" alt="logo"> 
-
+    <div class="buttons">
+      <a href="/buySkin" class="btn">Comprar Hoja</a>
+      <a href="/buyFondo" class="btn">Comprar fondo</a>
+    </div>
+  </div>
 
   </body>
 </html>
