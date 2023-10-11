@@ -15,6 +15,9 @@
           <div class="points">
             puntos: <%= @user.points %>
           </div>
+          <div id="coin-count" class="points">
+            coins: <%= @user.coin %>
+          </div>
           <a href=<%="/menu"%> class="profile">Menu</a>
       </nav>
     </header>
@@ -30,14 +33,40 @@
               <%= option.description %>
             </label>
           <% end %>
+
+
         </div>
         <input type="submit" value="Responder" id="submit-button" class="submit-button" disabled>
         <input type="hidden" name="timeout" value="false">
       </form>
     </section>
 
+    
+    
+    <footer>
+      <div class="title">
+        <h4 class="ques">Comprar Ayudas</h4>
+      </div>
+      <div class="help-container">
+        <div>
+          <p class="description">Aumentar tiempo por 20s</p>
+          <input type="button" value="30 EcoCoins" id="add-time-button" class="add-time-button">
+        </div>
+        <div>
+          <p class="description">Eliminar 2 opciones incorrectas</p>
+          <input type="button" value="40 EcoCoins" id="remove-options-button" class="remove-options-button">
+        </div>
+      </div>
+    </footer>
+
+
+
     <script>
-      let secondsRemaining = 30;
+
+      /*
+        Este script impone tiempo para ser respondida cada pregunta.
+      */
+      let secondsRemaining = 30000000000000;
 
       // Función para actualizar el contador de tiempo en la página
       function updateTimer() {
@@ -83,6 +112,102 @@
           submitButton.disabled = !anyOptionSelected;
         });
       });
+
+
+
+      /*
+        El usuario al hacer click en el boton aumentar tiempo por 20s, si es que tiene suficientes monedas
+        estas seran decrementadas por el precio de aumentar el tiempo, y el tiempo restatnte para responder
+        la pregunta aumentara en 20s.
+      */
+      const addTimeButton = document.getElementById('add-time-button'); // Botón de agregar tiempo
+      const additionalTime = 20;
+
+      // funcion que se ejecuta cuando se hace click en el boton
+      addTimeButton.addEventListener('click', function () {
+        // se realiza una solicitud AJAX al servidor para decrementar monedas si estas son suficientes
+        fetch('/buyMoreTime', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => response.json())  // obtengo la respuesta del servidor como JSON
+          .then(data => {
+            if (data.success) { // si habia suficientes monedas para comprar mas tiempo
+              secondsRemaining += additionalTime;
+              updateTimer();
+              // Actualiza las monedas en la vista game
+              document.getElementById('coin-count').textContent = `coins: ${data.updatedCoins}`; // obtengo el elemento HTML con id coin-count
+            } else {
+              alert('No tienes suficientes monedas para comprar mas tiempo.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      });
+
+
+
+
+
+      /*
+        El usuario al hacer click en el boton remove-options-button, si es que tiene suficientes monedas,
+        estas seran decrementadas por el precio de la accion, y dos preguntas opciones seran eliminadas, 
+        quedando unicamente dos, una correcta y la otra incorrecta.
+      */
+      const removeIncorrect = document.getElementById('remove-options-button'); // Botón de eliminar opciones (lo busca por id)
+
+      // funcion que se ejecuta cuando se hace click en el boton
+      addTimeButton.addEventListener('click', function () {
+        // se realiza una solicitud AJAX al servidor para decrementar monedas si estas son suficientes      
+        fetch('/decrementCoins', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ coinsToDecrement: 40 }),
+        })
+          .then(response => response.json())  // obtengo la respuesta del servidor como JSON
+          .then(data => {
+            if (data.success) { // si habia suficientes monedas para comprar 
+              // Actualiza las monedas en la vista game
+              document.getElementById('coin-count').textContent = `coins: ${data.updatedCoins}`; // obtengo el elemento HTML con id coin-count
+            } else {
+              alert('No tienes suficientes monedas para comprar esta ayuda.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      });
+
+
+
+      // script to eliminate two wrong options of an answer while playing, this action will cost
+      // the player 40 coins
+      /*
+        <input type="button" value="Eliminar dos opciones incorrectas" id="remove-incorrect-options" class ="remove-options-button">
+        document.addEventListener("DOMContentLoaded", function () {
+        const removeButton = document.getElementById("remove-incorrect-options"); // removeButton es el boton de la ayuda
+         // en options se almacenan todas las opciones de la pregunta
+        const options = document.querySelectorAll(".option"); //se obtiene con el querySelectorAll que obtiene todos los elementos dentro de la clase option
+
+
+        // cuando se hace click en removeButton se ejecuta esta funcion
+        removeButton.addEventListener("click", function () {
+          // todas las opciones incorrectas de esta pregunta almacenadas en el arreglo incorrectOptions
+          //const incorrectOptions = Array.from(options).filter(option => option.querySelector("input").dataset.isCorrect == 'false');
+          const incorrectOptions = Array.from(options).filter(option => !option.querySelector("input").dataset.isCorrect);
+          console.log(incorrectOptions);
+          if (incorrectOptions.length >= 2) {
+            incorrectOptions[0].style.display = "none";
+            incorrectOptions[1].style.display = "none";
+          }
+          
+        });
+    });*/
 
 
     </script>

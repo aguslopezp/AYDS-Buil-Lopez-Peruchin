@@ -33,6 +33,17 @@ class User < ActiveRecord::Base
     save
   end 
   
+
+  def sum_10_coins
+    self.coin += 10
+    save
+  end
+
+  def add_coins_from_streak(coins)
+    self.coin += coins
+    save
+  end
+
   #desencripta password y la compara con la ingresada
   def compare_password(hash_pass, password)
     return BCrypt::Password.new(hash_pass) == password

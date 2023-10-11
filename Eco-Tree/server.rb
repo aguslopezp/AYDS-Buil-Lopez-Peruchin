@@ -84,6 +84,43 @@ class App < Sinatra::Application
       erb :game_finished
     end
   end 
+  
+
+  post '/buyMoreTime' do
+    user_id = session[:user_id]
+    coins_to_decrement = 1
+
+    user = User.find(user_id)
+  
+    if user.coin >= coins_to_decrement
+      user.update(coin: user.coin - coins_to_decrement)
+      content_type :json
+      { success: true, updatedCoins: user.coin }.to_json
+    else
+      content_type :json
+      { success: false }.to_json
+    end
+  end
+
+  
+  post '/incorrectOptions' do
+    user_id = session[:user_id]
+    coins_to_decrement = 1
+
+    question_id = params[:question_id]  
+
+    user = User.find(user_id)
+  
+    if user.coin >= coins_to_decrement
+      user.update(coin: user.coin - coins_to_decrement)
+      incorrect_options = Option.where(question_id: question_id, isCorrect: false).select(:description)
+      content_type :json
+      { success: true, updatedCoins: user.coin, incorrect_options: incorrect_options }.to_json
+    else
+      content_type :json
+      { success: false }.to_json
+    end
+  end
 
   
   post '/game/:question_id' do
@@ -116,8 +153,10 @@ class App < Sinatra::Application
       if option_result == 'true'
         user.sum_points
         user.sum_streak
+        user.sum_10_coins
         if (user.streak % 3) == 0
           user.add_streak_to_points(user.streak / 3)
+          user.add_coins_from_streak((user.streak / 3) * 10)
         end
       else
         user.reset_streak
