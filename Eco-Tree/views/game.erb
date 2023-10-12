@@ -30,7 +30,7 @@
           <% @options.each do |option| %>
             <label class="option">
               <input type="radio" name="selected_option_id" class="option-button" value="<%= option.id %>" id="option-<%= option.id %>">
-              <%= option.description %>
+              <%=option.description%>
             </label>
           <% end %>
 
@@ -66,7 +66,7 @@
       /*
         Este script impone tiempo para ser respondida cada pregunta.
       */
-      let secondsRemaining = 30000000000000;
+      let secondsRemaining = 30;
 
       // Función para actualizar el contador de tiempo en la página
       function updateTimer() {
@@ -157,57 +157,63 @@
         estas seran decrementadas por el precio de la accion, y dos preguntas opciones seran eliminadas, 
         quedando unicamente dos, una correcta y la otra incorrecta.
       */
-      const removeIncorrect = document.getElementById('remove-options-button'); // Botón de eliminar opciones (lo busca por id)
+      const removeIncorrect = document.getElementById('remove-options-button'); 
 
-      // funcion que se ejecuta cuando se hace click en el boton
-      addTimeButton.addEventListener('click', function () {
-        // se realiza una solicitud AJAX al servidor para decrementar monedas si estas son suficientes      
-        fetch('/decrementCoins', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ coinsToDecrement: 40 }),
-        })
-          .then(response => response.json())  // obtengo la respuesta del servidor como JSON
-          .then(data => {
-            if (data.success) { // si habia suficientes monedas para comprar 
-              // Actualiza las monedas en la vista game
-              document.getElementById('coin-count').textContent = `coins: ${data.updatedCoins}`; // obtengo el elemento HTML con id coin-count
-            } else {
-              alert('No tienes suficientes monedas para comprar esta ayuda.');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      });
+      removeIncorrect.addEventListener('click', function () {     
+        const optionElements = document.querySelectorAll('.option'); // obtengo los elementos de opción en mi vista 
+        let hiddenCount = 0;
 
-
-
-      // script to eliminate two wrong options of an answer while playing, this action will cost
-      // the player 40 coins
-      /*
-        <input type="button" value="Eliminar dos opciones incorrectas" id="remove-incorrect-options" class ="remove-options-button">
-        document.addEventListener("DOMContentLoaded", function () {
-        const removeButton = document.getElementById("remove-incorrect-options"); // removeButton es el boton de la ayuda
-         // en options se almacenan todas las opciones de la pregunta
-        const options = document.querySelectorAll(".option"); //se obtiene con el querySelectorAll que obtiene todos los elementos dentro de la clase option
-
-
-        // cuando se hace click en removeButton se ejecuta esta funcion
-        removeButton.addEventListener("click", function () {
-          // todas las opciones incorrectas de esta pregunta almacenadas en el arreglo incorrectOptions
-          //const incorrectOptions = Array.from(options).filter(option => option.querySelector("input").dataset.isCorrect == 'false');
-          const incorrectOptions = Array.from(options).filter(option => !option.querySelector("input").dataset.isCorrect);
-          console.log(incorrectOptions);
-          if (incorrectOptions.length >= 2) {
-            incorrectOptions[0].style.display = "none";
-            incorrectOptions[1].style.display = "none";
+        for (const option of optionElements) {
+          if (option.style.display === 'none') {
+            hiddenCount++;
           }
-          
-        });
-    });*/
+        }
+        console.log("Hidden count " + hiddenCount);
+
+        if (hiddenCount == 2) {
+          alert('Ya compraste esta ayuda, no se puede volver a comprar.');
+        }
+        else {
+          fetch('/incorrectOptions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+            .then(response => response.json())  
+            .then(data => {
+              if (data.success) {
+                document.getElementById('coin-count').textContent = `coins: ${data.updatedCoins}`;
+                console.log("nuevas monedas " + data.updatedCoins);
+
+
+                const incorrectOptionsId = data.incorrect_options // arreglo con los id (int) de las opciones incorrectas que recibi de la bd
+                console.log("opciones incorrectas desde bd: " + incorrectOptionsId);
+                          
+                let removedCount = 0; // Contador de opciones eliminadas
+                let index = 0;
+
+                while (removedCount < 2 && index < 4) {
+                  const optionIdHtml = optionElements[index].querySelector('input').value; // obtengo su id (este esta guardado en el campo value de el objeto html option)
+                  if (incorrectOptionsId[0] == optionIdHtml || incorrectOptionsId[1] == optionIdHtml || incorrectOptionsId[2] == optionIdHtml) {
+                    console.log("se cumple, se hace el display none")
+                    removedCount++;
+                    optionElements[index].style.display = "none";
+                  }
+                  index++;
+                }
+                 
+
+              } else {
+                alert('No tienes suficientes monedas para comprar esta ayuda.');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        }
+
+      });
 
 
     </script>
