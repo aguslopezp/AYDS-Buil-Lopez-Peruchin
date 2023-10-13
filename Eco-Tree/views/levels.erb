@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/levels.css" />
+  <link rel="icon" href="/front/icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <title>Levels</title>
+</head>
+<body>
+  <header>
+    <nav class="navigation">
+      <a href="/tree" class="btn"><strong>Mi Arbol</strong></a>
+      <div class="points">
+        puntos: 
+      </div>
+      <a href=<%="/menu"%> class="btn"><strong>Menú</strong></a>
+    </nav>
+  </header>
+  <h1>Niveles</h1>
+  <form action=<%="/levels"%> method="POST">
+    <ul class="levels-list">
+      <% @levels.each do |level| %>
+        <input type="submit" name="levelSelected"  value=<%=level%> class="level"/>
+      <% end %>
+    </ul>
+  </form>
+</body>
+</html>

@@ -134,6 +134,16 @@ class App < Sinatra::Application
     redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"
   end
   
+  get '/levels' do
+    @levels = Question.distinct.pluck(:level)
+    erb :levels
+  end
+
+  post '/levels' do
+    level = params[:levelSelected]
+    question = Question.where(level: level).first()
+    redirect "/game/#{question.id}"
+  end
 
   get '/asked/:question_id/:option_result/:selected_option_id' do
     if session[:user_id].nil?
