@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_13_182523) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
@@ -25,6 +25,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
     t.index ["user_id"], name: "index_asked_questions_on_user_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "section"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.integer "price", default: 0
+  end
+
   create_table "options", force: :cascade do |t|
     t.string "description"
     t.boolean "isCorrect"
@@ -32,6 +41,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "purchased_items", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "items_id"
+    t.index ["items_id"], name: "index_purchased_items_on_items_id"
+    t.index ["user_id"], name: "index_purchased_items_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -51,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "coin", default: 50
+    t.integer "streak", default: 0
     t.boolean "valid_email", default: false
   end
 
@@ -59,4 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_174803) do
   add_foreign_key "asked_questions", "questions"
   add_foreign_key "asked_questions", "users"
   add_foreign_key "options", "questions"
+  add_foreign_key "purchased_items", "items", column: "items_id"
+  add_foreign_key "purchased_items", "users"
 end

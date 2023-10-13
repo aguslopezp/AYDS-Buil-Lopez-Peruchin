@@ -78,9 +78,9 @@ header{
 
 .buttons{
   display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
-  position: absolute;
   transform: translate(-20px, 200px);
   width: 600px;
   height: 110px;

@@ -13,6 +13,8 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/asked_question'
 require_relative 'models/answer'
+require_relative 'models/item'
+require_relative 'models/purchased_item'
 require_relative 'methods'
 
 class App < Sinatra::Application
@@ -354,6 +356,7 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     @user = User.find(user_id)
     @tree = session[:tree]
+    @hoja = session[:hoja]
     erb :tree
   end
 
@@ -409,10 +412,35 @@ class App < Sinatra::Application
   end
 
   get '/buySkin' do 
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+    
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    @coin = @user.coin
+    @item = Item.where(section: 'hoja') 
+    @hizo_click = false
     erb :buySkin
   end
 
+  post '/buySkin' do
+    request_body = JSON.parse(request.body.read)
+    name = request_body['name']
+     
+    session[:hoja] = name
+    status 200
+  end
+
   get '/buyFondo' do
+    if session[:user_id].nil?
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+    end
+    
+    user_id = session[:user_id]
+    @user = User.find(user_id)
+    @coin = @user.coin
+    @item = Item.where(section: 'fondo')
     erb :buyFondo
   end
 

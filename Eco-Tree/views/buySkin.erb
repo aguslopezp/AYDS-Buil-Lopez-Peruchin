@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Skin - Eco-Tree</title>
-    <link rel="stylesheet" href="/styles/store.css" />
+    <link rel="stylesheet" href="/styles/buySkin.css" />
     <link rel="icon" href="/front/icon.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +13,77 @@
    <header>
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
+
+      <div class="eco_coin">
+        EcoCoins: <strong class="price"><%= @coin %></strong>
+      </div>
+
     </nav>
   </header>
-    <h1>ACA HAY HOJAS</h1>
 
+  <% item_description = '' %> 
+  <% item_name = '' %>
+  <% item_price = '' %>
 
+  <section class="box">
+    <% @item.each do |item| %>
+      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
+        <img src="/front/hojas/<%= item.name %>.png" class="hojas"/>
+        <p class="descrip">- <%= item.description %></p>
+        <% item_name = item.price %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="buy-confirm" id="buy-confirm" style="display: none;">
+    <div class="pre-image">
+      <img src="/front/hojas/" id="item-image" class="hojas"/>
+    </div>
+    Desea realizar la compra de <strong class="description" id="item-description"></strong>
+    por <span class="price" id="item-coin"> <%= item_name %> </span> coins?
+    <div class="buttons">
+      <button class="button" onclick="cancelPurchase()">NO</button>
+      <button class="button" onclick="confirmPurchase()">SI</button>
+    </div>
+  </section>
+
+  <script>
+    const boxShops = document.querySelectorAll('.box-shop');
+    const buyConfirmSection = document.getElementById('buy-confirm');
+    const itemImage = document.getElementById('item-image');
+    const itemDescription = document.getElementById('item-description');
+    const itemCoin = document.getElementById('item-coin');
+
+    boxShops.forEach(boxShop => {
+      boxShop.addEventListener('click', function() {
+        const name = this.getAttribute('data-name');
+        const description = this.getAttribute('data-description');
+
+        itemImage.src = `/front/hojas/${name}.png`;
+        itemDescription.textContent = description;
+
+        buyConfirmSection.style.display = 'flex';
+      });
+    });
+
+    function cancelPurchase() {
+      buyConfirmSection.style.display = 'none';
+    }
+
+    function confirmPurchase() {
+      const selectedName = itemImage.getAttribute('src').replace('/front/hojas/', '').replace('.png', ''); //elimina la cadena que no queremos
+      
+      const data = {name: selectedName};
+
+      // Realizar una solicitud AJAX para enviar los datos al servidor
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/buySkin', true);  
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhr.send(JSON.stringify(data));
+
+      // Ocultar la sección de confirmación
+      buyConfirmSection.style.display = 'none';
+    }
+  </script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fondos - Eco-Tree</title>
-    <link rel="stylesheet" href="/styles/store.css" />
+    <title>Skin - Eco-Tree</title>
+    <link rel="stylesheet" href="/styles/buyFondo.css" />
     <link rel="icon" href="/front/icon.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,9 +13,38 @@
    <header>
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
+      <div class="eco_coin">
+        EcoCoins:  <strong><%=@coin%></strong> 
+      </div>
     </nav>
   </header>
-    <h1>ACA HAY FONDOS</h1>
+
+  <% item_description = '' %> 
+  <% item_name = '' %>
+  
+  <section class="box">
+    <% @item.each do |item| %>
+      <div class="box-shop">
+        <img src="/front/fondos/<%= item.name %>.jpg" class="fondos"/>
+        <p class="descrip"><%= item.description %></p>
+        <% item_description = item.description %>
+        <% item_name = item.name %>
+      </div>
+    <% end %>
+  </section>
+  
+  <section class="buy-confirm" id="buy-confirm">
+    <div class="pre-image">
+      <img src="/front/fondos/<%= item_name %>.jpg" class="fondos"/>
+    </div>
+    Desea realizar la compra de <strong class="description"> <%= item_description %></strong>
+    por <%=@coin%> coins?
+    <div class="buttons">
+      <button class="button" onclick="">NO</button>
+      <button class="button" onclick="">SI</button>
+    </div>
+  </section>
+
 
 
   </body>
