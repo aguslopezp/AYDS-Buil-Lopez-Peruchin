@@ -11,18 +11,20 @@
   <body>
     <header>
       <nav class="navigation">
+          <a href="/levels" class="profile">Niveles</a>
           <a href="/tree" class="profile">Mi Arbol</a>
           <div class="points">
-            puntos: <%= @user.points %>
+            Puntos: <%= @user.points %>
           </div>
           <a href=<%="/menu"%> class="profile">Menu</a>
       </nav>
     </header>
     <section class="play-section">
+      <h5>Nivel <%= @level_selected %></h5>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
       <p class="description"> <%= @question.description %> </p>
       <h5 id="timer" style="color: red;"> </h5>
-      <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">
+      <form action=<%="/game/#{@question.id}?level=#{@level_selected}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>
             <label class="option">
@@ -37,7 +39,7 @@
     </section>
 
     <script>
-      let secondsRemaining = 30;
+      let secondsRemaining = 3000;
 
       // Función para actualizar el contador de tiempo en la página
       function updateTimer() {

@@ -11,9 +11,10 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /*background: url('/front/lago-min.jpg') no-repeat;*/
+  background: url('/front/lago-min.jpg') no-repeat;
   background-size: cover;
   background-position: center;
+  font-size: 32px;
 }
 
 nav{
@@ -25,26 +26,27 @@ nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: large;
+  font-size: 1em;
 }
 
 h1 {
   text-align: center;
+  line-height: normal;
 }
 
-.btn {  
-  display: block;
+.btn {
+  display: grid;
+  place-items: center;
   width: 150px;
   height: 50px;
   text-align: center;
+  text-decoration: none;
+  font-size: 0.8em;
   background-color: #162938;
   border-radius: 10px;
-  padding: 15px 30px;
-  margin:  20px 250px;
-  color: #fff;
-  text-decoration: none;
+  color: #ebebeb;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: background-color 1s;
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
 
 .btn:hover {
@@ -54,17 +56,23 @@ h1 {
 
 .level {
   text-decoration: none;
+  font-size: 1.3em;
   display: block;
-  width: 100px;
+  width: 200px;
   height: 100px;
-  border-radius: 50%;
+  margin: 10px;
+  border-radius: 20px;
   background-color: #162938;
   color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  gap: 20px;
+  box-shadow: 0 0 15px rgb(0, 0, 0);
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
 
 .level:hover {
   color: #5feb9c;
-  box-shadow: 0 0 10px #5feb9c;
+  box-shadow: 0 0 15px #5feb9c;
+}
+
+.level:active {
+  background-color: #0b151d;
 }
