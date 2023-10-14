@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    
    <header>
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
@@ -24,24 +25,29 @@
   <% item_description = '' %> 
   <% item_name = '' %>
   <% item_price = '' %>
+  <% item_id = '' %>
 
   <section class="box">
     <% @item.each do |item| %>
       <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
         <img src="/front/hojas/<%= item.name %>.png" class="hojas"/>
         <p class="descrip">- <%= item.description %></p>
-        <strong class="descrip">$  <%= item.price %></strong>
-        <% item_name = item.price %>
+        <% if @item_comprados[item.id] %>
+          <strong class="comprado">COMPRADO</strong>
+        <% else %>
+          <strong class="precio">$  <%= item.price %></strong>
+        <% end %>
+        <% item_price = item.price %>
       </div>
     <% end %>
   </section>
-
+  
   <section class="buy-confirm" id="buy-confirm" style="display: none;">
     <div class="pre-image">
       <img id="item-image" class="hojas"/>
     </div>
     Desea realizar la compra de <strong class="description" id="item-description"></strong>
-    por <span class="price" id="item-coin"> <%= item_name %> </span> coins?
+    por <span class="price" id="item-coin"> <%= item_price %> </span> coins?
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
@@ -83,6 +89,7 @@
       xhr.send(JSON.stringify(data));
 
       buyConfirmSection.style.display = 'none';
+      location.reload();
 
     }
 

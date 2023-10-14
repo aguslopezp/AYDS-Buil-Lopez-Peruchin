@@ -425,7 +425,7 @@ class App < Sinatra::Application
     redirect '/menu'
   end
 
-  get '/buySkin' do 
+  get '/buySkin' do
     if session[:user_id].nil?
       redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
     end
@@ -433,11 +433,18 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     @user = User.find(user_id)
     @coin = @user.coin
-    @item = Item.where(section: 'hoja') 
-    @hizo_click = false
+    @item = Item.where(section: 'hoja').to_a
+  
+    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id)
+    @item_comprados = {}
+
+    @item.each do |item|
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id)
+    end
     
     erb :buySkin
   end
+  
 
   post '/buySkin' do
     request_body = JSON.parse(request.body.read)
@@ -449,10 +456,10 @@ class App < Sinatra::Application
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
 
-      #setea la nueva hoja elegida por el usuario
-      user = User.find_by(id: user_id)
-      user.update_column(:leaf_id, item_id)
     end
+    #setea la nueva hoja elegida por el usuario
+    user = User.find_by(id: user_id)
+    user.update_column(:leaf_id, item_id)
   end
 
   get '/buyFondo' do
