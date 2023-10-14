@@ -30,7 +30,7 @@
       <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
         <img src="/front/hojas/<%= item.name %>.png" class="hojas"/>
         <p class="descrip">- <%= item.description %></p>
-        <p class="descrip">$  <%= item.price %></p>
+        <strong class="descrip">$  <%= item.price %></strong>
         <% item_name = item.price %>
       </div>
     <% end %>

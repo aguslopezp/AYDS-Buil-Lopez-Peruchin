@@ -192,6 +192,9 @@ class App < Sinatra::Application
     input_password = params[:password]
     if @user && @user.compare_password(@user.password, input_password)
       session[:user_id] = @user.id
+
+      session[:hoja] = Item.find_by(id: 6).name
+      session[:fondo] = Item.find_by(id: 10).name
       redirect '/menu'
     elsif @user 
         @password_error = "*contraseña incorrecta"
@@ -223,11 +226,19 @@ class App < Sinatra::Application
     if params[:password] == params[:passwordTwo]
       passw = hash_password(params[:password])
       
-      @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate])
+      @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate], leaf_id: 6, background_id: 10)
       session[:user_id] = @user.id
       if @user.save # se guardo correctamente ese nuevo usuario en la tabla
         #envia el email
         send_verificated_email(@user.email, session[:code])
+
+        #setear arbol y hoja por defecto
+        PurchasedItem.create(user_id: @user.id, item_id: 6)
+        PurchasedItem.create(user_id: @user.id, item_id: 10)
+        
+        session[:hoja] = Item.find_by(id: 6).name
+        session[:fondo] = Item.find_by(id: 10).name
+
         redirect '/validate'
       else
         redirect '/register'
@@ -355,9 +366,11 @@ class App < Sinatra::Application
     end
     user_id = session[:user_id]
     @user = User.find(user_id)
+    hoja_id = @user.leaf_id #Busco el id de la actual compra del usuario
+    fondo_id = @user.background_id 
     @tree = session[:tree]
-    @hoja = session[:hoja]
-    @fondo = session[:fondo]
+    @hoja = Item.find_by(id: hoja_id).name  #con ese id busco en los items y paso el nombre
+    @fondo = Item.find_by(id: fondo_id).name
     erb :tree
   end
 
@@ -435,10 +448,11 @@ class App < Sinatra::Application
     
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
+
+      #setea la nueva hoja elegida por el usuario
+      user = User.find_by(id: user_id)
+      user.update_column(:leaf_id, item_id)
     end
-
-    session[:hoja] = name
-
   end
 
   get '/buyFondo' do
@@ -462,10 +476,10 @@ class App < Sinatra::Application
     
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
+      #setea el nuevo fondo elegido por el usuario
+      user = User.find_by(id: user_id)
+      user.update_column(:background_id, item_id)
     end
-
-    session[:fondo] = name
-
   end
 
 end
