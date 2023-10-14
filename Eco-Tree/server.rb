@@ -357,6 +357,7 @@ class App < Sinatra::Application
     @user = User.find(user_id)
     @tree = session[:tree]
     @hoja = session[:hoja]
+    @fondo = session[:fondo]
     erb :tree
   end
 
@@ -421,15 +422,23 @@ class App < Sinatra::Application
     @coin = @user.coin
     @item = Item.where(section: 'hoja') 
     @hizo_click = false
+    
     erb :buySkin
   end
 
   post '/buySkin' do
     request_body = JSON.parse(request.body.read)
     name = request_body['name']
-     
+    user_id = session[:user_id]
+    item_id = Item.find_by(name: name).id
+
+    
+    if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
+      PurchasedItem.create(user_id: user_id, item_id: item_id)
+    end
+
     session[:hoja] = name
-    status 200
+
   end
 
   get '/buyFondo' do
@@ -442,6 +451,21 @@ class App < Sinatra::Application
     @coin = @user.coin
     @item = Item.where(section: 'fondo')
     erb :buyFondo
+  end
+
+  post '/buyFondo' do
+    request_body = JSON.parse(request.body.read)
+    name = request_body['name']
+    user_id = session[:user_id]
+    item_id = Item.find_by(name: name).id
+
+    
+    if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
+      PurchasedItem.create(user_id: user_id, item_id: item_id)
+    end
+
+    session[:fondo] = name
+
   end
 
 end

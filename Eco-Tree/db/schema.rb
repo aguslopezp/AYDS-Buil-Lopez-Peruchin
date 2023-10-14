@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_13_182523) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_13_190525) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "option_id"
@@ -45,8 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_182523) do
 
   create_table "purchased_items", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "items_id"
-    t.index ["items_id"], name: "index_purchased_items_on_items_id"
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_purchased_items_on_item_id"
     t.index ["user_id"], name: "index_purchased_items_on_user_id"
   end
 
@@ -76,6 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_182523) do
   add_foreign_key "asked_questions", "questions"
   add_foreign_key "asked_questions", "users"
   add_foreign_key "options", "questions"
-  add_foreign_key "purchased_items", "items", column: "items_id"
+  add_foreign_key "purchased_items", "items"
   add_foreign_key "purchased_items", "users"
 end

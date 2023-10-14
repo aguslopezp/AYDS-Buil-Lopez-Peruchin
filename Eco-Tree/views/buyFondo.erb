@@ -14,36 +14,78 @@
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
       <div class="eco_coin">
-        EcoCoins:  <strong><%=@coin%></strong> 
+        EcoCoins:  <strong class="price"><%=@coin%></strong> 
       </div>
     </nav>
   </header>
 
   <% item_description = '' %> 
   <% item_name = '' %>
+  <% item_price = '' %>
   
   <section class="box">
     <% @item.each do |item| %>
-      <div class="box-shop">
+      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
         <img src="/front/fondos/<%= item.name %>.jpg" class="fondos"/>
-        <p class="descrip"><%= item.description %></p>
-        <% item_description = item.description %>
-        <% item_name = item.name %>
+        <p class="descrip">- <%= item.description %></p>
+        <p class="descrip">$  <%= item.price %></p>
+        
+        <% item_name = item.price %>
       </div>
     <% end %>
   </section>
-  
-  <section class="buy-confirm" id="buy-confirm">
+
+  <section class="buy-confirm" id="buy-confirm" style="display: none;">
     <div class="pre-image">
-      <img src="/front/fondos/<%= item_name %>.jpg" class="fondos"/>
+      <img id="item-image" class="fondos"/>
     </div>
-    Desea realizar la compra de <strong class="description"> <%= item_description %></strong>
-    por <%=@coin%> coins?
+    Desea realizar la compra de <strong class="description" id="item-description"></strong>
+    por <span class="price" id="item-coin"> <%= item_name %> </span> coins?
     <div class="buttons">
-      <button class="button" onclick="">NO</button>
-      <button class="button" onclick="">SI</button>
+      <button class="button" onclick="cancelPurchase()">NO</button>
+      <button class="button" onclick="confirmPurchase()">SI</button>
     </div>
   </section>
+
+
+  <script>
+    const boxShops = document.querySelectorAll('.box-shop');
+    const buyConfirmSection = document.getElementById('buy-confirm');
+    const itemImage = document.getElementById('item-image');
+    const itemDescription = document.getElementById('item-description');
+    const itemCoin = document.getElementById('item-coin');
+
+    boxShops.forEach(boxShop => {
+      boxShop.addEventListener('click', function() {
+        const name = this.getAttribute('data-name');
+        const description = this.getAttribute('data-description');
+
+        itemImage.src = `/front/fondos/${name}.jpg`;
+        itemDescription.textContent = description;
+        buyConfirmSection.style.display = 'flex';
+      });
+    });
+
+    function cancelPurchase() {
+      buyConfirmSection.style.display = 'none';
+      selectConfirmSection.style.display = 'none'; // Oculta la sección 'selected'
+    }
+
+    function confirmPurchase() {
+      const selectedName = itemImage.getAttribute('src').replace('/front/fondos/', '').replace('.jpg', '');
+      
+      const data = { name: selectedName };
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/buyFondo', true);
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhr.send(JSON.stringify(data));
+
+      buyConfirmSection.style.display = 'none';
+
+    }
+
+  </script>
 
 
 

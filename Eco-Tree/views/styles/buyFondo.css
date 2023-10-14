@@ -120,6 +120,12 @@
     margin-right: 13px;
   }
 
+  .price{
+    color: #22f79b;
+    margin-left: 13px;
+    margin-right: 13px;
+  }
+
   .buttons{
     display: flex;
     position: absolute;

@@ -30,6 +30,7 @@
       <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
         <img src="/front/hojas/<%= item.name %>.png" class="hojas"/>
         <p class="descrip">- <%= item.description %></p>
+        <p class="descrip">$  <%= item.price %></p>
         <% item_name = item.price %>
       </div>
     <% end %>
@@ -37,7 +38,7 @@
 
   <section class="buy-confirm" id="buy-confirm" style="display: none;">
     <div class="pre-image">
-      <img src="/front/hojas/" id="item-image" class="hojas"/>
+      <img id="item-image" class="hojas"/>
     </div>
     Desea realizar la compra de <strong class="description" id="item-description"></strong>
     por <span class="price" id="item-coin"> <%= item_name %> </span> coins?
@@ -46,6 +47,7 @@
       <button class="button" onclick="confirmPurchase()">SI</button>
     </div>
   </section>
+
 
   <script>
     const boxShops = document.querySelectorAll('.box-shop');
@@ -61,29 +63,29 @@
 
         itemImage.src = `/front/hojas/${name}.png`;
         itemDescription.textContent = description;
-
         buyConfirmSection.style.display = 'flex';
       });
     });
 
     function cancelPurchase() {
       buyConfirmSection.style.display = 'none';
+      selectConfirmSection.style.display = 'none'; // Oculta la sección 'selected'
     }
 
     function confirmPurchase() {
-      const selectedName = itemImage.getAttribute('src').replace('/front/hojas/', '').replace('.png', ''); //elimina la cadena que no queremos
+      const selectedName = itemImage.getAttribute('src').replace('/front/hojas/', '').replace('.png', '');
       
-      const data = {name: selectedName};
+      const data = { name: selectedName };
 
-      // Realizar una solicitud AJAX para enviar los datos al servidor
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/buySkin', true);  
+      xhr.open('POST', '/buySkin', true);
       xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       xhr.send(JSON.stringify(data));
 
-      // Ocultar la sección de confirmación
       buyConfirmSection.style.display = 'none';
+
     }
+
   </script>
   </body>
 </html>
