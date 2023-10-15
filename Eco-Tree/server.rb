@@ -433,13 +433,13 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     @user = User.find(user_id)
     @coin = @user.coin
-    @item = Item.where(section: 'hoja').to_a
+    @item = Item.where(section: 'hoja')
   
-    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id)
-    @item_comprados = {}
-
+    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
+    
+    @item_comprados = {}  #inicializa el hash
     @item.each do |item|
-      @item_comprados[item.id] = purchased_item_ids.include?(item.id)
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete el id de los items que compro el usuario
     end
     
     erb :buySkin
@@ -452,7 +452,7 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     item_id = Item.find_by(name: name).id
 
-    
+    #Si no lo compro lo agrega
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
 
@@ -471,6 +471,14 @@ class App < Sinatra::Application
     @user = User.find(user_id)
     @coin = @user.coin
     @item = Item.where(section: 'fondo')
+
+    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
+    
+    @item_comprados = {}  #inicializa el hash
+    @item.each do |item|
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete el id de los items que compro el usuario
+    end
+
     erb :buyFondo
   end
 
@@ -480,13 +488,12 @@ class App < Sinatra::Application
     user_id = session[:user_id]
     item_id = Item.find_by(name: name).id
 
-    
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
-      #setea el nuevo fondo elegido por el usuario
-      user = User.find_by(id: user_id)
-      user.update_column(:background_id, item_id)
     end
+    #setea el nuevo fondo elegido por el usuario
+    user = User.find_by(id: user_id)
+    user.update_column(:background_id, item_id)
   end
 
 end

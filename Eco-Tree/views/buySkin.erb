@@ -14,11 +14,9 @@
    <header>
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
-
       <div class="eco_coin">
         EcoCoins: <strong class="price"><%= @coin %></strong>
       </div>
-
     </nav>
   </header>
 
@@ -29,7 +27,7 @@
 
   <section class="box">
     <% @item.each do |item| %>
-      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>">
+      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>"data-id="<%= item.id %>">
         <img src="/front/hojas/<%= item.name %>.png" class="hojas"/>
         <p class="descrip">- <%= item.description %></p>
         <% if @item_comprados[item.id] %>
@@ -44,10 +42,21 @@
   
   <section class="buy-confirm" id="buy-confirm" style="display: none;">
     <div class="pre-image">
-      <img id="item-image" class="hojas"/>
+      <img id="item-image-buy" class="hojas"/> 
     </div>
-    Desea realizar la compra de <strong class="description" id="item-description"></strong>
-    por <span class="price" id="item-coin"> <%= item_price %> </span> coins?
+    Desea realizar la compra de <strong class="description" id="item-description-buy"></strong> 
+    por <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins?
+    <div class="buttons">
+      <button class="button" onclick="cancelPurchase()">NO</button>
+      <button class="button" onclick="confirmPurchase()">SI</button>
+    </div>
+  </section>
+
+  <section class="buy-confirm" id="confirmed_selection" style="display: none;">
+    <div class="pre-image">
+      <img id="item-image-select" class="hojas"/>
+    </div>
+    Desea seleccionar <strong class="description" id="item-description-select"></strong>?
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
@@ -55,32 +64,57 @@
   </section>
 
 
+
   <script>
+    const itemComprados = <%= @item_comprados.to_json %>; // Convierte @item_comprados a JSON
     const boxShops = document.querySelectorAll('.box-shop');
     const buyConfirmSection = document.getElementById('buy-confirm');
-    const itemImage = document.getElementById('item-image');
-    const itemDescription = document.getElementById('item-description');
-    const itemCoin = document.getElementById('item-coin');
+    const confirmedSelection = document.getElementById('confirmed_selection');
+    const itemImage = document.getElementById('item-image-buy'); 
+    const itemImageSelect = document.getElementById('item-image-select'); 
+    const itemDescription = document.getElementById('item-description-buy'); 
+    const itemDescriptionSelect = document.getElementById('item-description-select'); 
+    const itemCoin = document.getElementById('item-coin-buy'); 
 
     boxShops.forEach(boxShop => {
       boxShop.addEventListener('click', function() {
         const name = this.getAttribute('data-name');
+        const id = this.getAttribute('data-id');
         const description = this.getAttribute('data-description');
+        const isPurchased = checkIfPurchased(id);
 
         itemImage.src = `/front/hojas/${name}.png`;
+        itemImageSelect.src = `/front/hojas/${name}.png`;
         itemDescription.textContent = description;
-        buyConfirmSection.style.display = 'flex';
+        itemDescriptionSelect.textContent = description;
+
+        if (isPurchased) {
+          confirmedSelection.style.display = 'flex';
+        } else {
+          buyConfirmSection.style.display = 'flex';
+        }
+
+        if (checkIfPurchased(id)) {
+          console.log(name + " está en itemComprados.");
+        } else {
+          console.log(name + " NO está en itemComprados.");
+        }
       });
     });
 
+    function checkIfPurchased(itemName) {  
+      
+      return itemComprados[itemName];
+    }
+
     function cancelPurchase() {
       buyConfirmSection.style.display = 'none';
-      selectConfirmSection.style.display = 'none'; // Oculta la sección 'selected'
+      confirmedSelection.style.display = 'none';
     }
 
     function confirmPurchase() {
       const selectedName = itemImage.getAttribute('src').replace('/front/hojas/', '').replace('.png', '');
-      
+
       const data = { name: selectedName };
 
       const xhr = new XMLHttpRequest();
@@ -89,8 +123,8 @@
       xhr.send(JSON.stringify(data));
 
       buyConfirmSection.style.display = 'none';
+      confirmedSelection.style.display = 'none';
       location.reload();
-
     }
 
   </script>
