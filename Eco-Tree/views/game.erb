@@ -20,7 +20,7 @@
       </nav>
     </header>
     <section class="play-section">
-      <h5>Nivel <%= @level_selected %></h5>
+      <h5 id="level_selected" value=<%= @level_selected %> >Nivel <%= @level_selected %></h5>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
       <p class="description"> <%= @question.description %> </p>
       <h5 id="timer" style="color: red;"> </h5>
@@ -39,7 +39,16 @@
     </section>
 
     <script>
+      const getLevel = document.getElementById("level_selected").getAttribute('value');
+      const level = parseInt(getLevel, 10);
+
       let secondsRemaining = 30;
+      if (level === 2) {
+        secondsRemaining = 20;
+      }
+      if (level === 3) {
+        secondsRemaining = 10;
+      }
 
       // Función para actualizar el contador de tiempo en la página
       function updateTimer() {
