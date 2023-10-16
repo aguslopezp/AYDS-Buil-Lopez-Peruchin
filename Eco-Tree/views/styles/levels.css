@@ -1,0 +1,86 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/front/fondoLevels.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-size: 32px;
+}
+
+header {
+  width: 100dvw;
+  color: #ebebeb;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0 ;
+}
+
+.navigation {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  line-height: normal;
+}
+
+.btn {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8em;
+  background-color: #162938;
+  border-radius: 10px;
+  color: #ebebeb;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+
+.points {
+  font-weight: bold;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
+}
+
+.level {
+  text-decoration: none;
+  font-size: 1.3em;
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: #162938;
+  color: #fff;
+  box-shadow: 0 0 15px rgb(0, 0, 0);
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+
+.level:hover {
+  color: #5feb9c;
+  box-shadow: 0 0 15px #5feb9c;
+}
+
+.level:active {
+  background-color: #0b151d;
+}

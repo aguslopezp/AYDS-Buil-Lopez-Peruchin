@@ -11,9 +11,10 @@
   <body>
     <header>
       <nav class="navigation">
+          <a href="/levels" class="profile">Niveles</a>
           <a href="/tree" class="profile">Mi Arbol</a>
           <div class="points">
-            puntos: <%= @user.points %>
+            Puntos: <%= @user.points %>
           </div>
           <div id="coin-count" class="points">
             coins: <%= @user.coin %>
@@ -22,10 +23,11 @@
       </nav>
     </header>
     <section class="play-section">
+      <h5 id="level_selected" value=<%= @level_selected %> >Nivel <%= @level_selected %></h5>
       <h3 class="ques">Pregunta <%=@question.id%>:</h3>
       <p class="description"> <%= @question.description %> </p>
       <h5 id="timer" style="color: red;"> </h5>
-      <form action=<%="/game/#{@question.id}"%> method="POST" id="game-form">
+      <form action=<%="/game/#{@question.id}?level=#{@level_selected}"%> method="POST" id="game-form">
         <div class="options">
           <% @options.each do |option| %>
             <label class="option">
@@ -63,10 +65,19 @@
 
     <script>
 
+      const getLevel = document.getElementById("level_selected").getAttribute('value');
+      const level = parseInt(getLevel, 10);
+
       /*
         Este script impone tiempo para ser respondida cada pregunta.
       */
       let secondsRemaining = 30;
+      if (level === 2) {
+        secondsRemaining = 20;
+      }
+      if (level === 3) {
+        secondsRemaining = 10;
+      }
 
       // Función para actualizar el contador de tiempo en la página
       function updateTimer() {

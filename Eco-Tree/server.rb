@@ -52,8 +52,8 @@ class App < Sinatra::Application
     end
     @total_questions = Question.count # Numero total de preguntas en el juego
     @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
+    @level_selected = params[:level].to_i # este parámetro level viene de el post /levels
 
-    
     user_id = session[:user_id] 
     @user = User.find(user_id)
 
@@ -64,7 +64,13 @@ class App < Sinatra::Application
     if @id_question  <= @total_questions && asked_question.nil?
       @question = Question.find_by(id: @id_question)  # pregunta de la bd con ese id
       @options = Option.where(question_id: @question.id) # arreglo de opciones que pertenecen a esta @question con ese id
-      erb :game
+      level_question = @question.level
+      # controlo para ver si las preguntas de el nivel seleccionado fueron contestadas
+      if @level_selected != level_question
+        erb :level_finished
+      else
+        erb :game
+      end
     # Esa pregunta ya se le pregunto al usuario, buscamos la siguiente pregunta que no haya sido preguntada
     elsif @id_question <= @total_questions && !asked_question.nil?
       i = @id_question
@@ -79,7 +85,13 @@ class App < Sinatra::Application
         session[:question_id] = @id_question
         @question = Question.find_by(id: @id_question)  
         @options = Option.where(question_id: @question.id)
-        erb :game
+        level_question = @question.level
+        # controlo para ver si las preguntas de el nivel seleccionado fueron contestadas
+        if @level_selected != level_question
+          erb :level_finished
+        else
+          erb :game
+        end
       end
     else  # el juego se termino
       erb :game_finished
@@ -170,10 +182,24 @@ class App < Sinatra::Application
       AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
 
     end
-    
-    redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}"
+    level = params[:level]
+    redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}?level=#{level}"
   end
   
+  get '/levels' do
+    user_id = session[:user_id]
+    user = User.find(user_id)
+    @reset = params[:reset]
+    @points = user.points
+    @levels = Question.distinct.pluck(:level)
+    erb :levels
+  end
+
+  post '/levels' do
+    level = params[:levelSelected]
+    question = Question.where(level: level).first()
+    redirect "/game/#{question.id}?level=#{level}"
+  end
 
   get '/asked/:question_id/:option_result/:selected_option_id' do
     if session[:user_id].nil?
@@ -182,7 +208,7 @@ class App < Sinatra::Application
     @question = Question.find(params[:question_id])
     @user = User.find(session[:user_id])
     @result = params[:option_result]
-    
+    @level = params[:level]
     if @result == 'nil'
       @answer = 'Respuesta no contestada'
     else
@@ -207,8 +233,9 @@ class App < Sinatra::Application
   post '/asked/:question_id' do
     #user_id = session[:user_id]
     next_question = params[:question_id].to_i + 1
+    level = params[:level]
     session[:question_id] = next_question
-    redirect "/game/#{next_question}"
+    redirect "/game/#{next_question}?level=#{level}"
   end
   
   get '/logout' do
@@ -420,8 +447,8 @@ class App < Sinatra::Application
       end
       i += 1
     end
-  
-    redirect '/game/1'
+    reset = true
+    redirect "/levels?reset=#{reset}"
   end
 
   get '/store' do
