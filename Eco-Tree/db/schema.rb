@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2023_10_14_141904) do
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
@@ -56,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_141904) do
     t.datetime "updated_at", null: false
     t.string "detail"
     t.string "image"
+    t.integer "level"
   end
 
   create_table "users", force: :cascade do |t|

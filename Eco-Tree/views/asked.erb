@@ -16,7 +16,7 @@
         <h5>Tu respuesta fue: "<%= @answer %>"</h5>
       <% end %> 
       
-      <form action=<%="/asked/#{@question.id}"%> method="POST" id="asked-form">
+      <form action=<%="/asked/#{@question.id}?level=#{@level}"%> method="POST" id="asked-form">
         <div class="options">  
           <% if @respuesta =='SE AGOTO EL TIEMPO' %> 
             <h2 class="red"><%=@respuesta %></h2>
