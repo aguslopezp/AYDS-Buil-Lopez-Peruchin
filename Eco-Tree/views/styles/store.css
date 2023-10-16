@@ -16,25 +16,15 @@ body{
 }
 
 header{
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 40px 100px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 99;
-}
-
-.logo{
-  font-size: 3em;
-  border: 2px lime;
-  border-color: rgb(14, 251, 14);
-  border-radius: 6px;
-  color: rgb(255, 255, 255);
-  user-select: none;
-  height: px;
 }
 
 .nav a{
@@ -64,26 +54,73 @@ header{
   transform: scaleX(1);
 }
 
-.image{
-  position: relative;
-  left: 1200px;
-  bottom: 410px;
-  width: 183px;
-  height: 90px;
+
+.eco_coin {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2vw; 
+  transform: translate(-200px, 20px);
+  color: #ffffff;
+  padding: 10px; 
 }
 
-.cant{
+.eco_coin .coin-image {
+  height: auto; 
+}
+
+.options{
+  display: grid;
+  place-items: center;
+}
+
+.buttons{
+  display: flex;
   position: absolute;
-  font-size: 40px;
-  color: #ffffff;
-  bottom: 865px;
-  left: 1500px;
-  width: 50px;
-  height: 50px;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-20px, 200px);
+  width: 600px;
+  height: 110px;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.154);
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 5px rgba(0, 255, 179, 0.175);
+  background-color: #00000017;
+  transition: box-shadow 1s;
+}
+
+.buttons:hover {
+  box-shadow: 0 0 10px #00e796b1;
 }
 
 .logo{
   position: relative;
   width: 1400px;
-  left: -90px;
+  left: -80px;
+}
+
+
+.btn {  
+  display: flex;
+  width: 250px;
+  height: 50px;
+  margin: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #000000;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: background-color 1s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px #5feb9c54;
+  background-color: #028f83d4;
+  color: #ffffff;
 }

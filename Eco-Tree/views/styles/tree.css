@@ -5,13 +5,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body{
-  display: flex;
-  min-height: 100vh;
-  background: url('/front/treeBackground.png') no-repeat;
-  background-size:cover ;
-  background-position: center;
-}
 
 .nav a {
   position: relative;
