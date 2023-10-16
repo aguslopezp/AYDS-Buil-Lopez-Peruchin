@@ -21,9 +21,7 @@
   </header>
 
   <%# variables para usar en los sections %>
-  <% item_description = '' %> 
   <% item_price = '' %>
-  <% item_id = '' %>
 
   <%# Muestra cada item %>
   <section class="box">
@@ -52,8 +50,8 @@
     <div class="pre-image">
       <img id="item-image-buy" class="hojas"/> 
     </div>
-    Desea realizar la compra de <strong class="description" id="item-description-buy"></strong> 
-    por <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins?
+    <p>Desea realizar la compra de <strong class="description" id="item-description-buy"></strong> 
+    por <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins?</p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
@@ -65,7 +63,7 @@
     <div class="pre-image">
       <img id="item-image-select" class="hojas"/>
     </div>
-    Desea seleccionar <strong class="description" id="item-description-select"></strong>?
+    <p>Desea seleccionar <strong class="description" id="item-description-select"></strong>?</p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>

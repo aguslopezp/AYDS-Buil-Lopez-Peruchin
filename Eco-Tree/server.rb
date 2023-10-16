@@ -537,7 +537,6 @@ class App < Sinatra::Application
 
     end
     #setea la nueva hoja elegida por el usuario, este comprada o no
-    user = User.find_by(id: user_id)
     user.update_column(:leaf_id, item_id)
   end
 
@@ -583,7 +582,6 @@ class App < Sinatra::Application
 
     end
     #setea el nuevo fondo elegido por el usuario
-    user = User.find_by(id: user_id)
     user.update_column(:background_id, item_id)
   end
 
