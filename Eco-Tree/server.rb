@@ -434,12 +434,15 @@ class App < Sinatra::Application
     @user = User.find(user_id)
     @coin = @user.coin
     @item = Item.where(section: 'hoja')
+   
   
     purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
     
     @item_comprados = {}  #inicializa el hash
+    @item_price = {}
     @item.each do |item|
-      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete el id de los items que compro el usuario
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+      @item_price[item.id] = item.price 
     end
     
     erb :buySkin
@@ -451,10 +454,16 @@ class App < Sinatra::Application
     name = request_body['name']
     user_id = session[:user_id]
     item_id = Item.find_by(name: name).id
+    user = User.find_by(id: user_id)
+    item_price = Item.find_by(name: name).price
 
     #Si no lo compro lo agrega
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
+
+      if (item_price <= user.coin)
+        user.discount_coins(item_price)
+      end
 
     end
     #setea la nueva hoja elegida por el usuario
@@ -475,10 +484,12 @@ class App < Sinatra::Application
     purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
     
     @item_comprados = {}  #inicializa el hash
+    @item_price = {}
     @item.each do |item|
-      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete el id de los items que compro el usuario
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+      @item_price[item.id] = item.price 
     end
-
+    
     erb :buyFondo
   end
 
@@ -487,9 +498,17 @@ class App < Sinatra::Application
     name = request_body['name']
     user_id = session[:user_id]
     item_id = Item.find_by(name: name).id
+    user = User.find_by(id: user_id)
+    item_price = Item.find_by(name: name).price
 
+    
     if PurchasedItem.find_by(item_id: item_id, user_id: user_id).nil?
       PurchasedItem.create(user_id: user_id, item_id: item_id)
+
+      if (item_price <= user.coin)
+        user.discount_coins(item_price)
+      end
+
     end
     #setea el nuevo fondo elegido por el usuario
     user = User.find_by(id: user_id)

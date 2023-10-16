@@ -105,7 +105,7 @@
 
   .buy-confirm{
     align-items: center;
-    justify-content: center;
+    justify-content:flex-start;
     position: absolute;
     font-size: 1.5vw; 
     width: 800px;
@@ -171,4 +171,8 @@
     left: 50%; /* Lo coloca en el centro horizontal del section */
     transform: translateX(-50%); /* Corrige el centrado horizontal */
   }
-
+  
+  .notification{
+    place-items: center;
+    font-size: 2.2vw; 
+  }

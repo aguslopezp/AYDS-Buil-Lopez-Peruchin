@@ -26,14 +26,14 @@
   
   <section class="box">
     <% @item.each do |item| %>
-      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>"data-id="<%= item.id %>">
+      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>" data-id="<%= item.id %>">
         <img src="/front/fondos/<%= item.name %>.jpg" class="fondos"/>
         <p class="descrip">- <%= item.description %></p>
         <% if @item_comprados[item.id] %>
           <strong class="comprado">COMPRADO</strong>
         <% else %>
           <strong class="precio">$  <%= item.price %></strong>
-        <% end %>
+        <% end %>        
         <% item_name = item.price %>
       </div>
     <% end %>
@@ -55,23 +55,35 @@
     <div class="pre-image">
       <img id="item-image-select" class="fondos"/>
     </div>
-    Desea seleccionar <strong class="description" id="item-description-select"></strong>?
+    Desea seleccionar <strong class="description" id="item-description-select"></strong>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
     </div>
   </section>
 
+   <section class="buy-confirm" id="negated_selection" style="display: none;">
+    <p class="notification">NO TIENE ECO-COINS SUFICIENTES PARA COMPRAR <strong class="description" id="item-description-negated"></strong></p>
+    <br> 
+    <p class="not_coin">Necesitas <span class="price" id="item-coin-buy"> <%= item_price %> </span> para realizar la compra</p>
+    <div class="buttons">
+      <button class="button" onclick="cancelPurchase()"> Cerrar </button>
+    </div>
+  </section>
 
   <script>
     const itemComprados = <%= @item_comprados.to_json %>; // Convierte @item_comprados a JSON
+    const item_price = <%= @item_price.to_json %>; // Convierte @item_comprados a JSON
+    const coin = <%= @coin.to_json %>;
     const boxShops = document.querySelectorAll('.box-shop');
     const buyConfirmSection = document.getElementById('buy-confirm');
     const confirmedSelection = document.getElementById('confirmed_selection');
+    const negatedSelection = document.getElementById('negated_selection');
     const itemImage = document.getElementById('item-image-buy'); 
     const itemImageSelect = document.getElementById('item-image-select'); 
     const itemDescription = document.getElementById('item-description-buy'); 
     const itemDescriptionSelect = document.getElementById('item-description-select'); 
+    const itemDescriptionNegated = document.getElementById('item-description-negated'); 
     const itemCoin = document.getElementById('item-coin-buy'); 
 
     boxShops.forEach(boxShop => {
@@ -80,43 +92,53 @@
         const id = this.getAttribute('data-id');
         const description = this.getAttribute('data-description');
         const isPurchased = checkIfPurchased(id);
+        const isBalanced = checkBalance(id);
 
         itemImage.src = `/front/fondos/${name}.jpg`;
         itemImageSelect.src = `/front/fondos/${name}.jpg`;
         itemDescription.textContent = description;
         itemDescriptionSelect.textContent = description;
-
+        itemDescriptionNegated.textContent = description;
+       
         if (isPurchased) {
           confirmedSelection.style.display = 'flex';
         } else {
-          buyConfirmSection.style.display = 'flex';
-        }
-
-        if (checkIfPurchased(id)) {
-          console.log(name + " está en itemComprados.");
-        } else {
-          console.log(name + " NO está en itemComprados.");
-        }
+          if (isBalanced){
+            buyConfirmSection.style.display = 'flex';
+          } else {
+            negatedSelection.style.display = 'flex';
+          }
+        }    
       });
     });
 
-    function checkIfPurchased(itemName) {  
-      
+    function checkIfPurchased(itemName) {       
       return itemComprados[itemName];
     }
 
-    function cancelPurchase() {
+    function checkBalance(itemId) {       
+      const price = item_price[itemId];
+
+      if (price <= coin){
+        return true
+      } else {
+        return false
+      }
+    }
+
+     function cancelPurchase() {
       buyConfirmSection.style.display = 'none';
       confirmedSelection.style.display = 'none';
+      negatedSelection.style.display = 'none';
     }
 
     function confirmPurchase() {
       const selectedName = itemImage.getAttribute('src').replace('/front/fondos/', '').replace('.jpg', '');
-
+      
       const data = { name: selectedName };
 
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/buySkin', true);
+      xhr.open('POST', '/buyFondo', true);
       xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       xhr.send(JSON.stringify(data));
 
@@ -125,8 +147,6 @@
       location.reload();
     }
   </script>
-
-
 
   </body>
 </html>

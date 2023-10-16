@@ -32,6 +32,12 @@ class User < ActiveRecord::Base
     self.streak = 0
     save
   end 
+
+  #descuenta las monedas que vale la compra
+  def discount_coins(coins)
+    self.coin -= coins
+    save
+  end
   
   #desencripta password y la compara con la ingresada
   def compare_password(hash_pass, password)
