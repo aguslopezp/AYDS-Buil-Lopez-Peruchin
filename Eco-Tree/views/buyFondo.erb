@@ -19,26 +19,38 @@
     </nav>
   </header>
 
+  <%# variables para usar en los sections %>
   <% item_description = '' %> 
   <% item_name = '' %>
   <% item_price = '' %>
   <% item_id = '' %>
   
+  <%# Muestra cada item %>
   <section class="box">
     <% @item.each do |item| %>
       <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>" data-id="<%= item.id %>">
+        
+        <% if @background_id == item.id %>
+          <strong class="descrip" style="color: black;">En uso</strong>
+        <% else %>
+          <p class="descrip" style="color: white;">En uso</p>
+        <% end %>
+
         <img src="/front/fondos/<%= item.name %>.jpg" class="fondos"/>
         <p class="descrip">- <%= item.description %></p>
+
         <% if @item_comprados[item.id] %>
           <strong class="comprado">COMPRADO</strong>
         <% else %>
           <strong class="precio">$  <%= item.price %></strong>
-        <% end %>        
-        <% item_name = item.price %>
+        <% end %>  
+
+        <% item_price = item.price %>
       </div>
     <% end %>
   </section>
 
+  <%# Muestra si se puede comprar el item %>
   <section class="buy-confirm" id="buy-confirm" style="display: none;">
     <div class="pre-image">
       <img id="item-image-buy" class="fondos"/>
@@ -51,6 +63,7 @@
     </div>
   </section>
 
+  <%# Muestra si el item ya se compro %>
   <section class="buy-confirm" id="confirmed_selection" style="display: none;">
     <div class="pre-image">
       <img id="item-image-select" class="fondos"/>
@@ -62,20 +75,25 @@
     </div>
   </section>
 
-   <section class="buy-confirm" id="negated_selection" style="display: none;">
-    <p class="notification">NO TIENE ECO-COINS SUFICIENTES PARA COMPRAR <strong class="description" id="item-description-negated"></strong></p>
-    <br> 
-    <p class="not_coin">Necesitas <span class="price" id="item-coin-buy"> <%= item_price %> </span> para realizar la compra</p>
+  <%# Muestra si el usuario no tiene saldo %>
+  <section class="buy-confirm" id="negated_selection" style="display: none;">
+    <p>
+      NO TIENE ECO-COINS SUFICIENTES PARA COMPRAR <strong class="description" id="item-description-negated"></strong> <br> 
+      Necesitas <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins para realizar la compra
+    </p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()"> Cerrar </button>
     </div>
   </section>
 
+
   <script>
-    const itemComprados = <%= @item_comprados.to_json %>; // Convierte @item_comprados a JSON
-    const item_price = <%= @item_price.to_json %>; // Convierte @item_comprados a JSON
+    // Convierte a JSON
+    const itemComprados = <%= @item_comprados.to_json %>; 
+    const item_price = <%= @item_price.to_json %>; 
     const coin = <%= @coin.to_json %>;
     const boxShops = document.querySelectorAll('.box-shop');
+    //ids
     const buyConfirmSection = document.getElementById('buy-confirm');
     const confirmedSelection = document.getElementById('confirmed_selection');
     const negatedSelection = document.getElementById('negated_selection');
@@ -112,10 +130,12 @@
       });
     });
 
+    //retorna true si el item esta en el hash de comprados
     function checkIfPurchased(itemName) {       
       return itemComprados[itemName];
     }
 
+    // retorna true si se puede comprar el item
     function checkBalance(itemId) {       
       const price = item_price[itemId];
 
@@ -126,16 +146,18 @@
       }
     }
 
-     function cancelPurchase() {
+    //Quita el displey a todos los sections
+    function cancelPurchase() {
       buyConfirmSection.style.display = 'none';
       confirmedSelection.style.display = 'none';
       negatedSelection.style.display = 'none';
     }
 
+    //Envia un JSON al servidor con el item seleccionado
     function confirmPurchase() {
-      const selectedName = itemImage.getAttribute('src').replace('/front/fondos/', '').replace('.jpg', '');
+      const selectedName = itemImage.getAttribute('src').replace('/front/fondos/', '').replace('.jpg', ''); //reemplaza las cadenas por ''
       
-      const data = { name: selectedName };
+      const data = { name: selectedName }; //JSON
 
       const xhr = new XMLHttpRequest();
       xhr.open('POST', '/buyFondo', true);
