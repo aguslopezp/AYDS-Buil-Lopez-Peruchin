@@ -21,7 +21,6 @@
 
   <%# variables para usar en los sections %>
   <% item_description = '' %> 
-  <% item_name = '' %>
   <% item_price = '' %>
   <% item_id = '' %>
   
@@ -56,7 +55,7 @@
       <img id="item-image-buy" class="fondos"/>
     </div>
     Desea realizar la compra de <strong class="description" id="item-description-buy"></strong>
-    por <span class="price" id="item-coin-buy"> <%= item_name %> </span> coins?
+    por <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins?
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
