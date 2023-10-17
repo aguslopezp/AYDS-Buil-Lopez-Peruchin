@@ -7,8 +7,9 @@
 
 body{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   background: url('/front/lago-min.jpg') no-repeat;
   background-size: cover;
@@ -16,41 +17,52 @@ body{
 }
 
 header{
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
-  width: 100%;
-  padding: 20px 100px;
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   z-index: 99;
 }
 
-
-.logo{
-  font-size: 3.2em;
+.nav_item, .nav_hello{
   color: #ffffff;
   user-select: none;
-  height: 10px;
 }
 
-.game {
-  display: block;
-  width: 300px;
-  height: 70px;
-  font-size: 2em;
-  font-weight: 700;
+.menu {
+  position: relative;
+  width: 70vw;
+  height: 80vh;
+  border: 2px solid rgba(255, 255, 255,  .5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 10px rgba(0, 255, 179, 0.399);
+  background-color: #00000017;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  height: 10%;
   background-color: #162938;
   border-radius: 10px;
-  padding: 15px 30px;
-  margin:  20px 175px;
   color: #fff;
   text-decoration: none;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  transition: background-color 1s;
-  
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  margin: 2px;
+}
+
+.button:hover {
+  box-shadow: 0 0 10px #5feb9c;
+  color: #5feb9c;
 }
 
 .game:hover {
@@ -58,62 +70,96 @@ header{
   color: #5feb9c;
 }
 
-
-.btn {  
-  display: block;
-  width: 150px;
-  height: 50px;
-  text-align: center;
-  background-color: #162938;
-  border-radius: 10px;
-  padding: 15px 30px;
-  margin:  20px 250px;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: background-color 1s;
+.button_out {
+  height: 7%;
+  font-size: 0.8em;
 }
 
-.btn:hover {
-  box-shadow: 0 0 10px #5feb9c;
-  color: #5feb9c;
-}
-
-.btnOut {  
-  display: block;
-  width: 180px;
-  height: 50px;
-  text-align: center;
-  background-color: #162938;
-  border-radius: 10px;
-  padding: 15px 30px;
-  margin:  20px 235px;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: background-color 1s;
-}
-
-.btnOut:hover {
+.button_out:hover {
   box-shadow: 0 0 10px #eb5f5f;
   color: #e30505;  
 }
 
-.Question_Box {
-  position: relative;
-  width: 800px;
-  height: 550px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255,  .5);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 0 10px rgba(0, 255, 179, 0.399);
-  background-color: #00000017;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 450px) {
+  /* Estilos para pantallas pequeñas (móviles y tabletas) */
+
+  .menu {
+    width: 90vw;
+  }
+  
+  .button {
+    width: 90%;
+  }
+
+  .game {
+    font-size: 1.5em;
+  }
+
+  .nav_item, .nav_hello {
+    font-size: 1.5em;
+  }
+
 }
 
+@media (min-width: 451px) and (max-width: 768px) {
+  .nav_item, .nav_hello {
+    font-size: 2em;
+  }
 
+  .button {
+    width: 70%;
+    font-size: 1.2em;
+  }
 
+  .game {
+    width: 80%;
+    font-size: 2em;
+  }
+}
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+  .nav_item, .nav_hello {
+    font-size: 2.5em;
+  }
+
+  .button {
+    width: 50%;
+    font-size: 1.5em;
+  }
+
+  .game {
+    width: 60%;
+    font-size: 2.5em;
+    font-weight: 500;
+  }
+
+  .button_out {
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Estilos para pantallas de escritorio */
+  .button {
+    width: 300px;
+    font-size: 2em;
+  }
+
+  .game {
+    width: 450px;
+    height: 15%;
+    font-size: 3em;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  .nav_item, .nav_hello{
+    font-size: 3.2em;
+  }
+
+  .button_out {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+}
