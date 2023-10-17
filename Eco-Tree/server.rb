@@ -191,6 +191,7 @@ class App < Sinatra::Application
   get '/levels' do
     user_id = session[:user_id]
     user = User.find(user_id)
+    @disabled_level = params[:disabled_level]
     @reset = params[:reset]
     @points = user.points
     @levels = Question.distinct.pluck(:level)
@@ -198,9 +199,24 @@ class App < Sinatra::Application
   end
 
   post '/levels' do
+    user_id = session[:user_id]
     level = params[:levelSelected]
     question = Question.where(level: level).first()
-    redirect "/game/#{question.id}?level=#{level}"
+    # obtengo la última pregunta del nivel anterior
+    previous_question = question.id - 1
+    if previous_question <= 0
+      redirect "/game/#{question.id}?level=#{level}"
+    end
+    disabled_level = true
+    response = AskedQuestion.find_by(user_id: user_id, question_id: previous_question).nil?
+
+    # contro si puede acceder al nivel
+    if response # response tiene true porque no encontró respuesta
+      redirect "/levels?disabled_level=#{disabled_level}"
+    else
+      disabled_level = false
+      redirect "/game/#{question.id}?level=#{level}"
+    end
   end
 
   get '/asked/:question_id/:option_result/:selected_option_id' do

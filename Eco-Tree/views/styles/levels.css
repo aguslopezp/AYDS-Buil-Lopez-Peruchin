@@ -38,6 +38,12 @@ h1 {
   line-height: normal;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .btn {
   display: grid;
   place-items: center;
@@ -84,3 +90,12 @@ h1 {
 .level:active {
   background-color: #0b151d;
 }
+
+.error {
+  color: rgb(231, 39, 39);
+  font-weight: bold;
+  background-color: #0b151d;
+  border-radius: 20px;
+  padding: 10px;
+}
+

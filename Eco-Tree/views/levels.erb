@@ -25,12 +25,15 @@
   <% end %>
   
   <h1>Niveles</h1>
-  <form action="/levels" method="POST">
+  <form action="/levels" method="POST" class="form">
     <ul class="levels-list">
       <% @levels.each do |level| %>
         <input type="submit" name="levelSelected"  value=<%=level%> class="level"/>
       <% end %>
     </ul>
+    <% if @disabled_level %>
+      <p class="error">Nivel no habilitado</p>
+    <% end %>
   </form>
 </body>
 </html>
