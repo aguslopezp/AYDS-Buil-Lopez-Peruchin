@@ -25,23 +25,21 @@
 
 <body>
 
-<header>
-  <nav class="nav">
-  <% if @tree == false%>
-    <a href=<%="/menu"%> class="profile">Volver</a>
-  <% else %>
-    <a href=<%="/levels"%> class="profile">Volver</a>
+  <header>
+    <nav class="nav">
+    <% if @tree == false%>
+      <a href=<%="/menu"%> class="profile">Volver</a>
+    <% else %>
+      <a href=<%="/levels"%> class="profile">Volver</a>
+    <% end %>
+    </nav>
+  </header>
+
+
+
+  <% @user.points.times do |i|%>
+    <img src="/front/hojas/<%=@hoja %>.png" alt="Leaf" class="leaf-image leaf-<%= i + 1 %>">
   <% end %>
-  </nav>
-</header>
-
-
-
-<% @user.points.times do |i|%>
-  <img src="/front/hojas/<%=@hoja %>.png" alt="Leaf" class="leaf-image leaf-<%= i + 1 %>">
-<% end %>
-
-
 
 </body>
 </html>

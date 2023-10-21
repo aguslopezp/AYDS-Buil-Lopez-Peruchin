@@ -7,8 +7,9 @@
 
 body{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   background: url('/front/store.jpg') no-repeat;
   background-size: cover;
@@ -16,28 +17,27 @@ body{
 }
 
 header{
+  position: relative;
   display: flex;
-  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  padding: 40px 100px;
+  width: 100vw;
   justify-content: space-between;
   align-items: center;
   z-index: 99;
 }
 
-.nav a{
-  position: relative;
+.nav_volver {
+  position: absolute;
   font-size: 2em;
   color: #ffffff;
   text-decoration: none;
-  font-weight: 500;
-  margin-left: 40px;
+  top: 30%;
+  left: 5%;
   transition: 5s;
 }
 
-.nav a::after{
+.nav_volver::after{
   content: '';
   position: absolute;
   left: 0;
@@ -50,30 +50,27 @@ header{
   transition: transform .5s;
 }
 
-.nav a:hover:after{
+.nav_volver:hover:after{
   transform: scaleX(1);
 }
 
 
 .eco_coin {
-  display: flex;
-  align-items: center;
   position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 2vw; 
-  transform: translate(-200px, 20px);
+  font-size: 2em; 
+  top: 15%;
+  right: 10%;
   color: #ffffff;
   padding: 10px; 
 }
 
-.eco_coin .coin-image {
-  height: auto; 
-}
-
 .options{
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 70vw;
+  height: 80vh;
 }
 
 .buttons{
@@ -81,9 +78,9 @@ header{
   position: absolute;
   justify-content: center;
   align-items: center;
-  transform: translate(-20px, 200px);
-  width: 600px;
-  height: 110px;
+  transform: translate(-5%, 170%);
+  width: 30vw;
+  height: 10vh;
   background: transparent;
   border: 2px solid rgba(0, 0, 0, 0.154);
   border-radius: 20px;
@@ -99,16 +96,16 @@ header{
 
 .logo{
   position: relative;
-  width: 1400px;
-  left: -80px;
+  width: 65vw;
 }
 
 
 .btn {  
   display: flex;
-  width: 250px;
-  height: 50px;
+  width: 25vw;
+  height: 5vh;
   margin: 40px;
+  font-size: 1em; 
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
@@ -123,4 +120,42 @@ header{
   box-shadow: 0 0 10px #5feb9c54;
   background-color: #028f83d4;
   color: #ffffff;
+}
+
+.price{ 
+  color: #22f79b;
+  margin-left: 13px;
+}
+
+@media (max-width: 450px) {
+  .btn{
+    font-size: 0.4em; 
+  }
+  .buttons{
+    width: 60vw;
+  }
+}
+
+@media (min-width: 451px) and (max-width: 768px) {
+  .btn{
+    font-size: 0.6em; 
+  } 
+  .buttons{
+    width: 50vw;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .btn{
+    font-size: 0.8em; 
+  }
+  .buttons{
+    width: 45vw;
+  }
+}
+
+@media (min-width: 1025px) {
+  .buttons{
+    width: 40vw;
+  }
 }

@@ -10,23 +10,21 @@
   </head>
 
   <body>
-   <header>
-    <nav class="nav">
-      <a href="/menu" class="menu">Volver</a>
-      <div class="eco_coin">
-        EcoCoins:  <strong><%=@coin%></strong> 
+    
+    <header>
+      <a href="/menu" class="nav_volver">Volver</a>
+      <p class="eco_coin">
+        EcoCoins:  <strong class="price"><%=@coin%></strong> 
+      </p>
+    </header>
+    
+    <section class="options">
+      <img class="logo" src="/front/logoStore.png" alt="logo"> 
+      <div class="buttons">
+        <a href="/buySkin" class="btn">Comprar Hoja</a>
+        <a href="/buyFondo" class="btn">Comprar fondo</a>
       </div>
-      
-    </nav>
-  </header>
-  
-  <div class="options">
-    <img class="logo" src="/front/logoStore.png" alt="logo"> 
-    <div class="buttons">
-      <a href="/buySkin" class="btn">Comprar Hoja</a>
-      <a href="/buyFondo" class="btn">Comprar fondo</a>
-    </div>
-  </div>
+    </section>
 
   </body>
 </html>
