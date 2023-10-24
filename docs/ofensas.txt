@@ -1,0 +1,1364 @@
+Inspecting 41 files
+CCCCCCCCCCCCCCCCCCCCCCCCCCWCCCCCCCCWCCCCC
+
+Offenses:
+
+Gemfile:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+ruby '2.7.5'
+^
+Gemfile:3:8: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+source "https://rubygems.org"
+       ^^^^^^^^^^^^^^^^^^^^^^
+Gemfile:14:1: C: Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem rake should appear before sqlite3.
+gem 'rake'
+^^^^^^^^^^
+Gemfile:16:1: C: Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem bcrypt should appear before simplecov.
+gem 'bcrypt'
+^^^^^^^^^^^^
+Gemfile:20:1: C: Layout/EmptyLines: Extra blank line detected.
+Gemfile:23:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+Rakefile.rb:1:1: C: Naming/FileName: The name of this source file (Rakefile.rb) should use snake_case.
+require "sinatra/activerecord/rake"
+^
+Rakefile.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require "sinatra/activerecord/rake"
+^
+Rakefile.rb:1:9: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+require "sinatra/activerecord/rake"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Rakefile.rb:5:13: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    require "./server"
+            ^^^^^^^^^^
+Rakefile.rb:8:1: C: Layout/TrailingEmptyLines: 1 trailing blank lines detected.
+config.ru:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require './server'
+^
+config/environment.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+db_options = YAML.load(File.read('./config/database.yml'))
+^
+config/environment.rb:1:19: C: Security/YAMLLoad: Prefer using YAML.safe_load over YAML.load.
+db_options = YAML.load(File.read('./config/database.yml'))
+                  ^^^^
+config/environment.rb:5:1: C: Layout/TrailingEmptyLines: 1 trailing blank lines detected.
+db/migrate/20230512151857_create_users.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateUsers < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230512151857_create_users.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateUsers < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230512152700_create_questions.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateQuestions < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230512152700_create_questions.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateQuestions < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230512153432_create_options.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateOptions < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230512153432_create_options.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateOptions < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230512214532_create_answers.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateAnswers < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230512214532_create_answers.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateAnswers < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230514180636_rename_column_in_options.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class RenameColumnInOptions < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230514180636_rename_column_in_options.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class RenameColumnInOptions < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230519031455_rmcolumn_create_askedquestions.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class RmcolumnCreateAskedquestions < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230519031455_rmcolumn_create_askedquestions.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class RmcolumnCreateAskedquestions < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230519031455_rmcolumn_create_askedquestions.rb:4:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+db/migrate/20230527201130_default_value_points.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class DefaultValuePoints < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230527201130_default_value_points.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class DefaultValuePoints < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230530001941_add_columns_question.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnsQuestion < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230530001941_add_columns_question.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnsQuestion < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230615203425_remove_column_ranking_position.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class RemoveColumnRankingPosition < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230615203425_remove_column_ranking_position.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class RemoveColumnRankingPosition < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230816203058_add_column_coin.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnCoin < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230816203058_add_column_coin.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnCoin < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230913174605_add_streak.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddStreak < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230913174605_add_streak.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddStreak < ActiveRecord::Migration[7.0]
+^
+db/migrate/20230920174803_add_column_email_valid.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnEmailValid < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20230920174803_add_column_email_valid.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnEmailValid < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231010151821_add_column_level.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnLevel < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231010151821_add_column_level.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnLevel < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231010151821_add_column_level.rb:5:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+db/migrate/20231011180107_create_item.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateItem < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231011180107_create_item.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateItem < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231011180107_create_item.rb:3:3: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+      t.string :name
+  ^^^^
+db/migrate/20231011180107_create_item.rb:5:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+db/migrate/20231011182133_change_column_item.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class ChangeColumnItem < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231011182133_change_column_item.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ChangeColumnItem < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231012134001_add_column_item.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnItem < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231012134001_add_column_item.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnItem < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231013172818_add_column_price.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddColumnPrice < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231013172818_add_column_price.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddColumnPrice < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231013182523_create_table_buy_items.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class CreateTableBuyItems < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231013182523_create_table_buy_items.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateTableBuyItems < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231013190525_change_column_purchase.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class ChangeColumnPurchase < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231013190525_change_column_purchase.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ChangeColumnPurchase < ActiveRecord::Migration[7.0]
+^
+db/migrate/20231014141904_add_comlumn_user_items.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AddComlumnUserItems < ActiveRecord::Migration[7.0]
+^^^^^
+db/migrate/20231014141904_add_comlumn_user_items.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AddComlumnUserItems < ActiveRecord::Migration[7.0]
+^
+db/schema.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# This file is auto-generated from the current state of the database. Instead
+^
+db/schema.rb:13:1: C: Layout/EmptyLines: Extra blank line detected.
+db/schema.rb:14:1: C: Metrics/BlockLength: Block has too many lines. [63/25]
+ActiveRecord::Schema[7.0].define(version: 2023_10_14_141904) do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:14:43: C: Style/NumericLiterals: Use underscores(_) as thousands separator and separate every 3 digits with them.
+ActiveRecord::Schema[7.0].define(version: 2023_10_14_141904) do
+                                          ^^^^^^^^^^^^^^^^^
+db/schema.rb:15:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "answers", force: :cascade do |t|
+               ^^^^^^^^^
+db/schema.rb:16:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "user_id"
+              ^^^^^^^^^
+db/schema.rb:17:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "option_id"
+              ^^^^^^^^^^^
+db/schema.rb:18:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["option_id"], name: "index_answers_on_option_id"
+             ^^^^^^^^^^^
+db/schema.rb:18:34: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["option_id"], name: "index_answers_on_option_id"
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:19:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_answers_on_user_id"
+             ^^^^^^^^^
+db/schema.rb:19:32: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_answers_on_user_id"
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:22:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "asked_questions", force: :cascade do |t|
+               ^^^^^^^^^^^^^^^^^
+db/schema.rb:23:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "user_id"
+              ^^^^^^^^^
+db/schema.rb:24:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "question_id"
+              ^^^^^^^^^^^^^
+db/schema.rb:25:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["question_id"], name: "index_asked_questions_on_question_id"
+             ^^^^^^^^^^^^^
+db/schema.rb:25:36: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["question_id"], name: "index_asked_questions_on_question_id"
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:26:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_asked_questions_on_user_id"
+             ^^^^^^^^^
+db/schema.rb:26:32: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_asked_questions_on_user_id"
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:29:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "items", force: :cascade do |t|
+               ^^^^^^^
+db/schema.rb:30:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "name"
+             ^^^^^^
+db/schema.rb:31:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "section"
+             ^^^^^^^^^
+db/schema.rb:32:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "created_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:33:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "updated_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:34:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "description"
+             ^^^^^^^^^^^^^
+db/schema.rb:35:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "price", default: 0
+              ^^^^^^^
+db/schema.rb:38:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "options", force: :cascade do |t|
+               ^^^^^^^^^
+db/schema.rb:39:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "description"
+             ^^^^^^^^^^^^^
+db/schema.rb:40:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.boolean "isCorrect"
+              ^^^^^^^^^^^
+db/schema.rb:41:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "question_id"
+              ^^^^^^^^^^^^^
+db/schema.rb:42:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "created_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:43:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "updated_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:44:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["question_id"], name: "index_options_on_question_id"
+             ^^^^^^^^^^^^^
+db/schema.rb:44:36: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["question_id"], name: "index_options_on_question_id"
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:47:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "purchased_items", force: :cascade do |t|
+               ^^^^^^^^^^^^^^^^^
+db/schema.rb:48:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "user_id"
+              ^^^^^^^^^
+db/schema.rb:49:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "item_id"
+              ^^^^^^^^^
+db/schema.rb:50:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["item_id"], name: "index_purchased_items_on_item_id"
+             ^^^^^^^^^
+db/schema.rb:50:32: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["item_id"], name: "index_purchased_items_on_item_id"
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:51:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_purchased_items_on_user_id"
+             ^^^^^^^^^
+db/schema.rb:51:32: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.index ["user_id"], name: "index_purchased_items_on_user_id"
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:54:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "questions", force: :cascade do |t|
+               ^^^^^^^^^^^
+db/schema.rb:55:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "description"
+             ^^^^^^^^^^^^^
+db/schema.rb:56:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "created_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:57:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "updated_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:58:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "detail"
+             ^^^^^^^^
+db/schema.rb:59:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "image"
+             ^^^^^^^
+db/schema.rb:60:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "level"
+              ^^^^^^^
+db/schema.rb:63:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  create_table "users", force: :cascade do |t|
+               ^^^^^^^
+db/schema.rb:64:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "username"
+             ^^^^^^^^^^
+db/schema.rb:65:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "password"
+             ^^^^^^^^^^
+db/schema.rb:66:14: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.string "email"
+             ^^^^^^^
+db/schema.rb:67:12: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.date "birthdate"
+           ^^^^^^^^^^^
+db/schema.rb:68:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "points", default: 0
+              ^^^^^^^^
+db/schema.rb:69:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "created_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:70:16: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.datetime "updated_at", null: false
+               ^^^^^^^^^^^^
+db/schema.rb:71:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "coin", default: 50
+              ^^^^^^
+db/schema.rb:72:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "streak", default: 0
+              ^^^^^^^^
+db/schema.rb:73:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.boolean "valid_email", default: false
+              ^^^^^^^^^^^^^
+db/schema.rb:74:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "leaf_id"
+              ^^^^^^^^^
+db/schema.rb:75:15: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    t.integer "background_id"
+              ^^^^^^^^^^^^^^^
+db/schema.rb:78:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "answers", "options"
+                  ^^^^^^^^^
+db/schema.rb:78:30: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "answers", "options"
+                             ^^^^^^^^^
+db/schema.rb:79:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "answers", "users"
+                  ^^^^^^^^^
+db/schema.rb:79:30: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "answers", "users"
+                             ^^^^^^^
+db/schema.rb:80:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "asked_questions", "questions"
+                  ^^^^^^^^^^^^^^^^^
+db/schema.rb:80:38: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "asked_questions", "questions"
+                                     ^^^^^^^^^^^
+db/schema.rb:81:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "asked_questions", "users"
+                  ^^^^^^^^^^^^^^^^^
+db/schema.rb:81:38: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "asked_questions", "users"
+                                     ^^^^^^^
+db/schema.rb:82:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "options", "questions"
+                  ^^^^^^^^^
+db/schema.rb:82:30: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "options", "questions"
+                             ^^^^^^^^^^^
+db/schema.rb:83:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "purchased_items", "items"
+                  ^^^^^^^^^^^^^^^^^
+db/schema.rb:83:38: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "purchased_items", "items"
+                                     ^^^^^^^
+db/schema.rb:84:19: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "purchased_items", "users"
+                  ^^^^^^^^^^^^^^^^^
+db/schema.rb:84:38: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  add_foreign_key "purchased_items", "users"
+                                     ^^^^^^^
+db/seeds.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require_relative '../models/question'
+^
+db/seeds.rb:5:121: C: Layout/LineLength: Line is too long. [196/120]
+Question.create(description: '¿Cuál es el animal más rápido del mundo?', detail: 'El halcón peregrino en picada, cuando caza efectúa un ataque en picado puede alcanzar más de 300 km/h.', level: 1)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:11:121: C: Layout/LineLength: Line is too long. [196/120]
+Question.create(description: '¿Qué pájaro pone el huevo más pequeño?', detail: 'Los huevos del colibrí son casi del tamaño de una pastilla de tic tac, pueden estar entre los 8 y 10 mm.', level: 1)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:17:121: C: Layout/LineLength: Line is too long. [237/120]
+Question.create(description: '¿Cuál es la edad promedio de un león sin estar en cautiverio?', detail: 'Un león, en estado salvaje, puede vivir en promedio entre 12 y 16 años. En cautiverio pueden llegar a la edad de 25 años.', level: 1 )
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:17:236: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+Question.create(description: '¿Cuál es la edad promedio de un león sin estar en cautiverio?', detail: 'Un león, en estado salvaje, puede vivir en promedio entre 12 y 16 años. En cautiverio pueden llegar a la edad de 25 años.', level: 1 )
+                                                                                                                                                                                                                                           ^
+db/seeds.rb:23:121: C: Layout/LineLength: Line is too long. [205/120]
+Question.create(description: '¿Qué mamifero tiene la mordida más poderosa?', detail: 'La mordida del hipopótamo es la más fuerte de todos los mamíferos, siendo capaz de generar un PSI de 1821.', level: 1 )
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:23:204: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+Question.create(description: '¿Qué mamifero tiene la mordida más poderosa?', detail: 'La mordida del hipopótamo es la más fuerte de todos los mamíferos, siendo capaz de generar un PSI de 1821.', level: 1 )
+                                                                                                                                                                                                           ^
+db/seeds.rb:29:121: C: Layout/LineLength: Line is too long. [209/120]
+Question.create(description: '¿Qué criatura tiene una lengua que puede medir la longitud de su cuerpo?', detail: 'El camaleón es capaz de extender la lengua hasta dos veces del tamaño de su cuerpo.', level: 2)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:35:121: C: Layout/LineLength: Line is too long. [221/120]
+Question.create(description: '¿Cuál es el pariente vivo más cercano al T-rex?', detail: 'Se demostró que la gallina común y el avestruz comparten más rasgos genéticos con el Tyrannosaurus rex que los reptiles.', level: 2)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:41:121: C: Layout/LineLength: Line is too long. [257/120]
+Question.create(description: '¿Dónde almacenan las nutrias marinas la comida adicional en sus cuerpos?', detail: 'Las nutrias poseen una piel suelta y flexible, que pueden estirar y utilizar como una especie de bolsa o bolsita para llevar comida', level: 2)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:47:121: C: Layout/LineLength: Line is too long. [184/120]
+Question.create(description: '¿Cuál es el animal mas vengativo del mundo?', detail: 'La investigación ha encontrado que los tigres buscarán vengarse de aquellos que los han molestado. 
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:47:184: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+Question.create(description: '¿Cuál es el animal mas vengativo del mundo?', detail: 'La investigación ha encontrado que los tigres buscarán vengarse de aquellos que los han molestado. 
+                                                                                                                                                                                       ^
+db/seeds.rb:48:121: C: Layout/LineLength: Line is too long. [205/120]
+Naturalistas han vivido muchas situaciones en donde tigres se han aferrado a un gran sentimiento de rencor durante más de 48hs antes de atacar y matar a cazadores que previamente habían intentado cazarlos.
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:55:121: C: Layout/LineLength: Line is too long. [348/120]
+Question.create(description: '¿De qué color es la piel de un oso polar?', detail: 'Curiosamente, el pelaje del oso polar no tiene pigmento blanco; de hecho, la piel de un oso polar es negra  (mira su nariz) y sus pelos son huecos. Cada cabello dispersa y refleja la luz visible, esto hace que parezcan de color blanco, aunque no lo son.', level: 3)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:61:121: C: Layout/LineLength: Line is too long. [370/120]
+Question.create(description: '¿Qué pájaro tiene ojos más grandes que su cerebro?', detail: 'Siendo el avestruz el ave más grande del mundo, tiene un ojo tan grande como el colibrí abeja (el ave más pequeña del mundo). Eso es cinco veces más grande que el ojo humano. Los ojos grandes ayudan al avestruz a ver con gran detalle y a detectar a los depredadores.', level: 3)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:67:121: C: Layout/LineLength: Line is too long. [264/120]
+Question.create(description: '¿Qué suele regalarle un pingüino macho a una hembra para conquistarla?', detail: 'Los pingüinos en lugar del habitual anillo de compromiso, entregan una piedra a la hembra de su grupo con la que esperan construir un nido y aparearse. 
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:67:264: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+Question.create(description: '¿Qué suele regalarle un pingüino macho a una hembra para conquistarla?', detail: 'Los pingüinos en lugar del habitual anillo de compromiso, entregan una piedra a la hembra de su grupo con la que esperan construir un nido y aparearse. 
+                                                                                                                                                                                                                                                                       ^
+db/seeds.rb:68:121: C: Layout/LineLength: Line is too long. [136/120]
+Estas piedras las utilizan para cubrir el suelo sobre el que construyen sus nidos, de forma de mantener los huevos aislados de la nieve.
+                                                                                                                        ^^^^^^^^^^^^^^^^
+db/seeds.rb:69:121: C: Layout/LineLength: Line is too long. [126/120]
+Cuando vuelven junto a la hembra, llevan las piedras que recogieron a los pies de su pareja, como un gesto natural de cortejo.
+                                                                                                                        ^^^^^^
+db/seeds.rb:76:121: C: Layout/LineLength: Line is too long. [279/120]
+Question.create(description: '¿Cuál es el tipo de energía más contaminante?', detail: 'El carbón y el petróleo son los mayores culpables del efecto invernadero y del cambio climático, provocando no solo la contaminación del aire, sino también de la tierra y del agua.', level: 3)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:82:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#Question.create(description: '¿?', detail: '')
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:82:32: C: Style/AsciiComments: Use only ascii symbols in comments.
+#Question.create(description: '¿?', detail: '')
+                               ^
+db/seeds.rb:83:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#Option.create(description: '', isCorrect: false, question_id: 12)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:84:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#Option.create(description: '', isCorrect: true, question_id: 12)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:85:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#Option.create(description: '', isCorrect: false, question_id: 12)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:86:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#Option.create(description: '', isCorrect: false, question_id: 12)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:88:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'arceR' , section:'hoja', description: 'Arce Rojo', price: 15)
+                ^
+db/seeds.rb:88:25: C: Layout/SpaceBeforeComma: Space found before comma.
+Item.create(name:'arceR' , section:'hoja', description: 'Arce Rojo', price: 15)
+                        ^
+db/seeds.rb:88:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'arceR' , section:'hoja', description: 'Arce Rojo', price: 15)
+                                  ^
+db/seeds.rb:89:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'canada', section:'hoja', description: 'Canada Brown', price: 15)
+                ^
+db/seeds.rb:89:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'canada', section:'hoja', description: 'Canada Brown', price: 15)
+                                  ^
+db/seeds.rb:90:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'golden', section:'hoja', description: 'Golden', price: 15)
+                ^
+db/seeds.rb:90:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'golden', section:'hoja', description: 'Golden', price: 15)
+                                  ^
+db/seeds.rb:91:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'ocean', section:'hoja', description: 'Ocean', price: 15)
+                ^
+db/seeds.rb:91:34: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'ocean', section:'hoja', description: 'Ocean', price: 15)
+                                 ^
+db/seeds.rb:92:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'sunset', section:'hoja', description: 'Sunset', price: 15)
+                ^
+db/seeds.rb:92:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'sunset', section:'hoja', description: 'Sunset', price: 15)
+                                  ^
+db/seeds.rb:93:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'roble', section:'hoja', description: 'Roble', price: 15)
+                ^
+db/seeds.rb:93:34: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'roble', section:'hoja', description: 'Roble', price: 15)
+                                 ^
+db/seeds.rb:94:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'forest', section:'fondo', description: 'Forest', price: 15)
+                ^
+db/seeds.rb:94:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'forest', section:'fondo', description: 'Forest', price: 15)
+                                  ^
+db/seeds.rb:95:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'paradise', section:'fondo', description: 'Paradise', price: 15)
+                ^
+db/seeds.rb:95:37: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'paradise', section:'fondo', description: 'Paradise', price: 15)
+                                    ^
+db/seeds.rb:96:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'sabana', section:'fondo', description: 'Sabanna', price: 15)
+                ^
+db/seeds.rb:96:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'sabana', section:'fondo', description: 'Sabanna', price: 15)
+                                  ^
+db/seeds.rb:97:17: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'jungle', section:'fondo', description: 'Jungle', price: 15)
+                ^
+db/seeds.rb:97:35: C: Layout/SpaceAfterColon: Space missing after colon.
+Item.create(name:'jungle', section:'fondo', description: 'Jungle', price: 15)
+                                  ^
+db/seeds.rb:97:78: C: Layout/TrailingEmptyLines: Final newline missing.
+Item.create(name:'jungle', section:'fondo', description: 'Jungle', price: 15)
+                                                                             
+methods.rb:1:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#encripta la password
+^^^^^^^^^^^^^^^^^^^^^
+methods.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#encripta la password
+^
+methods.rb:5:3: C: Style/RedundantReturn: Redundant return detected.
+  return hashed_password
+  ^^^^^^
+methods.rb:8:1: C: Layout/EmptyLines: Extra blank line detected.
+methods.rb:9:1: C: Layout/LeadingCommentSpace: Missing space after #.
+#genera un codigo random
+^^^^^^^^^^^^^^^^^^^^^^^^
+methods.rb:10:1: C: Layout/EmptyLineBetweenDefs: Use empty lines between method definitions.
+def generate_random_code(length)
+^^^^^^^^^^^^^^^^^^^^^^^^
+methods.rb:12:3: W: Lint/UselessAssignment: Useless assignment to variable - code.
+  code = (0...length).map { characters[rand(characters.length)] }.join
+  ^^^^
+methods.rb:15:1: C: Layout/EmptyLines: Extra blank line detected.
+methods.rb:16:4: C: Style/AsciiComments: Use only ascii symbols in comments.
+# Método para enviar el correo de bienvenida
+   ^
+methods.rb:17:1: C: Layout/EmptyLineBetweenDefs: Use empty lines between method definitions.
+def send_verificated_email(email, code)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+methods.rb:17:1: C: Metrics/MethodLength: Method has too many lines. [21/10]
+def send_verificated_email(email, code) ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+methods.rb:19:31: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    address: 'smtp.gmail.com', 
+                              ^
+methods.rb:22:15: W: Lint/UselessAssignment: Useless assignment to variable - password.
+    password: password = 'dcbr arax jeax jmpp',
+              ^^^^^^^^
+methods.rb:33:18: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    to      email 
+                 ^
+methods.rb:38:29: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+            Código: #{code}" 
+                            ^
+methods.rb:40:15: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  mail.deliver      
+              ^^^^^^
+methods.rb:41:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/answer.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class Answer < ActiveRecord::Base
+^^^^^
+models/answer.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Answer < ActiveRecord::Base
+^
+models/answer.rb:7:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/asked_question.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class AskedQuestion < ActiveRecord::Base  
+^^^^^
+models/asked_question.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AskedQuestion < ActiveRecord::Base  
+^
+models/asked_question.rb:1:41: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+class AskedQuestion < ActiveRecord::Base  
+                                        ^^
+models/asked_question.rb:2:1: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    has_many :questions
+^^^^
+models/asked_question.rb:3:1: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    has_many :users
+^^^^
+models/asked_question.rb:4:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/init.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'active_record'
+^
+models/init.rb:7:34: C: Layout/TrailingEmptyLines: Final newline missing.
+require_relative 'purchased_item'
+                                 
+models/item.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Item < ActiveRecord::Base
+^
+models/item.rb:2:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/item.rb:3:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/option.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class Option < ActiveRecord::Base
+^^^^^
+models/option.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Option < ActiveRecord::Base
+^
+models/option.rb:5:3: C: Layout/LeadingCommentSpace: Missing space after #.
+  #validates :isCorrect, presence: true
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/option.rb:8:3: C: Layout/EmptyLinesAroundAccessModifier: Keep a blank line before and after private.
+  private
+  ^^^^^^^
+models/option.rb:9:1: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def isCorrect_boolean_value
+^^^^
+models/option.rb:9:5: C: Layout/IndentationConsistency: Inconsistent indentation detected.
+    def isCorrect_boolean_value ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/option.rb:9:9: C: Naming/MethodName: Use snake_case for method names.
+    def isCorrect_boolean_value
+        ^^^^^^^^^^^^^^^^^^^^^^^
+models/option.rb:10:7: C: Style/GuardClause: Use a guard clause (return if [true,false].include?(isCorrect)) instead of wrapping the code inside a conditional expression.
+      unless [true,false].include?(isCorrect)
+      ^^^^^^
+models/option.rb:10:7: C: Style/IfUnlessModifier: Favor modifier unless usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      unless [true,false].include?(isCorrect)
+      ^^^^^^
+models/option.rb:10:19: C: Layout/SpaceAfterComma: Space missing after comma.
+      unless [true,false].include?(isCorrect)
+                  ^
+models/option.rb:11:32: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+        errors.add(:isCorrect, "isCorrect must be true or false")
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/option.rb:14:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/purchased_item.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class PurchasedItem < ActiveRecord::Base
+^^^^^
+models/purchased_item.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class PurchasedItem < ActiveRecord::Base
+^
+models/purchased_item.rb:4:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/question.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class Question < ActiveRecord::Base
+^^^^^
+models/question.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Question < ActiveRecord::Base
+^
+models/question.rb:7:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+models/user.rb:1:1: C: Style/Documentation: Missing top-level class documentation comment.
+class User < ActiveRecord::Base  
+^^^^^
+models/user.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class User < ActiveRecord::Base  
+^
+models/user.rb:1:32: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+class User < ActiveRecord::Base  
+                               ^^
+models/user.rb:4:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:5:71: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  validates :username, presence: true, length: { minimum: 3, message: "username must be at least 3 characters"  }
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:5:111: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+  validates :username, presence: true, length: { minimum: 3, message: "username must be at least 3 characters"  }
+                                                                                                              ^
+models/user.rb:6:71: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  validates :password, presence: true, length: { minimum: 6, message: "password must be at least 6 characters" } 
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:6:113: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  validates :password, presence: true, length: { minimum: 6, message: "password must be at least 6 characters" } 
+                                                                                                                ^
+models/user.rb:7:100: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "invalid email format" }
+                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:7:121: C: Layout/LineLength: Line is too long. [123/120]
+  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "invalid email format" }
+                                                                                                                        ^^^
+models/user.rb:13:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:14:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:16:21: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    self.points += 1  
+                    ^^
+models/user.rb:20:1: C: Layout/EmptyLines: Extra blank line detected.
+models/user.rb:21:3: C: Layout/EmptyLineBetweenDefs: Use empty lines between method definitions.
+  def add_streak_to_points(streak)
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:22:26: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    self.points += streak 
+                         ^
+models/user.rb:25:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:34:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+models/user.rb:36:3: C: Layout/LeadingCommentSpace: Missing space after #.
+  #descuenta las monedas que vale la compra
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:41:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:43:3: C: Layout/EmptyLineBetweenDefs: Use empty lines between method definitions.
+  def sum_10_coins
+  ^^^^^^^^^^^^^^^^
+models/user.rb:53:3: C: Layout/LeadingCommentSpace: Missing space after #.
+  #desencripta password y la compara con la ingresada
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:55:5: C: Style/RedundantReturn: Redundant return detected.
+    return BCrypt::Password.new(hash_pass) == password
+    ^^^^^^
+models/user.rb:61:5: C: Style/GuardClause: Use a guard clause (return unless points.nil? || points < 0) instead of wrapping the code inside a conditional expression.
+    if points.nil? || points < 0
+    ^^
+models/user.rb:61:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if points.nil? || points < 0
+    ^^
+models/user.rb:61:23: C: Style/NumericPredicate: Use points.negative? instead of points < 0.
+    if points.nil? || points < 0
+                      ^^^^^^^^^^
+models/user.rb:62:27: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      errors.add(:points, "must be greater than or equal to 0")
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+models/user.rb:65:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+models/user.rb:67:1: C: Layout/TrailingEmptyLines: 3 trailing blank lines detected.
+models/user.rb:67:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra'
+^
+server.rb:8:15: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+require 'mail' 
+              ^
+server.rb:20:1: C: Metrics/ClassLength: Class has too many lines. [438/100]
+class App < Sinatra::Application ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:20:1: C: Style/Documentation: Missing top-level class documentation comment.
+class App < Sinatra::Application
+^^^^^
+server.rb:22:46: C: Style/AsciiComments: Use only ascii symbols in comments.
+  # Configuracion de la clave secreta de sesión
+                                             ^
+server.rb:25:18: W: Lint/UnusedMethodArgument: Unused method argument - app. If it's necessary, use _ or _app as an argument name to indicate that it won't be used. You can also write as initialize(*) if you want the method to accept any arguments but don't care about them.
+  def initialize(app = nil)
+                 ^^^
+server.rb:29:3: W: Lint/AmbiguousBlockAssociation: Parenthesize the param Proc.new { File.join(root, 'views') } to make sure that the block will be associated with the Proc.new method call.
+  set :views, Proc.new { File.join(root, 'views') }
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:29:15: C: Style/Proc: Use proc instead of Proc.new.
+  set :views, Proc.new { File.join(root, 'views') }
+              ^^^^^^^^
+server.rb:31:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:40:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:47:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end  
+     ^^
+server.rb:49:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:50:3: C: Metrics/BlockLength: Block has too many lines. [42/25]
+  get '/game/:id_question' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:51:27: C: Layout/LeadingCommentSpace: Missing space after #.
+    session[:tree] = true #de arbol vuelve a game
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:53:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:56:45: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+    @id_question = params[:id_question].to_i  # id de la pregunta a preguntar
+                                            ^
+server.rb:57:53: C: Style/AsciiComments: Use only ascii symbols in comments.
+    @level_selected = params[:level].to_i # este parámetro level viene de el post /levels
+                                                    ^
+server.rb:59:32: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    user_id = session[:user_id] 
+                               ^
+server.rb:66:22: C: Layout/SpaceAroundOperators: Operator <= should be surrounded by a single space.
+    if @id_question  <= @total_questions && asked_question.nil?
+                     ^^
+server.rb:67:53: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+      @question = Question.find_by(id: @id_question)  # pregunta de la bd con ese id
+                                                    ^
+server.rb:68:121: C: Layout/LineLength: Line is too long. [121/120]
+      @options = Option.where(question_id: @question.id) # arreglo de opciones que pertenecen a esta @question con ese id
+                                                                                                                        ^
+server.rb:86:25: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+        @id_question = i  # nueva pregunta a ser preguntada
+                        ^
+server.rb:88:55: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+        @question = Question.find_by(id: @id_question)  
+                                                      ^^
+server.rb:98:9: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+    else  # el juego se termino
+        ^
+server.rb:101:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+server.rb:102:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:109:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:120:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:125:40: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    question_id = session[:question_id]  
+                                       ^^
+server.rb:128:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:140:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:141:3: C: Metrics/BlockLength: Block has too many lines. [31/25]
+  post '/game/:question_id' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:154:28: C: Style/NumericLiterals: Use underscores(_) as thousands separator and separate every 3 digits with them.
+      selected_option_id = 999999
+                           ^^^^^^
+server.rb:157:7: C: Layout/LeadingCommentSpace: Missing space after #.
+      #Answer.create(user_id: user_id, option_id: nil)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:161:22: C: Style/AsciiComments: Use only ascii symbols in comments.
+    # Obtener la opción seleccionada de la base de datos a traves de los parametros
+                     ^
+server.rb:163:27: C: Style/AsciiComments: Use only ascii symbols in comments.
+    # Verificar si la opción seleccionada es correcta o no
+                          ^
+server.rb:165:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:173:12: C: Style/NumericPredicate: Use (user.streak % 3).zero? instead of (user.streak % 3) == 0.
+        if (user.streak % 3) == 0
+           ^^^^^^^^^^^^^^^^^^^^^^
+server.rb:183:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:184:121: C: Layout/LineLength: Line is too long. [142/120]
+      # Respuesta preguntada se marcara como preguntada para no volver a preguntarse (para no ser preguntada nuevamente, en una nueva ocasion)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^
+server.rb:188:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:191:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:205:50: C: Style/MethodCallWithoutArgsParentheses: Do not use parentheses for method calls with no arguments.
+    question = Question.where(level: level).first()
+                                                 ^^
+server.rb:206:18: C: Style/AsciiComments: Use only ascii symbols in comments.
+    # obtengo la última pregunta del nivel anterior
+                 ^
+server.rb:208:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if previous_question <= 0
+    ^^
+server.rb:215:56: C: Style/AsciiComments: Use only ascii symbols in comments.
+    if response # response tiene true porque no encontró respuesta
+                                                       ^
+server.rb:218:7: W: Lint/UselessAssignment: Useless assignment to variable - disabled_level.
+      disabled_level = false
+      ^^^^^^^^^^^^^^
+server.rb:225:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:237:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:241:5: C: Style/ConditionalAssignment: Use the return of the conditional for variable assignment and comparison.
+    if @result == 'true' ...
+    ^^^^^^^^^^^^^^^^^^^^
+server.rb:245:9: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    else 
+        ^
+server.rb:250:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:251:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:253:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #user_id = session[:user_id]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:259:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:263:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+server.rb:269:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:274:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:278:8: C: Style/SafeNavigation: Use safe navigation (&.) instead of checking if an object exists before calling the method.
+    if @user && @user.compare_password(@user.password, input_password)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:284:16: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    elsif @user 
+               ^
+server.rb:285:5: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+        @password_error = "*contraseña incorrecta"
+    ^^^^
+server.rb:285:27: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+        @password_error = "*contraseña incorrecta"
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:288:25: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      @password_error = "*datos ingresados no pertenecen a ninguna cuenta"
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:291:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+server.rb:293:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:298:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:300:1: C: Layout/EmptyLinesAroundBlockBody: Extra empty line detected at block body beginning.
+server.rb:301:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #genera un codigo de 6 caracteres 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:301:38: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    #genera un codigo de 6 caracteres 
+                                     ^
+server.rb:307:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if !(User.find_by(username: params[:username]).nil?) 
+    ^^
+server.rb:307:5: C: Style/NegatedIf: Favor unless over if for negative conditions.
+    if !(User.find_by(username: params[:username]).nil?)  ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:307:9: C: Style/RedundantParentheses: Don't use parentheses around a method call.
+    if !(User.find_by(username: params[:username]).nil?) 
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:307:57: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    if !(User.find_by(username: params[:username]).nil?) 
+                                                        ^
+server.rb:313:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:314:121: C: Layout/LineLength: Line is too long. [156/120]
+      @user = User.create(username: params[:username], password: passw, email: params[:email], birthdate: params[:birthdate], leaf_id: 6, background_id: 10)
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:317:9: C: Layout/LeadingCommentSpace: Missing space after #.
+        #envia el email
+        ^^^^^^^^^^^^^^^
+server.rb:320:9: C: Layout/LeadingCommentSpace: Missing space after #.
+        #setear arbol y hoja por defecto
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:323:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:331:9: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    else 
+        ^
+server.rb:334:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+server.rb:336:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:337:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:338:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:339:17: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  get '/menu' do 
+                ^
+server.rb:342:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:346:16: C: Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
+    erb :menu, :locals => {:user_id => user_id}
+               ^^^^^^^^^^
+server.rb:346:27: C: Layout/SpaceInsideHashLiteralBraces: Space inside { missing.
+    erb :menu, :locals => {:user_id => user_id}
+                          ^
+server.rb:346:28: C: Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
+    erb :menu, :locals => {:user_id => user_id}
+                           ^^^^^^^^^^^
+server.rb:346:47: C: Layout/SpaceInsideHashLiteralBraces: Space inside } missing.
+    erb :menu, :locals => {:user_id => user_id}
+                                              ^
+server.rb:347:6: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  end 
+     ^
+server.rb:349:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:353:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:355:81: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    @questions_asked = AskedQuestion.where(user_id: user_id).pluck(:question_id) 
+                                                                                ^
+server.rb:358:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #indice de la current question a practicar
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:359:24: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    @question_index = 0 
+                       ^
+server.rb:364:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:374:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:377:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:382:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:383:19: C: Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
+    erb :ranking, :locals => {:user => user}
+                  ^^^^^^^^^^
+server.rb:383:30: C: Layout/SpaceInsideHashLiteralBraces: Space inside { missing.
+    erb :ranking, :locals => {:user => user}
+                             ^
+server.rb:383:31: C: Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
+    erb :ranking, :locals => {:user => user}
+                              ^^^^^^^^
+server.rb:383:44: C: Layout/SpaceInsideHashLiteralBraces: Space inside } missing.
+    erb :ranking, :locals => {:user => user}
+                                           ^
+server.rb:386:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:389:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:396:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:399:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:405:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:406:3: C: Metrics/BlockLength: Block has too many lines. [28/25]
+  post '/profile_change' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:410:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:411:5: C: Naming/VariableName: Use snake_case for variable names.
+    newUsername = params[:newUsername]
+    ^^^^^^^^^^^
+server.rb:412:5: C: Naming/VariableName: Use snake_case for variable names.
+    currentPassword = params[:currentPassword]
+    ^^^^^^^^^^^^^^^
+server.rb:413:5: C: Naming/VariableName: Use snake_case for variable names.
+    newPassword = params[:newPassword]
+    ^^^^^^^^^^^
+server.rb:414:5: C: Naming/VariableName: Use snake_case for variable names.
+    newEmail = params[:newEmail]
+    ^^^^^^^^
+server.rb:416:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:417:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
+    ^^
+server.rb:417:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
+       ^^^^^^^^^^^
+server.rb:417:23: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
+                      ^^
+server.rb:417:29: C: Style/RedundantParentheses: Don't use parentheses around an unary operation.
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:417:54: C: Naming/VariableName: Use snake_case for variable names.
+    if newUsername != "" && (!User.find_by(username: newUsername).nil?)
+                                                     ^^^^^^^^^^^
+server.rb:420:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+    ^^
+server.rb:420:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+       ^^^^^^^^^^^
+server.rb:420:23: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+                      ^^
+server.rb:420:30: C: Naming/VariableName: Use snake_case for variable names.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+                             ^^^^^^^^^^^^^^^
+server.rb:420:55: C: Naming/VariableName: Use snake_case for variable names.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+                                                      ^^^^^^^^^^^^^^^
+server.rb:420:87: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+    if newPassword != "" && !currentPassword.nil? && (currentPassword != user.password )
+                                                                                      ^
+server.rb:422:8: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    end 
+       ^
+server.rb:423:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
+    ^^
+server.rb:423:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
+       ^^^^^^^^
+server.rb:423:20: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
+                   ^^
+server.rb:423:26: C: Style/RedundantParentheses: Don't use parentheses around an unary operation.
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:423:48: C: Naming/VariableName: Use snake_case for variable names.
+    if newEmail != "" && (!User.find_by(email: newEmail).nil?)
+                                               ^^^^^^^^
+server.rb:427:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newUsername != ""
+    ^^
+server.rb:427:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newUsername != ""
+       ^^^^^^^^^^^
+server.rb:427:23: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newUsername != ""
+                      ^^
+server.rb:428:37: C: Naming/VariableName: Use snake_case for variable names.
+      user.update_column(:username, newUsername)
+                                    ^^^^^^^^^^^
+server.rb:431:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newPassword != "" && currentPassword != ""
+    ^^
+server.rb:431:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newPassword != "" && currentPassword != ""
+       ^^^^^^^^^^^
+server.rb:431:23: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newPassword != "" && currentPassword != ""
+                      ^^
+server.rb:431:29: C: Naming/VariableName: Use snake_case for variable names.
+    if newPassword != "" && currentPassword != ""
+                            ^^^^^^^^^^^^^^^
+server.rb:431:48: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newPassword != "" && currentPassword != ""
+                                               ^^
+server.rb:432:37: C: Naming/VariableName: Use snake_case for variable names.
+      user.update_column(:password, newPassword)
+                                    ^^^^^^^^^^^
+server.rb:434:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:436:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if newEmail != ""
+    ^^
+server.rb:436:8: C: Naming/VariableName: Use snake_case for variable names.
+    if newEmail != ""
+       ^^^^^^^^
+server.rb:436:20: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+    if newEmail != ""
+                   ^^
+server.rb:437:34: C: Naming/VariableName: Use snake_case for variable names.
+      user.update_column(:email, newEmail)
+                                 ^^^^^^^^
+server.rb:439:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:440:5: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if !user.save
+    ^^
+server.rb:440:5: C: Style/NegatedIf: Favor unless over if for negative conditions.
+    if !user.save ...
+    ^^^^^^^^^^^^^
+server.rb:447:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:450:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:454:29: C: Layout/LeadingCommentSpace: Missing space after #.
+    hoja_id = @user.leaf_id #Busco el id de la actual compra del usuario
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:455:35: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    fondo_id = @user.background_id 
+                                  ^
+server.rb:457:43: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+    @hoja = Item.find_by(id: hoja_id).name  #con ese id busco en los items y paso el nombre
+                                          ^
+server.rb:457:45: C: Layout/LeadingCommentSpace: Missing space after #.
+    @hoja = Item.find_by(id: hoja_id).name  #con ese id busco en los items y paso el nombre
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:462:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:465:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:467:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:470:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:475:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:479:7: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if asked_question
+      ^^
+server.rb:479:7: C: Style/SafeNavigation: Use safe navigation (&.) instead of checking if an object exists before calling the method.
+      if asked_question ...
+      ^^^^^^^^^^^^^^^^^
+server.rb:490:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:500:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:505:22: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+  post '/validate' do    
+                     ^^^^
+server.rb:515:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:517:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:523:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:524:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:525:80: C: Layout/LeadingCommentSpace: Missing space after #.
+    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:526:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:527:25: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+    @item_comprados = {}  #inicializa el hash
+                        ^
+server.rb:527:27: C: Layout/LeadingCommentSpace: Missing space after #.
+    @item_comprados = {}  #inicializa el hash
+                          ^^^^^^^^^^^^^^^^^^^
+server.rb:530:71: C: Layout/LeadingCommentSpace: Missing space after #.
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:530:121: C: Layout/LineLength: Line is too long. [139/120]
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^
+server.rb:531:40: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+      @item_price[item.id] = item.price 
+                                       ^
+server.rb:533:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:536:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:540:33: C: Layout/LeadingCommentSpace: Missing space after #.
+    name = request_body['name'] #json
+                                ^^^^^
+server.rb:547:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #Si no lo compro lo agrega
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:550:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:551:7: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if (item_price <= user.coin)
+      ^^
+server.rb:551:10: C: Style/ParenthesesAroundCondition: Don't use parentheses around the condition of an if.
+      if (item_price <= user.coin)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:556:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #setea la nueva hoja elegida por el usuario, este comprada o no
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:562:49: C: Style/AsciiComments: Use only ascii symbols in comments.
+      redirect '/' # Redirigir al inicio de sesión si la sesión no está activa
+                                                ^
+server.rb:564:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:571:1: C: Layout/EmptyLines: Extra blank line detected.
+server.rb:572:80: C: Layout/LeadingCommentSpace: Missing space after #.
+    purchased_item_ids = PurchasedItem.where(user_id: user_id).pluck(:item_id) #busca los items que compro el usuario
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:573:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:574:25: C: Layout/ExtraSpacing: Unnecessary spacing detected.
+    @item_comprados = {}  #inicializa el hash
+                        ^
+server.rb:574:27: C: Layout/LeadingCommentSpace: Missing space after #.
+    @item_comprados = {}  #inicializa el hash
+                          ^^^^^^^^^^^^^^^^^^^
+server.rb:577:71: C: Layout/LeadingCommentSpace: Missing space after #.
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:577:121: C: Layout/LineLength: Line is too long. [139/120]
+      @item_comprados[item.id] = purchased_item_ids.include?(item.id) #mete true si el id de los items esta en los comprados por el usuario
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^
+server.rb:578:40: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+      @item_price[item.id] = item.price 
+                                       ^
+server.rb:580:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:592:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+server.rb:596:7: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if (item_price <= user.coin)
+      ^^
+server.rb:596:10: C: Style/ParenthesesAroundCondition: Don't use parentheses around the condition of an if.
+      if (item_price <= user.coin)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:601:5: C: Layout/LeadingCommentSpace: Missing space after #.
+    #setea el nuevo fondo elegido por el usuario
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+server.rb:604:1: C: Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+server.rb:605:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+spec/models/answer_spec.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra/activerecord'
+^
+spec/models/answer_spec.rb:17:1: C: Layout/TrailingEmptyLines: 2 trailing blank lines detected.
+spec/models/option_spec.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra/activerecord'
+^
+spec/models/option_spec.rb:5:1: C: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    describe 'validations' do
+^^^^
+spec/models/option_spec.rb:14:54: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+        expect(option.errors[:isCorrect]).to include("isCorrect must be true or false")
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/option_spec.rb:16:1: C: Layout/EmptyLinesAroundBlockBody: Extra empty line detected at block body end.
+spec/models/question_spec.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra/activerecord'
+^
+spec/models/question_spec.rb:7:72: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+      question = Question.create(description: '', detail: 'detail test' )
+                                                                       ^
+spec/models/question_spec.rb:12:77: C: Layout/SpaceInsideParens: Space inside parentheses detected.
+      question = Question.create(description: 'description test', detail: '' )
+                                                                            ^
+spec/models/question_spec.rb:16:4: C: Layout/TrailingEmptyLines: Final newline missing.
+end
+   
+spec/models/user_spec.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra/activerecord'
+^
+spec/models/user_spec.rb:6:1: C: Layout/EmptyLines: Extra blank line detected.
+spec/models/user_spec.rb:7:1: C: Metrics/BlockLength: Block has too many lines. [76/25]
+describe 'User' do ...
+^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:8:3: C: Metrics/BlockLength: Block has too many lines. [74/25]
+  describe 'validations' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:10:112: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: '', password: '123', email: 'test@example.com', birthdate: '1999-12-12', streak:0)
+                                                                                                               ^
+spec/models/user_spec.rb:16:117: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: 'usertest', password: '', email: 'test@example.com', birthdate: '1999-12-12', streak:0)
+                                                                                                                    ^
+spec/models/user_spec.rb:22:121: C: Layout/LineLength: Line is too long. [134/120]
+      user = User.new(username: 'usertest', password: '123', email: 'test@example.com', birthdate: '1999-12-12', points: -5, streak:0)
+                                                                                                                        ^^^^^^^^^^^^^^
+spec/models/user_spec.rb:22:132: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: 'usertest', password: '123', email: 'test@example.com', birthdate: '1999-12-12', points: -5, streak:0)
+                                                                                                                                   ^
+spec/models/user_spec.rb:24:47: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:points]).to include("must be greater than or equal to 0")
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:28:117: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: 'usertest', password: '123', email: 'invalid_email', birthdate: '1999-12-12', streak:0)
+                                                                                                                    ^
+spec/models/user_spec.rb:30:46: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:email]).to include("invalid email format")
+                                             ^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:34:114: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: 'ab', password: '123', email: 'test@example.com', birthdate: '1999-12-12', streak:0)
+                                                                                                                 ^
+spec/models/user_spec.rb:36:49: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:username]).to include("username must be at least 3 characters")
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:37:49: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:password]).to include("password must be at least 6 characters")
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:39:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/models/user_spec.rb:43:46: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:email]).to include("invalid email format")
+                                             ^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:49:49: C: Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      expect(user.errors[:password]).to include("password must be at least 6 characters")
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:53:121: C: Layout/LineLength: Line is too long. [125/120]
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+                                                                                                                        ^^^^^
+spec/models/user_spec.rb:56:8: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    end 
+       ^
+spec/models/user_spec.rb:57:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/models/user_spec.rb:59:7: C: Layout/LeadingCommentSpace: Missing space after #.
+      #hash the password
+      ^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:62:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/models/user_spec.rb:63:121: C: Layout/LineLength: Line is too long. [133/120]
+      user = User.new(username: 'usertest', password: hashed_password, email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+                                                                                                                        ^^^^^^^^^^^^^
+spec/models/user_spec.rb:66:8: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    end  
+       ^^
+spec/models/user_spec.rb:69:7: C: Layout/LeadingCommentSpace: Missing space after #.
+      #hash the password
+      ^^^^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:72:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/models/user_spec.rb:73:1: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/models/user_spec.rb:74:121: C: Layout/LineLength: Line is too long. [133/120]
+      user = User.new(username: 'usertest', password: hashed_password, email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+                                                                                                                        ^^^^^^^^^^^^^
+spec/models/user_spec.rb:77:8: C: Layout/TrailingWhitespace: Trailing whitespace detected.
+    end  
+       ^^
+spec/models/user_spec.rb:80:121: C: Layout/LineLength: Line is too long. [125/120]
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+                                                                                                                        ^^^^^
+spec/models/user_spec.rb:86:121: C: Layout/LineLength: Line is too long. [125/120]
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5)
+                                                                                                                        ^^^^^
+spec/models/user_spec.rb:96:121: C: Layout/LineLength: Line is too long. [135/120]
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5, streak:2)
+                                                                                                                        ^^^^^^^^^^^^^^^
+spec/models/user_spec.rb:96:133: C: Layout/SpaceAfterColon: Space missing after colon.
+      user = User.new(username: 'usertest', password: 'abcde', email: 'test@example.com', birthdate: '1999-12-12', points: 5, streak:2)
+                                                                                                                                    ^
+spec/spec_helper.rb:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'sinatra/base'
+^
+spec/spec_helper.rb:12:14: C: Style/ExpandPathArguments: Use expand_path('../config/environment.rb', __dir__) instead of expand_path('../../config/environment.rb', __FILE__).
+require File.expand_path('../../config/environment.rb', __FILE__)
+             ^^^^^^^^^^^
+
+41 files inspected, 507 offenses detected, 507 offenses auto-correctable

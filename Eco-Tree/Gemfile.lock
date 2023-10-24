@@ -29,12 +29,12 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    ast (2.4.2)
     bcrypt (3.1.19)
     concurrent-ruby (1.2.2)
     date (3.3.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    dotenv (2.8.1)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     mail (2.8.1)
@@ -57,8 +57,16 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    parallel (1.23.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
+    racc (1.7.1)
     rack (2.2.7)
+    rainbow (3.1.1)
     rake (13.0.6)
+    regexp_parser (2.8.2)
+    rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -72,6 +80,18 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
+    rubocop (0.91.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.4.0, < 1.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.8.0)
+      parser (>= 2.7.1.5)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -89,6 +109,7 @@ GEM
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (1.8.0)
 
 PLATFORMS
   arm64-darwin-21
@@ -96,11 +117,11 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
-  dotenv
   mail
   multi_json
   rake
   rspec
+  rubocop (~> 0.91.0)
   simplecov
   sinatra!
   sinatra-activerecord

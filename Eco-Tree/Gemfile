@@ -15,6 +15,7 @@ gem 'rake'
 gem 'simplecov'
 gem 'bcrypt'
 gem 'mail'
+gem 'rubocop', '~> 0.91.0', require: false
 
 
 group :test do
