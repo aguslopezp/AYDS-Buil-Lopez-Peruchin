@@ -140,6 +140,7 @@ class App < Sinatra::Application
   
   post '/game/:question_id' do
     user_id = session[:user_id]
+    level = params[:level]
     if params[:selected_option_id].nil? && params[:timeout] == 'false'
       question_id = params[:question_id]
       redirect "/game/#{question_id}"
@@ -155,7 +156,7 @@ class App < Sinatra::Application
       # Guardo en la tabla answers la respuesta del usuario, la cual fue nil. No lo crea
       #Answer.create(user_id: user_id, option_id: nil)
 
-      redirect "/asked/#{params[:question_id]}/#{option_result}/#{selected_option_id}"
+      redirect "/asked/#{params[:question_id]}/#{option_result}/#{selected_option_id}?level=#{level}"
     end
     # Obtener la opción seleccionada de la base de datos a traves de los parametros
     selected_option = Option.find(params[:selected_option_id])
@@ -184,7 +185,7 @@ class App < Sinatra::Application
       AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
 
     end
-    level = params[:level]
+    
     redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}?level=#{level}"
   end
   
