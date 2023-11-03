@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   validates :streak, presence: true
   validate :points_non_negative
 
+  def self.current_user(id)
+    User.find_by(id: id)
+  end
   
   
   def sum_points

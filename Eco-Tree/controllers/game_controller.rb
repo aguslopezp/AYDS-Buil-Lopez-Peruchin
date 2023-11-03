@@ -2,57 +2,43 @@
 
 # Este controlador contiene todos los endpoints correspondientes al juego
 class GameController < Sinatra::Application
-  # Hacer before
+  before do
+    redirect '/' if session[:user_id].nil? && request.path_info != '/'
+  end
+
   get '/game/:id_question' do
     session[:tree] = true # de arbol vuelve a game
-    if session[:user_id].nil?
-      redirect '/' # Redirect to root path if no session active
-    end
-    @total_questions = Question.count # Numero total de preguntas en el juego
-    @id_question = params[:id_question].to_i # id de la pregunta a preguntar
-    @level_selected = params[:level].to_i # este parametro level viene de el post /levels
-
-    user_id = session[:user_id]
-    @user = User.find(user_id)
-
-    # consultamos si esa pregunta habia sido preguntada
-    asked_question = AskedQuestion.find_by(user_id: user_id, question_id: @id_question)
-
-    # Es un id de pregunta valido y nunca fue preguntada a ese usuario
-    if @id_question <= @total_questions && asked_question.nil?
-      @question = Question.find_by(id: @id_question) # pregunta de la bd con ese id
-      @options = Option.where(question_id: @question.id) # opciones que pertenecen a esta @question con ese id
-      level_question = @question.level
-      # controlo para ver si las preguntas de el nivel seleccionado fueron contestadas
-      if @level_selected != level_question
+    id_question = params[:id_question].to_i
+    @level_selected = params[:level].to_i
+    @user = User.current_user(session[:user_id])
+    # Busco pregunta y las opciones
+    @question, @options = Question.get_question_with_options(id_question).values_at(:question, :options)
+    # Redirigimos si la pregunta no existe
+    redirect '/levels' if @question.nil?
+    # Consultamos si esa pregunta fue respondida
+    asked_question = AskedQuestion.asked_question(@user.id, @question.id)
+    # No fue respondida
+    if !asked_question
+      if @level_selected != @question.level # ME MATA QUE ESTE IF LO TENGA QUE REPETIR DOS VECES PERO NO SE COMO HACER PARA HACER UNO SOOLO
         erb :level_finished
       else
         erb :game
       end
-    # Esa pregunta ya se le pregunto al usuario, buscamos la siguiente pregunta que no haya sido preguntada
-    elsif @id_question <= @total_questions && !asked_question.nil?
-      i = @id_question
-      while i <= @total_questions && !asked_question.nil?
-        i += 1
-        asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
-      end
-      if i > @total_questions # no hay mas preguntas para hacer, todas fueron preguntadas
-        erb :game_finished
-      else # encontramos una pregunta que no se le hizo nunca al usuario
-        @id_question = i # nueva pregunta a ser preguntada
-        session[:question_id] = @id_question
-        @question = Question.find_by(id: @id_question)
-        @options = Option.where(question_id: @question.id)
-        level_question = @question.level
-        # controlo para ver si las preguntas de el nivel seleccionado fueron contestadas
-        if @level_selected != level_question
+    # Pregunta respondida, busco la siguiente que no haya sido respondida
+    elsif
+      new_cuestion_id = Question.find_next_question(@question.id, @user.id, Question.total_questions())
+      if new_cuestion_id
+        session[:question_id] = new_cuestion_id
+        # Busco nueva pregunta y las opciones
+        @question, @options = Question.get_question_with_options(new_cuestion_id).values_at(:question, :options)
+        if @level_selected != @question.level
           erb :level_finished
         else
           erb :game
         end
+      else
+        erb :game_finished
       end
-    else # el juego se termino
-      erb :game_finished
     end
   end
 
@@ -100,8 +86,7 @@ class GameController < Sinatra::Application
   end
 
   get '/levels' do
-    user_id = session[:user_id]
-    user = User.find(user_id)
+    user = User.current_user(session[:user_id])
     @disabled_level = params[:disabled_level]
     @reset = params[:reset]
     @points = user.points
