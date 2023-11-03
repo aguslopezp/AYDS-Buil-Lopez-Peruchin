@@ -17,29 +17,16 @@ class GameController < Sinatra::Application
     redirect '/levels' if @question.nil?
     # Consultamos si esa pregunta fue respondida
     asked_question = AskedQuestion.asked_question(@user.id, @question.id)
-    # No fue respondida
-    if !asked_question
-      if @level_selected != @question.level # ME MATA QUE ESTE IF LO TENGA QUE REPETIR DOS VECES PERO NO SE COMO HACER PARA HACER UNO SOOLO
-        erb :level_finished
-      else
-        erb :game
-      end
-    # Pregunta respondida, busco la siguiente que no haya sido respondida
-    elsif
-      new_cuestion_id = Question.find_next_question(@question.id, @user.id, Question.total_questions())
-      if new_cuestion_id
-        session[:question_id] = new_cuestion_id
-        # Busco nueva pregunta y las opciones
-        @question, @options = Question.get_question_with_options(new_cuestion_id).values_at(:question, :options)
-        if @level_selected != @question.level
-          erb :level_finished
-        else
-          erb :game
-        end
-      else
-        erb :game_finished
-      end
+    # Fue respondida
+    if asked_question
+      new_cuestion_id = Question.find_next_question(@question.id, @user.id, Question.total_questions)
+      erb :game_finished if new_cuestion_id.nil?
+      session[:question_id] = new_cuestion_id
+      # Busco nueva pregunta y las opciones
+      @question, @options = Question.get_question_with_options(new_cuestion_id).values_at(:question, :options)
+      # Pregunta respondida, busco la siguiente que no haya sido respondida
     end
+    erb(@level_selected != @question.level ? :level_finished : :game)
   end
 
   post '/game/:question_id' do
