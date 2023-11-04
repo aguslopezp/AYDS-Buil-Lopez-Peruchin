@@ -3,21 +3,20 @@
 # Esta es la clase del controlador de la tienda.
 # Maneja las rutas de la tienda y la compra de hojas/fondos denominados Items.
 class StoreController < Sinatra::Application
-  before ['/store', '/buyItem'] do
-    # Verifica si el usuario ha iniciado sesion antes de acceder a ciertas rutas.
-    redirect '/' if session[:user_id].nil?
+  before do
+    redirect '/' if session[:user_id].nil? && request.path_info != '/'
   end
 
   # Ruta para mostrar la tienda.
   get '/store' do
-    @user = current_user
+    @user = current_user(id, session[:user_id])
     @coin = @user.coin
     erb :store
   end
 
   # Ruta para comprar un item de la tienda.
   get '/buyItem' do
-    @user = current_user
+    @user = current_user(id, session[:user_id])
     @coin = @user.coin
     @item_selected = params[:item]
     @item = Item.where(section: @item_selected)
@@ -53,7 +52,7 @@ class StoreController < Sinatra::Application
   end
 
   # Obtiene el usuario actual en la sesion.
-  def current_user
-    return User.find(session[:user_id]) if session[:user_id]
+  def current_user(field, value)
+    return User.find_by(field: value) 
   end
 end
