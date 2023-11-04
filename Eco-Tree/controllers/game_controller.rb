@@ -8,25 +8,19 @@ class GameController < Sinatra::Application
 
   get '/game/:id_question' do
     session[:tree] = true # de arbol vuelve a game
-    id_question = params[:id_question].to_i
-    @level_selected = params[:level].to_i
     @user = User.current_user(session[:user_id])
-    # Busco pregunta y las opciones
-    @question, @options = Question.get_question_with_options(id_question).values_at(:question, :options)
-    # Redirigimos si la pregunta no existe
-    redirect '/levels' if @question.nil?
-    # Consultamos si esa pregunta fue respondida
-    asked_question = AskedQuestion.asked_question(@user.id, @question.id)
-    # Fue respondida
-    if asked_question
-      new_cuestion_id = Question.find_next_question(@question.id, @user.id, Question.total_questions)
-      erb :game_finished if new_cuestion_id.nil?
-      session[:question_id] = new_cuestion_id
-      # Busco nueva pregunta y las opciones
-      @question, @options = Question.get_question_with_options(new_cuestion_id).values_at(:question, :options)
-      # Pregunta respondida, busco la siguiente que no haya sido respondida
+    question_id = params[:id_question].to_i
+    @level_selected = params[:level].to_i
+    total_questions = Question.total_questions
+    redirect '/levels' if question_id > total_questions
+    new_question = Question.find_next_question(question_id, @user.id, total_questions)
+    if new_question.nil?
+      erb :game_finished
+    else
+      @question, @options = new_question.values_at(:question, :options)
+      session[:question_id] = @question.id
+      erb(@level_selected != @question.level ? :level_finished : :game)
     end
-    erb(@level_selected != @question.level ? :level_finished : :game)
   end
 
   post '/game/:question_id' do
@@ -158,7 +152,7 @@ class GameController < Sinatra::Application
 
   post '/asked/:question_id' do
     # user_id = session[:user_id]
-    next_question = params[:question_id].to_i + 1
+    next_question = params[:question_id].to_i
     level = params[:level]
     session[:question_id] = next_question
     redirect "/game/#{next_question}?level=#{level}"

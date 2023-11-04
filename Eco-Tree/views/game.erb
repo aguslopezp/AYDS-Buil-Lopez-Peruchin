@@ -11,15 +11,15 @@
   <body>
     <header>
       <nav class="navigation">
+          <a href=<%="/menu"%> class="profile">Menu</a>
           <a href="/levels" class="profile">Niveles</a>
-          <a href="/tree" class="profile">Mi Arbol</a>
           <div class="points">
             Puntos: <%= @user.points %>
           </div>
           <div id="coin-count" class="points">
             coins: <%= @user.coin %>
           </div>
-          <a href=<%="/menu"%> class="profile">Menu</a>
+          <a href="/tree" class="profile">Mi Arbol</a>
       </nav>
     </header>
     
