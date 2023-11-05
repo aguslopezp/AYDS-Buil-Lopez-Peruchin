@@ -9,6 +9,10 @@ class Option < ActiveRecord::Base
     Option.find_by(id: option_id)
   end
 
+  def self.find_correct_option(question_id)
+    Option.find_by(isCorrect: 1, question_id: question_id)&.description
+  end
+
   private
     def isCorrect_boolean_value
       unless [true,false].include?(isCorrect)

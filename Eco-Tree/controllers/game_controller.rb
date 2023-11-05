@@ -4,11 +4,11 @@
 class GameController < Sinatra::Application
   before do
     redirect '/' if session[:user_id].nil? && request.path_info != '/'
+    @user = User.current_user(session[:user_id]) unless session[:user_id].nil?
   end
 
   get '/game/:id_question' do
     session[:tree] = true
-    @user = User.current_user(session[:user_id])
     question_id = params[:id_question].to_i
     @level_selected = params[:level].to_i
     total_questions = Question.total_questions
@@ -24,49 +24,39 @@ class GameController < Sinatra::Application
   end
 
   post '/game/:question_id' do
-    user = User.current_user(session[:user_id])
     level = params[:level]
     selected_option_id = params[:selected_option_id]
     question_id = params[:question_id].to_i
     if selected_option_id.nil? && params[:timeout] == 'true'
-      AskedQuestion.createAskedQuestion(user.id, question_id)
+      AskedQuestion.createAskedQuestion(@user.id, question_id)
       redirect "/asked/#{question_id}/nil/nil?level=#{level}"
     end
     selected_option = Option.find(selected_option_id)
     # Calculo puntos del usuario si no la respondio nunca
-    unless AskedQuestion.asked_question(user.id, question_id)
-      if selected_option.isCorrect
-        user.update_poins()
-      else
-        user.reset_streak
-      end
-      Answer.createAnswer(user.id, selected_option_id)
-      AskedQuestion.createAskedQuestion(user.id, question_id)
+    unless AskedQuestion.asked_question(@user.id, question_id)
+      selected_option.isCorrect ? @user.update_points : @user.reset_streak
+      Answer.createAnswer(@user.id, selected_option_id)
+      AskedQuestion.createAskedQuestion(@user.id, question_id)
     end
     redirect "/asked/#{question_id}/#{selected_option.isCorrect}/#{selected_option_id}?level=#{level}"
   end
 
   get '/levels' do
-    user = User.current_user(session[:user_id])
     @disabled_level = params[:disabled_level]
     @reset = params[:reset]
-    @points = user.points
-    @levels = Question.distinct.pluck(:level)
+    @points = @user.points
+    @levels = Question.all_levels
     erb :levels
   end
 
   post '/levels' do
-    user_id = session[:user_id]
-    level = params[:levelSelected]
-    question = Question.where(level: level).first
-    previous_question = question.id - 1
-    redirect "/game/#{question.id}?level=#{level}" if previous_question <= 0
-    response = AskedQuestion.find_by(user_id: user_id, question_id: previous_question).nil?
-    if response
-      redirect '/levels?disabled_level=true'
-    else
-      redirect "/game/#{question.id}?level=#{level}"
-    end
+    level = params[:level_selected]
+    question = Question.first_question_level(level)
+    puts "level: #{level}, question_id: #{question.id}"
+    previous_question_id = question.id - 1
+    redirect "/game/#{question.id}?level=#{level}" if previous_question_id <= 0
+    response = AskedQuestion.asked_question(@user.id, previous_question_id)
+    response ? (redirect "/game/#{question.id}?level=#{level}") : (redirect '/levels?disabled_level=true')
   end
 
   post '/buyMoreTime' do
@@ -105,33 +95,26 @@ class GameController < Sinatra::Application
   end
 
   get '/asked/:question_id/:option_result/:selected_option_id' do
-    redirect '/' if session[:user_id].nil?
-    @question = Question.find(params[:question_id])
-    @user = User.find(session[:user_id])
+    @question = Question.find_question(params[:question_id])
     @result = params[:option_result]
     @level = params[:level]
-    if @result == 'nil'
-      @answer = 'Respuesta no contestada'
+    if @result == 'true'
+      @respuesta = 'RESPUESTA CORRECTA'
+      @user_answer = Option.find(params[:selected_option_id]).description
+    elsif @result == 'false'
+      @respuesta = 'RESPUESTA INCORRECTA'
+      @user_answer = Option.find(params[:selected_option_id]).description
     else
-      selected_option = Option.find(params[:selected_option_id])
-      @answer = selected_option.description
+      @user_answer = 'Pregunta no contestada'
+      @respuesta = 'SE AGOTO EL TIEMPO'
     end
-
+    @user = User.current_user(session[:user_id])
     @streak = @user.streak
-
-    @correct = Option.find_by(isCorrect: 1, question_id: params[:question_id])&.description
-    @respuesta = if @result == 'true'
-                   'RESPUESTA CORRECTA'
-                 elsif @result == 'false'
-                   'RESPUESTA INCORRECTA'
-                 else
-                   'SE AGOTO EL TIEMPO'
-                 end
+    @correct_answer = Option.find_correct_option(@question.id)
     erb :asked
   end
 
   post '/asked/:question_id' do
-    # user_id = session[:user_id]
     next_question = params[:question_id].to_i
     level = params[:level]
     session[:question_id] = next_question
@@ -139,23 +122,7 @@ class GameController < Sinatra::Application
   end
 
   get '/play' do
-    redirect '/' if session[:user_id].nil?
-
-    user_id = session[:user_id]
-    @user = User.find(user_id)
-
-    @total_questions = Question.count
-    @user.update(points: 0)
-
-    @user.reset_streak
-
-    i = 1
-    while i <= @total_questions
-      asked_question = AskedQuestion.find_by(user_id: user_id, question_id: i)
-      asked_question&.destroy
-      i += 1
-    end
-    reset = true
-    redirect "/levels?reset=#{reset}"
+    @user.reset_progress
+    redirect '/levels?reset=true'
   end
 end
