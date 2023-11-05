@@ -2,10 +2,6 @@
 
 # Este controlador contiene todos los endpoints correspondientes al juego
 class GameController < Sinatra::Application
-  before do
-    redirect '/' if session[:user_id].nil? && request.path_info != '/'
-  end
-
   get '/game/:id_question' do
     session[:tree] = true
     @user = User.current_user(session[:user_id])
@@ -70,15 +66,11 @@ class GameController < Sinatra::Application
   end
 
   post '/buyMoreTime' do
-    user_id = session[:user_id]
     coins_to_decrement = 30
-
-    user = User.find(user_id)
-
-    if user.coin >= coins_to_decrement
-      user.update(coin: user.coin - coins_to_decrement)
+    if @user.coin >= coins_to_decrement
+      @user.discount_coins(coins_to_decrement)
       content_type :json
-      { success: true, updatedCoins: user.coin }.to_json
+      { success: true, updatedCoins: @user.coin }.to_json
     else
       content_type :json
       { success: false }.to_json
@@ -86,18 +78,14 @@ class GameController < Sinatra::Application
   end
 
   post '/incorrectOptions' do
-    user_id = session[:user_id]
     coins_to_decrement = 10
-
     question_id = session[:question_id]
 
-    user = User.find(user_id)
-
-    if user.coin >= coins_to_decrement
-      user.update(coin: user.coin - coins_to_decrement)
-      incorrect_options = Option.where(question_id: question_id, isCorrect: false).pluck(:id)
+    if @user.coin >= coins_to_decrement
+      @user.discount_coins(coins_to_decrement)
+      incorrect_options = Option.incorrect_options(question_id)
       content_type :json
-      { success: true, updatedCoins: user.coin, incorrect_options: incorrect_options }.to_json
+      { success: true, updatedCoins: @user.coin, incorrect_options: incorrect_options }.to_json
     else
       content_type :json
       { success: false }.to_json
