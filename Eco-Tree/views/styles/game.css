@@ -149,15 +149,14 @@ input[type="radio"]:checked {
   outline: none;
   font-size: 25px;
   font-weight: 600;
-  transition: .3s;
+  transition: transform 0.3s ease;
 }
 
 .submit-button:hover {
   border: 2px solid rgba(2, 156, 33, 0.739);
   box-shadow: 0 0 30px rgba(0, 228, 141, 0.5);
   padding: 5px;
-  width: 200px; 
-  height: 50px; 
+  transform: scale(1.1);
 }
 
 #next-question {

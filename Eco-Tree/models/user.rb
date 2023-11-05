@@ -13,13 +13,11 @@ class User < ActiveRecord::Base
   def self.current_user(id)
     User.find_by(id: id)
   end
-  
-  
+
   def sum_points
     self.points += 1  
     save
   end
-
 
   def add_streak_to_points(streak)
     self.points += streak 
@@ -29,6 +27,16 @@ class User < ActiveRecord::Base
   def sum_streak
     self.streak += 1
     save
+  end
+
+  def update_poins()
+    self.sum_points
+    self.sum_streak
+    self.sum_10_coins
+    if (self.streak % 3).zero?
+      self.add_streak_to_points(self.streak / 3)
+      self.add_coins_from_streak((self.streak / 3) * 10)
+    end
   end
 
   def reset_streak
@@ -41,7 +49,6 @@ class User < ActiveRecord::Base
     self.coin -= coins
     save
   end
-  
 
   def sum_10_coins
     self.coin += 10

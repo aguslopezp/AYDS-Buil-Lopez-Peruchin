@@ -5,6 +5,10 @@ class Option < ActiveRecord::Base
   #validates :isCorrect, presence: true
   validate :isCorrect_boolean_value
 
+  def self.find(option_id)
+    Option.find_by(id: option_id)
+  end
+
   private
     def isCorrect_boolean_value
       unless [true,false].include?(isCorrect)

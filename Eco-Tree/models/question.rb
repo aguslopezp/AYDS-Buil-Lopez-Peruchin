@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
   def self.find_next_question(current_question_id, user_id, total_questions)
     next_question_id = current_question_id
     while next_question_id <= total_questions
-      if !AskedQuestion.asked_question(user_id, next_question_id)
+      unless AskedQuestion.asked_question(user_id, next_question_id)
         question = Question.find_question(next_question_id)
         options = Question.find_options(next_question_id)
         return { question: question, options: options }

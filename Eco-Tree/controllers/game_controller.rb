@@ -7,7 +7,7 @@ class GameController < Sinatra::Application
   end
 
   get '/game/:id_question' do
-    session[:tree] = true # de arbol vuelve a game
+    session[:tree] = true
     @user = User.current_user(session[:user_id])
     question_id = params[:id_question].to_i
     @level_selected = params[:level].to_i
@@ -24,46 +24,26 @@ class GameController < Sinatra::Application
   end
 
   post '/game/:question_id' do
-    user_id = session[:user_id]
+    user = User.current_user(session[:user_id])
     level = params[:level]
-    if params[:selected_option_id].nil? && params[:timeout] == 'false'
-      question_id = params[:question_id]
-      redirect "/game/#{question_id}"
+    selected_option_id = params[:selected_option_id]
+    question_id = params[:question_id].to_i
+    if selected_option_id.nil? && params[:timeout] == 'true'
+      AskedQuestion.createAskedQuestion(user.id, question_id)
+      redirect "/asked/#{question_id}/nil/nil?level=#{level}"
     end
-
-    if params[:selected_option_id].nil? && params[:timeout] == 'true'
-
-      # Respuesta preguntada se marcara como preguntada para no volver a preguntarse
-      AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
-      option_result = 'nil'
-      selected_option_id = 999_999
-
-      # Guardo en la tabla answers la respuesta del usuario, la cual fue nil. No lo crea
-      # Answer.create(user_id: user_id, option_id: nil)
-
-      redirect "/asked/#{params[:question_id]}/#{option_result}/#{selected_option_id}?level=#{level}"
-    end
-    selected_option = Option.find(params[:selected_option_id])
-    option_result = selected_option.isCorrect ? 'true' : 'false'
-    # Calculo puntos del usuario
-    user = User.find(user_id)
-    if AskedQuestion.find_by(user_id: user_id, question_id: params[:question_id]).nil?
-      if option_result == 'true'
-        user.sum_points
-        user.sum_streak
-        user.sum_10_coins
-        if (user.streak % 3).zero?
-          user.add_streak_to_points(user.streak / 3)
-          user.add_coins_from_streak((user.streak / 3) * 10)
-        end
+    selected_option = Option.find(selected_option_id)
+    # Calculo puntos del usuario si no la respondio nunca
+    unless AskedQuestion.asked_question(user.id, question_id)
+      if selected_option.isCorrect
+        user.update_poins()
       else
         user.reset_streak
       end
-      Answer.create(user_id: user_id, option_id: params[:selected_option_id])
-      AskedQuestion.create(user_id: user_id, question_id: params[:question_id])
+      Answer.createAnswer(user.id, selected_option_id)
+      AskedQuestion.createAskedQuestion(user.id, question_id)
     end
-
-    redirect "/asked/#{params[:question_id]}/#{option_result}/#{params[:selected_option_id]}?level=#{level}"
+    redirect "/asked/#{question_id}/#{selected_option.isCorrect}/#{selected_option_id}?level=#{level}"
   end
 
   get '/levels' do
