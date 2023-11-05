@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validate :points_non_negative
 
   
-  
+
   def sum_points
     self.points += 1  
     save
@@ -49,12 +49,6 @@ class User < ActiveRecord::Base
     self.coin += coins
     save
   end
-
-
-  def self.current_user(field, value)
-    return User.find_by(field => value) if value && field
-  end
-
 
   #desencripta password y la compara con la ingresada
   def compare_password(hash_pass, password)

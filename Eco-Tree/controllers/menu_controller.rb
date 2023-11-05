@@ -5,18 +5,17 @@
 class MenuController < Sinatra::Application
   before do
     redirect '/' if session[:user_id].nil? && request.path_info != '/'
+    @user = User.current_user(session[:user_id]) unless session[:user_id].nil?
   end
 
   get '/menu' do
     session[:tree] = false
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
     erb :menu, locals: { user_id: user_id }
   end
 
   get '/practicar' do
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
     setup_practice_data(user_id)
     erb :practice
   end
@@ -33,7 +32,6 @@ class MenuController < Sinatra::Application
 
   post '/practicar' do
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
     @question_index = session[:question_index].to_i + 1
     session[:question_index] = @question_index
     @questions_asked = session[:questions_asked]
@@ -42,29 +40,25 @@ class MenuController < Sinatra::Application
 
   get '/ranking' do
     user_id = session[:user_id]
-    user = User.current_user(:id, user_id)
     @users = User.order(points: :desc).limit(10) # arreglo de usuarios ordenados de manera descendente
     @position = User.order(points: :desc).pluck(:id).find_index(session[:user_id]) + 1
 
-    erb :ranking, locals: { user: user }
+    erb :ranking, locals: { user: @user }
   end
 
   get '/profile' do
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
     @verificated = @user.valid_email
     erb :profile
   end
 
   get '/profile_change' do
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
     erb :profile_change
   end
 
   post '/profile_change' do
     user_id = session[:user_id]
-    user = User.current_user(:id, user_id)
 
     new_username = params[:new_username]
     current_password = params[:current_password]
@@ -72,29 +66,28 @@ class MenuController < Sinatra::Application
     new_email = params[:new_email]
 
     if (new_username != '' && !User.find_by(username: new_username).nil?) ||
-       (new_password != '' && !current_password.nil? && (current_password != user.password)) ||
+       (new_password != '' && !current_password.nil? && (current_password != @user.password)) ||
        (new_email != '' && !User.find_by(email: new_email).nil?)
       redirect '/profile_change'
     end
 
-    user.update_column(:username, new_username) if new_username != ''
+    @user.update_column(:username, new_username) if new_username != ''
 
-    user.update_column(:password, new_password) if new_password != '' && current_password != ''
+    @user.update_column(:password, new_password) if new_password != '' && current_password != ''
 
-    user.update_column(:email, new_email) if new_email != ''
+    @user.update_column(:email, new_email) if new_email != ''
 
-    redirect '/menu' unless user.save
+    redirect '/menu' unless @user.save
 
     redirect '/profile'
   end
 
   get '/tree' do
     user_id = session[:user_id]
-    @user = User.current_user(:id, user_id)
 
-    hoja_id = @user.leaf_id # Busco el id de la actual compra del usuario
+    hoja_id = @user.leaf_id 
     fondo_id = @user.background_id
-    @hoja = Item.find_by(id: hoja_id).name  # con ese id busco en los items y paso el nombre
+    @hoja = Item.find_by(id: hoja_id).name  
     @fondo = Item.find_by(id: fondo_id).name
 
     @tree = session[:tree]
