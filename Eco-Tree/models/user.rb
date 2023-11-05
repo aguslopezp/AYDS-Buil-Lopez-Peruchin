@@ -76,6 +76,11 @@ class User < ActiveRecord::Base
     save
   end
 
+  # Obtiene el usuario actual en la sesion.
+  def self.current_user(field, value)
+    return User.find_by(field => value) if value and field
+  end
+  
   private
 
   def points_non_negative

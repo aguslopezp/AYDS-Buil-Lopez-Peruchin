@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+
 # Esta es la clase del controlador de la tienda.
 # Maneja las rutas de la tienda y la compra de hojas/fondos denominados Items.
 class StoreController < Sinatra::Application
@@ -9,14 +10,14 @@ class StoreController < Sinatra::Application
 
   # Ruta para mostrar la tienda.
   get '/store' do
-    @user = current_user(id, session[:user_id])
+    @user = User.current_user(:id, (session[:user_id]))
     @coin = @user.coin
     erb :store
   end
 
   # Ruta para comprar un item de la tienda.
   get '/buyItem' do
-    @user = current_user(id, session[:user_id])
+    @user = User.current_user(:id, (session[:user_id]))
     @coin = @user.coin
     @item_selected = params[:item]
     @item = Item.where(section: @item_selected)
@@ -41,7 +42,7 @@ class StoreController < Sinatra::Application
 
   # Metodo POST para comprar un elemento de la tienda.
   post '/buyItem' do
-    user = current_user
+    user = User.current_user(:id, (session[:user_id]))
 
     request_body = JSON.parse(request.body.read)
     name = request_body['name']
@@ -49,10 +50,5 @@ class StoreController < Sinatra::Application
 
     user.buy_item(item.id, item.price)
     user.set_item_in_user(params[:item], item.id)
-  end
-
-  # Obtiene el usuario actual en la sesion.
-  def current_user(field, value)
-    return User.find_by(field: value) 
   end
 end

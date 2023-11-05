@@ -15,7 +15,7 @@ class AuthenticationController < Sinatra::Application
 
   # Maneja la solicitud POST de inicio de sesion.
   post '/login' do
-    @user = current_user(:username, params[:username])
+    @user = User.current_user(:username, params[:username])
     check_user(@user)
   end
 
@@ -47,7 +47,7 @@ class AuthenticationController < Sinatra::Application
   # Maneja la solicitud POST de validacion de correo electronico.
   post '/validate' do
     if session[:code] == params[:codigo]
-      user = current_user(:id, session[:user_id])
+      user = User.current_user(:id, session[:user_id])
       user.update_column(:valid_email, true)
     end
     redirect '/menu'
@@ -59,10 +59,6 @@ class AuthenticationController < Sinatra::Application
     session[:fondo] = Item.find_by(id: 10).name
   end
 
-  # Metodo para buscar el usuario por algun atributo.
-  def current_user(field, value)
-    User.find_by(field => value)
-  end
 
   # Metodo para iniciar sesion.
   def check_user(user)
