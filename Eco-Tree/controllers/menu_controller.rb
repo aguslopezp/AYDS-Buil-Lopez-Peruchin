@@ -3,27 +3,20 @@
 # MenuController is responsible for handling menu-related routes and actions.
 # It provides routes for viewing the menu, practicing, ranking, and managing user profiles.
 class MenuController < Sinatra::Application
-  def check_session
-    redirect '/' if session[:user_id].nil?
-  end
-
-  def current_user
-    return User.find(session[:user_id]) if session[:user_id]
+  before do
+    redirect '/' if session[:user_id].nil? && request.path_info != '/'
   end
 
   get '/menu' do
     session[:tree] = false
-    check_session
     user_id = session[:user_id]
-    @user = current_user
+    @user = User.current_user(:id, user_id)
     erb :menu, locals: { user_id: user_id }
   end
 
   get '/practicar' do
-    redirect '/' if session[:user_id].nil? # Redirigir al inicio de sesion si la sesion no esta activa
-
     user_id = session[:user_id]
-    @user = current_user
+    @user = User.current_user(:id, user_id)
     setup_practice_data(user_id)
     erb :practice
   end
@@ -39,7 +32,8 @@ class MenuController < Sinatra::Application
   end
 
   post '/practicar' do
-    @user = current_user
+    user_id = session[:user_id]
+    @user = User.current_user(:id, user_id)
     @question_index = session[:question_index].to_i + 1
     session[:question_index] = @question_index
     @questions_asked = session[:questions_asked]
@@ -47,32 +41,30 @@ class MenuController < Sinatra::Application
   end
 
   get '/ranking' do
-    redirect '/' if session[:user_id].nil? # Redirigir al inicio de sesion si la sesion no esta activa
-
+    user_id = session[:user_id]
+    user = User.current_user(:id, user_id)
     @users = User.order(points: :desc).limit(10) # arreglo de usuarios ordenados de manera descendente
-    user = current_user
     @position = User.order(points: :desc).pluck(:id).find_index(session[:user_id]) + 1
 
     erb :ranking, locals: { user: user }
   end
 
   get '/profile' do
-    redirect '/' if session[:user_id].nil? # Redirigir al inicio de sesion si la sesion no esta activa
-
-    @user = current_user
+    user_id = session[:user_id]
+    @user = User.current_user(:id, user_id)
     @verificated = @user.valid_email
     erb :profile
   end
 
   get '/profile_change' do
-    redirect '/' if session[:user_id].nil? # Redirigir al inicio de sesion si la sesion no esta activa
-
-    @user = current_user
+    user_id = session[:user_id]
+    @user = User.current_user(:id, user_id)
     erb :profile_change
   end
 
   post '/profile_change' do
-    user = current_user
+    user_id = session[:user_id]
+    user = User.current_user(:id, user_id)
 
     new_username = params[:new_username]
     current_password = params[:current_password]
@@ -97,8 +89,8 @@ class MenuController < Sinatra::Application
   end
 
   get '/tree' do
-    redirect '/' if session[:user_id].nil? # Redirigir al inicio de sesion si la sesion no esta activa
-    @user = current_user
+    user_id = session[:user_id]
+    @user = User.current_user(:id, user_id)
 
     hoja_id = @user.leaf_id # Busco el id de la actual compra del usuario
     fondo_id = @user.background_id

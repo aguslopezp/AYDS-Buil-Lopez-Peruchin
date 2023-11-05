@@ -50,6 +50,12 @@ class User < ActiveRecord::Base
     save
   end
 
+
+  def self.current_user(field, value)
+    return User.find_by(field => value) if value && field
+  end
+
+
   #desencripta password y la compara con la ingresada
   def compare_password(hash_pass, password)
     return BCrypt::Password.new(hash_pass) == password
