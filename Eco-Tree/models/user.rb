@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validate :points_non_negative
 
   
-  
+
   def sum_points
     self.points += 1  
     save
