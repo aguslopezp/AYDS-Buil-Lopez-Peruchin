@@ -5,8 +5,7 @@ class Option < ActiveRecord::Base
   belongs_to :question
 
   validates :description, presence: true
-  # validates :isCorrect, presence: true
-  validate :isCorrect_boolean_value
+  validate :correct_boolean_value
 
   def self.find(option_id)
     Option.find_by(id: option_id)

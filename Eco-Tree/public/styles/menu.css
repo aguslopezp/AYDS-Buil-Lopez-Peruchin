@@ -1,38 +1,54 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  flex-direction: column;
   background: url('/front/lago-min.jpg') no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
-header{
-  position: fixed;
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   top: 0;
   left: 0;
-  width: 100%;
-  padding: 20px 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 99;
+  width: 100vw;
+  height: 10%;
+  padding: 10px;
 }
 
+.Question_Box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255,  .5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 10px rgba(0, 255, 179, 0.399);
+  background-color: #00000017;
+  position: relative;
+  width: 80%;
+  height: 70%;
+}
+
+.form-box{
+  box-sizing: border-box;
+}
 
 .logo{
-  font-size: 3.2em;
-  color: #ffffff;
-  user-select: none;
-  height: 10px;
+  font-size: 2em;
+  color: #f1f1f1;
 }
 
 .game {
@@ -50,7 +66,6 @@ header{
   text-align: center;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   transition: background-color 1s;
-  
 }
 
 .game:hover {
@@ -99,21 +114,8 @@ header{
   color: #e30505;  
 }
 
-.Question_Box {
-  position: relative;
-  width: 800px;
-  height: 550px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255,  .5);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 0 10px rgba(0, 255, 179, 0.399);
-  background-color: #00000017;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (max-width: 650px) {
+   .text-header {
+    font-size: 1.5em;
+  }
 }
-
-
-
-

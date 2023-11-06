@@ -21,6 +21,7 @@ require_relative 'models/answer'
 require_relative 'models/item'
 require_relative 'models/purchased_item'
 
+# Clase principal para definir la aplicacion de Sinatra
 class App < Sinatra::Application
   use AuthenticationController
   use GameController
@@ -28,7 +29,7 @@ class App < Sinatra::Application
   use StoreController
 
   enable :sessions
-  # Configuracion de la clave secreta de sesión
+  # Configuracion de la clave secreta de sesion
   set :root, File.dirname(__FILE__)
   set :session_secret, 'la_pelota_no_se_mancha'
   set :public_folder, File.dirname(__FILE__) + '/public'
