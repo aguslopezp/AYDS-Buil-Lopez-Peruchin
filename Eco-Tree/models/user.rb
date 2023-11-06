@@ -55,6 +55,32 @@ class User < ActiveRecord::Base
     return BCrypt::Password.new(hash_pass) == password
   end
 
+  def set_item_in_user(item, item_id)
+    if (item == 'hoja')
+      self.update_column(:leaf_id, item_id)
+    else
+      self.update_column(:background_id, item_id)
+    end
+    save
+  end
+
+  def buy_item(item_id, item_price)
+    if PurchasedItem.find_by(item_id: item_id, user_id: self.id).nil?
+      PurchasedItem.create(user_id: self.id, item_id: item_id)
+
+      if (item_price <= self.coin)
+        self.discount_coins(item_price)
+      end
+
+    end
+    save
+  end
+
+  # Obtiene el usuario actual en la sesion.
+  def self.current_user(field, value)
+    return User.find_by(field => value) if value and field
+  end
+  
   private
 
   def points_non_negative
@@ -62,6 +88,7 @@ class User < ActiveRecord::Base
       errors.add(:points, "must be greater than or equal to 0")
     end
   end
+  
   
 end
   

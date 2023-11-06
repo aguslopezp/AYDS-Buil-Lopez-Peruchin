@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Skin - Eco-Tree</title>
-    <link rel="stylesheet" href="/styles/buyFondo.css" />
+    <title>Store - Eco-Tree</title>
+    <link rel="stylesheet" href="/styles/buyItem.css" />
     <link rel="icon" href="/front/icon.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,11 +10,12 @@
   </head>
 
   <body>
+    
    <header>
     <nav class="nav">
       <a href="/store" class="menu">Volver</a>
       <div class="eco_coin">
-        EcoCoins:  <strong class="price"><%=@coin%></strong> 
+        EcoCoins: <strong class="price"><%= @coin %></strong>
       </div>
     </nav>
   </header>
@@ -22,37 +23,35 @@
   <%# variables para usar en los sections %>
   <% item_price = '' %>
   
+
   <%# Muestra cada item %>
-  <section class="box">
+  <section class="box-<%= @item_selected %>">
     <% @item.each do |item| %>
-      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>" data-id="<%= item.id %>">
-        
-        <% if @background_id == item.id %>
+      <div class="box-shop" data-name="<%= item.name %>" data-description="<%= item.description %>"data-id="<%= item.id %>">
+        <% if @item_selected_id == item.id %>
           <strong class="descrip" style="color: black;">En uso</strong>
         <% else %>
           <p class="descrip" style="color: white;">En uso</p>
         <% end %>
-
-        <img src="/front/fondos/<%= item.name %>.jpg" class="fondos"/>
+        
+        <img src="/front/<%= @item_selected %>s/<%= item.name %>.png" class="<%= @item_selected %>"/>
         <p class="descrip">- <%= item.description %></p>
-
         <% if @item_comprados[item.id] %>
           <strong class="comprado">COMPRADO</strong>
         <% else %>
           <strong class="precio">$  <%= item.price %></strong>
-        <% end %>  
-
+        <% end %>
         <% item_price = item.price %>
       </div>
     <% end %>
   </section>
-
+  
   <%# Muestra si se puede comprar el item %>
   <section class="buy-confirm" id="buy-confirm" style="display: none;">
-    <div class="pre-image">
-      <img id="item-image-buy" class="fondos"/>
+    <div class="pre-image-<%= @item_selected %>">
+      <img id="item-image-buy" class="<%= @item_selected %>"/> 
     </div>
-    <p>Desea realizar la compra de <strong class="description" id="item-description-buy"></strong>
+    <p>Desea realizar la compra de <strong class="description" id="item-description-buy"></strong> 
     por <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins?</p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
@@ -62,10 +61,10 @@
 
   <%# Muestra si el item ya se compro %>
   <section class="buy-confirm" id="confirmed_selection" style="display: none;">
-    <div class="pre-image">
-      <img id="item-image-select" class="fondos"/>
+    <div class="pre-image-<%= @item_selected %>">
+      <img id="item-image-select" class="<%= @item_selected %>"/>
     </div>
-    <p>Desea seleccionar <strong class="description" id="item-description-select"></strong></p>
+    <p>Desea seleccionar <strong class="description" id="item-description-select"></strong>?</p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()">NO</button>
       <button class="button" onclick="confirmPurchase()">SI</button>
@@ -74,10 +73,7 @@
 
   <%# Muestra si el usuario no tiene saldo %>
   <section class="buy-confirm" id="negated_selection" style="display: none;">
-    <p>
-      NO TIENE ECO-COINS SUFICIENTES PARA COMPRAR <strong class="description" id="item-description-negated"></strong> <br> 
-      Necesitas <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins para realizar la compra
-    </p>
+    <p> NO TIENE ECO-COINS SUFICIENTES PARA COMPRAR <strong class="description" id="item-description-negated"></strong><br> Necesitas <span class="price" id="item-coin-buy"> <%= item_price %> </span> coins para realizar la compra</p>
     <div class="buttons">
       <button class="button" onclick="cancelPurchase()"> Cerrar </button>
     </div>
@@ -86,11 +82,13 @@
 
   <script>
     // Convierte a JSON
-    const itemComprados = <%= @item_comprados.to_json %>; 
-    const item_price = <%= @item_price.to_json %>; 
+    const itemComprados = <%= @item_comprados.to_json %>; // Convierte @item_comprados a JSON
+    const item_price = <%= @item_price.to_json %>; // Convierte @item_comprados a JSON
     const coin = <%= @coin.to_json %>;
-    const boxShops = document.querySelectorAll('.box-shop');
+    const item = <%= @item_selected.to_json %>; 
+
     //ids
+    const boxShops = document.querySelectorAll('.box-shop');
     const buyConfirmSection = document.getElementById('buy-confirm');
     const confirmedSelection = document.getElementById('confirmed_selection');
     const negatedSelection = document.getElementById('negated_selection');
@@ -101,6 +99,7 @@
     const itemDescriptionNegated = document.getElementById('item-description-negated'); 
     const itemCoin = document.getElementById('item-coin-buy'); 
 
+
     boxShops.forEach(boxShop => {
       boxShop.addEventListener('click', function() {
         const name = this.getAttribute('data-name');
@@ -109,12 +108,12 @@
         const isPurchased = checkIfPurchased(id);
         const isBalanced = checkBalance(id);
 
-        itemImage.src = `/front/fondos/${name}.jpg`;
-        itemImageSelect.src = `/front/fondos/${name}.jpg`;
+        itemImage.src = `/front/${item}s/${name}.png`;
+        itemImageSelect.src = `/front/${item}s/${name}.png`;
         itemDescription.textContent = description;
         itemDescriptionSelect.textContent = description;
         itemDescriptionNegated.textContent = description;
-       
+
         if (isPurchased) {
           confirmedSelection.style.display = 'flex';
         } else {
@@ -123,7 +122,7 @@
           } else {
             negatedSelection.style.display = 'flex';
           }
-        }    
+        }        
       });
     });
 
@@ -152,12 +151,12 @@
 
     //Envia un JSON al servidor con el item seleccionado
     function confirmPurchase() {
-      const selectedName = itemImage.getAttribute('src').replace('/front/fondos/', '').replace('.jpg', ''); //reemplaza las cadenas por ''
-      
-      const data = { name: selectedName }; //JSON
+      const selectedName = itemImage.getAttribute('src').replace(`/front/${item}s/`, '').replace('.png', '');
 
+      const data = { name: selectedName }; //JSON
+      const url = `/buyItem?item=${item}`;
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/buyFondo', true);
+      xhr.open('POST', url, true);
       xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       xhr.send(JSON.stringify(data));
 
@@ -165,7 +164,7 @@
       confirmedSelection.style.display = 'none';
       location.reload();
     }
-  </script>
 
+  </script>
   </body>
 </html>
