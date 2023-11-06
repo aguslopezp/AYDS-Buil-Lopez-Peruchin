@@ -22,7 +22,7 @@ class Option < ActiveRecord::Base
 
   private
 
-  def isCorrect_boolean_value
+  def correct_boolean_value
     errors.add(:isCorrect, 'isCorrect must be true or false') unless [true, false].include?(isCorrect)
   end
 end

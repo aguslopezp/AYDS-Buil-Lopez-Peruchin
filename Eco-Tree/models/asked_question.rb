@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+# Modelo para representar las preguntas respondidas por el usuario
 class AskedQuestion < ActiveRecord::Base
   has_many :questions
   has_many :users
 
-  def self.createAskedQuestion(user_id, question_id)
+  def self.create_asked_question(user_id, question_id)
     AskedQuestion.create(user_id: user_id, question_id: question_id)
   end
 

@@ -28,7 +28,7 @@ class GameController < Sinatra::Application
     selected_option_id = params[:selected_option_id]
     question_id = params[:question_id].to_i
     if selected_option_id.nil? && params[:timeout] == 'true'
-      AskedQuestion.createAskedQuestion(@user.id, question_id)
+      AskedQuestion.create_asked_question(@user.id, question_id)
       redirect "/asked/#{question_id}/nil/nil?level=#{level}"
     end
     selected_option = Option.find(selected_option_id)
@@ -36,7 +36,7 @@ class GameController < Sinatra::Application
     unless AskedQuestion.asked_question(@user.id, question_id)
       selected_option.isCorrect ? @user.update_points : @user.reset_streak
       Answer.createAnswer(@user.id, selected_option_id)
-      AskedQuestion.createAskedQuestion(@user.id, question_id)
+      AskedQuestion.create_asked_question(@user.id, question_id)
     end
     redirect "/asked/#{question_id}/#{selected_option.isCorrect}/#{selected_option_id}?level=#{level}"
   end
@@ -74,7 +74,6 @@ class GameController < Sinatra::Application
   post '/incorrectOptions' do
     coins_to_decrement = 10
     question_id = session[:question_id]
-
     if @user.coin >= coins_to_decrement
       @user.discount_coins(coins_to_decrement)
       incorrect_options = Option.incorrect_options(question_id)
@@ -107,10 +106,7 @@ class GameController < Sinatra::Application
   end
 
   post '/asked/:question_id' do
-    next_question = params[:question_id].to_i
-    level = params[:level]
-    session[:question_id] = next_question
-    redirect "/game/#{next_question}?level=#{level}"
+    redirect "/game/#{params[:question_id].to_i}?level=#{params[:level]}"
   end
 
   get '/play' do
