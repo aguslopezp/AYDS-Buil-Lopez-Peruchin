@@ -58,7 +58,7 @@ class AuthenticationController < Sinatra::Application
   def check_user(user)
     if user&.compare_password(user.password, params[:password])
       session[:user_id] = user.id
-      Item.set_item_default
+      Item.set_item_default(session)
       redirect '/menu'
     elsif user
       @password_error = '*contraseña incorrecta'
@@ -104,6 +104,6 @@ class AuthenticationController < Sinatra::Application
     send_verificated_email(user.email, session[:code])
     PurchasedItem.create(user_id: user.id, item_id: 6)
     PurchasedItem.create(user_id: user.id, item_id: 10)
-    Item.set_item_default
+    Item.set_item_default(session)
   end
 end
