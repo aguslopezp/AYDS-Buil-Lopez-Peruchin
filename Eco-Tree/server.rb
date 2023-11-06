@@ -7,8 +7,11 @@ require 'sinatra/cookies'
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 require './controllers/authentication_controller.rb'
 require './controllers/Game_controller'
-require './controllers/Menu_controller'
+
 require './controllers/store_controller'
+require './controllers/menu_controller'
+
+
 
 require_relative 'models/user'
 require_relative 'models/question'
@@ -55,5 +58,4 @@ class App < Sinatra::Application
   get '/' do
     erb :start
   end
-
 end
