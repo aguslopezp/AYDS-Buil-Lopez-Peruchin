@@ -5,7 +5,7 @@
 class MenuController < Sinatra::Application
   before do
     redirect '/' if session[:user_id].nil? && request.path_info != '/'
-    @user = User.current_user(session[:user_id]) unless session[:user_id].nil?
+    @user = User.current_user(:id, session[:user_id]) unless session[:user_id].nil?
   end
 
   get '/menu' do

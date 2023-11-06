@@ -4,7 +4,7 @@
 class GameController < Sinatra::Application
   before do
     redirect '/' if session[:user_id].nil? && request.path_info != '/'
-    @user = User.current_user(session[:user_id]) unless session[:user_id].nil?
+    @user = User.current_user(:id, session[:user_id]) unless session[:user_id].nil?
   end
 
   get '/game/:id_question' do
@@ -100,7 +100,7 @@ class GameController < Sinatra::Application
       @user_answer = 'Pregunta no contestada'
       @respuesta = 'SE AGOTO EL TIEMPO'
     end
-    @user = User.current_user(session[:user_id])
+    @user = User.current_user(:id, session[:user_id])
     @streak = @user.streak
     @correct_answer = Option.find_correct_option(@question.id)
     erb :asked
