@@ -31,7 +31,6 @@ class MenuController < Sinatra::Application
   end
 
   post '/practicar' do
-    user_id = session[:user_id]
     @question_index = session[:question_index].to_i + 1
     session[:question_index] = @question_index
     @questions_asked = session[:questions_asked]
@@ -39,7 +38,6 @@ class MenuController < Sinatra::Application
   end
 
   get '/ranking' do
-    user_id = session[:user_id]
     @users = User.order(points: :desc).limit(10) # arreglo de usuarios ordenados de manera descendente
     @position = User.order(points: :desc).pluck(:id).find_index(session[:user_id]) + 1
 
@@ -47,19 +45,15 @@ class MenuController < Sinatra::Application
   end
 
   get '/profile' do
-    user_id = session[:user_id]
     @verificated = @user.valid_email
     erb :profile
   end
 
   get '/profile_change' do
-    user_id = session[:user_id]
     erb :profile_change
   end
 
   post '/profile_change' do
-    user_id = session[:user_id]
-
     new_username = params[:new_username]
     current_password = params[:current_password]
     new_password = params[:new_password]
@@ -83,8 +77,6 @@ class MenuController < Sinatra::Application
   end
 
   get '/tree' do
-    user_id = session[:user_id]
-
     hoja_id = @user.leaf_id
     fondo_id = @user.background_id
     @hoja = Item.find_by(id: hoja_id).name

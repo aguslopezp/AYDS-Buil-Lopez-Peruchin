@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
   validates :streak, presence: true
   validate :points_non_negative
 
+  def login_user(session)
+    session[:user_id] = id
+    Item.item_default(session)
+  end
+
   def sum_points
     self.points += 1
     save

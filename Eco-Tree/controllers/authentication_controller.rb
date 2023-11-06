@@ -53,12 +53,10 @@ class AuthenticationController < Sinatra::Application
     redirect '/menu'
   end
 
-
   # Metodo para iniciar sesion.
   def check_user(user)
     if user&.compare_password(user.password, params[:password])
-      session[:user_id] = user.id
-      Item.set_item_default(session)
+      user.login_user(session)
       redirect '/menu'
     elsif user
       @password_error = '*contraseña incorrecta'
@@ -71,23 +69,13 @@ class AuthenticationController < Sinatra::Application
 
   # Metodo para registrar un usuario.
   def create_user
-    if passwords_match?
-      user_attributes = {
-        username: params[:username],
-        password: hash_password(params[:password]),
-        email: params[:email],
-        birthdate: params[:birthdate],
-        leaf_id: 6,
-        background_id: 10
-      }
-
-      @user = User.create(user_attributes)
-      if @user.save
-        initialize_user_settings(@user)
-        redirect '/validate'
-      else
-        redirect '/register'
-      end
+    redirect '/register' unless passwords_match?
+    user_attributes = { username: params[:username], password: hash_password(params[:password]),
+                        email: params[:email], birthdate: params[:birthdate], leaf_id: 6, background_id: 10 }
+    @user = User.create(user_attributes)
+    if @user.save
+      initialize_user_settings(@user)
+      redirect '/validate'
     else
       redirect '/register'
     end
@@ -104,6 +92,6 @@ class AuthenticationController < Sinatra::Application
     send_verificated_email(user.email, session[:code])
     PurchasedItem.create(user_id: user.id, item_id: 6)
     PurchasedItem.create(user_id: user.id, item_id: 10)
-    Item.set_item_default(session)
+    Item.item_default(session)
   end
 end

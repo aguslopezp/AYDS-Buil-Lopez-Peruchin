@@ -35,7 +35,7 @@ class GameController < Sinatra::Application
     # Calculo puntos del usuario si no la respondio nunca
     unless AskedQuestion.asked_question(@user.id, question_id)
       selected_option.isCorrect ? @user.update_points : @user.reset_streak
-      Answer.createAnswer(@user.id, selected_option_id)
+      Answer.create_answer(@user.id, selected_option_id)
       AskedQuestion.create_asked_question(@user.id, question_id)
     end
     redirect "/asked/#{question_id}/#{selected_option.isCorrect}/#{selected_option_id}?level=#{level}"
@@ -52,7 +52,6 @@ class GameController < Sinatra::Application
   post '/levels' do
     level = params[:level_selected]
     question = Question.first_question_level(level)
-    puts "level: #{level}, question_id: #{question.id}"
     previous_question_id = question.id - 1
     redirect "/game/#{question.id}?level=#{level}" if previous_question_id <= 0
     response = AskedQuestion.asked_question(@user.id, previous_question_id)
