@@ -85,9 +85,9 @@ class MenuController < Sinatra::Application
   get '/tree' do
     user_id = session[:user_id]
 
-    hoja_id = @user.leaf_id 
+    hoja_id = @user.leaf_id
     fondo_id = @user.background_id
-    @hoja = Item.find_by(id: hoja_id).name  
+    @hoja = Item.find_by(id: hoja_id).name
     @fondo = Item.find_by(id: fondo_id).name
 
     @tree = session[:tree]

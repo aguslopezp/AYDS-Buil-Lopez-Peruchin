@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     update(points: 0)
     reset_streak
     (1..Question.total_questions).each do |i|
-      asked_question = AskedQuestion.find_by(user_id: self.id, question_id: i)
+      asked_question = AskedQuestion.find_by(user_id: id, question_id: i)
       asked_question&.destroy
     end
   end
@@ -76,21 +76,19 @@ class User < ActiveRecord::Base
   end
 
   def set_item_in_user(item, item_id)
-    if (item == 'hoja')
-      self.update_column(:leaf_id, item_id)
+    if item == 'hoja'
+      update_column(:leaf_id, item_id)
     else
-      self.update_column(:background_id, item_id)
+      update_column(:background_id, item_id)
     end
     save
   end
 
   def buy_item(item_id, item_price)
-    if PurchasedItem.find_by(item_id: item_id, user_id: self.id).nil?
-      PurchasedItem.create(user_id: self.id, item_id: item_id)
+    if PurchasedItem.find_by(item_id: item_id, user_id: id).nil?
+      PurchasedItem.create(user_id: id, item_id: item_id)
 
-      if (item_price <= self.coin)
-        self.discount_coins(item_price)
-      end
+      discount_coins(item_price) if item_price <= self.coin
 
     end
     save
@@ -98,9 +96,9 @@ class User < ActiveRecord::Base
 
   # Obtiene el usuario actual en la sesion.
   def self.current_user(field, value)
-    return User.find_by(field => value) if value and field
+    return User.find_by(field => value) if value && field
   end
-  
+
   private
 
   def points_non_negative

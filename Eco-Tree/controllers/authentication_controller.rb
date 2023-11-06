@@ -59,7 +59,6 @@ class AuthenticationController < Sinatra::Application
     session[:fondo] = Item.find_by(id: 10).name
   end
 
-
   # Metodo para iniciar sesion.
   def check_user(user)
     if user&.compare_password(user.password, params[:password])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/activerecord'
 require_relative '../../models/init.rb'
 
@@ -14,5 +16,3 @@ describe 'Answer' do
     end
   end
 end
-
-

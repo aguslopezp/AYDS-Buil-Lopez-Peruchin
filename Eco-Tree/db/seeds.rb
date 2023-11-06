@@ -14,13 +14,13 @@ Option.create(description: 'El chipe azul', isCorrect: false, question_id: 2)
 Option.create(description: 'El jilguero', isCorrect: false, question_id: 2)
 Option.create(description: 'La paloma', isCorrect: false, question_id: 2)
 
-Question.create(description: '¿Cuál es la edad promedio de un león sin estar en cautiverio?', detail: 'Un león, en estado salvaje, puede vivir en promedio entre 12 y 16 años. En cautiverio pueden llegar a la edad de 25 años.', level: 1 )
+Question.create(description: '¿Cuál es la edad promedio de un león sin estar en cautiverio?', detail: 'Un león, en estado salvaje, puede vivir en promedio entre 12 y 16 años. En cautiverio pueden llegar a la edad de 25 años.', level: 1)
 Option.create(description: 'Entre 6 y 9 años', isCorrect: false, question_id: 3)
 Option.create(description: 'Entre 12 y 16 años', isCorrect: true, question_id: 3)
 Option.create(description: 'Entre 15 y 20 años', isCorrect: false, question_id: 3)
 Option.create(description: 'Entre 20 y 25 años', isCorrect: false, question_id: 3)
 
-Question.create(description: '¿Qué mamifero tiene la mordida más poderosa?', detail: 'La mordida del hipopótamo es la más fuerte de todos los mamíferos, siendo capaz de generar un PSI de 1821.', level: 1 )
+Question.create(description: '¿Qué mamifero tiene la mordida más poderosa?', detail: 'La mordida del hipopótamo es la más fuerte de todos los mamíferos, siendo capaz de generar un PSI de 1821.', level: 1)
 Option.create(description: 'El hipopotamo', isCorrect: true, question_id: 4)
 Option.create(description: 'El león', isCorrect: false, question_id: 4)
 Option.create(description: 'El gorila', isCorrect: false, question_id: 4)
@@ -44,7 +44,7 @@ Option.create(description: 'Su boca', isCorrect: false, question_id: 7)
 Option.create(description: 'Su estómago', isCorrect: false, question_id: 7)
 Option.create(description: 'Sus patas', isCorrect: false, question_id: 7)
 
-Question.create(description: '¿Cuál es el animal mas vengativo del mundo?', detail: 'La investigación ha encontrado que los tigres buscarán vengarse de aquellos que los han molestado. 
+Question.create(description: '¿Cuál es el animal mas vengativo del mundo?', detail: 'La investigación ha encontrado que los tigres buscarán vengarse de aquellos que los han molestado.
 Naturalistas han vivido muchas situaciones en donde tigres se han aferrado a un gran sentimiento de rencor durante más de 48hs antes de atacar y matar a cazadores que previamente habían intentado cazarlos.
 ', level: 2)
 Option.create(description: 'El tiburón blanco', isCorrect: false, question_id: 8)
@@ -64,7 +64,7 @@ Option.create(description: 'Aguila', isCorrect: false, question_id: 10)
 Option.create(description: 'Avestruz', isCorrect: true, question_id: 10)
 Option.create(description: 'Cóndor', isCorrect: false, question_id: 10)
 
-Question.create(description: '¿Qué suele regalarle un pingüino macho a una hembra para conquistarla?', detail: 'Los pingüinos en lugar del habitual anillo de compromiso, entregan una piedra a la hembra de su grupo con la que esperan construir un nido y aparearse. 
+Question.create(description: '¿Qué suele regalarle un pingüino macho a una hembra para conquistarla?', detail: 'Los pingüinos en lugar del habitual anillo de compromiso, entregan una piedra a la hembra de su grupo con la que esperan construir un nido y aparearse.
 Estas piedras las utilizan para cubrir el suelo sobre el que construyen sus nidos, de forma de mantener los huevos aislados de la nieve.
 Cuando vuelven junto a la hembra, llevan las piedras que recogieron a los pies de su pareja, como un gesto natural de cortejo.
 ', level: 3)
@@ -79,19 +79,19 @@ Option.create(description: 'El carbón y el petróleo', isCorrect: true, questio
 Option.create(description: 'La nuclear', isCorrect: false, question_id: 12)
 Option.create(description: 'La hidroeléctrica', isCorrect: false, question_id: 12)
 
-#Question.create(description: '¿?', detail: '')
-#Option.create(description: '', isCorrect: false, question_id: 12)
-#Option.create(description: '', isCorrect: true, question_id: 12)
-#Option.create(description: '', isCorrect: false, question_id: 12)
-#Option.create(description: '', isCorrect: false, question_id: 12)
+# Question.create(description: '¿?', detail: '')
+# Option.create(description: '', isCorrect: false, question_id: 12)
+# Option.create(description: '', isCorrect: true, question_id: 12)
+# Option.create(description: '', isCorrect: false, question_id: 12)
+# Option.create(description: '', isCorrect: false, question_id: 12)
 
-Item.create(name:'arceR' , section:'hoja', description: 'Arce Rojo', price: 15)
-Item.create(name:'canada', section:'hoja', description: 'Canada Brown', price: 15)
-Item.create(name:'golden', section:'hoja', description: 'Golden', price: 15)
-Item.create(name:'ocean', section:'hoja', description: 'Ocean', price: 15)
-Item.create(name:'sunset', section:'hoja', description: 'Sunset', price: 15)
-Item.create(name:'roble', section:'hoja', description: 'Roble', price: 15)
-Item.create(name:'forest', section:'fondo', description: 'Forest', price: 15)
-Item.create(name:'paradise', section:'fondo', description: 'Paradise', price: 15)
-Item.create(name:'sabana', section:'fondo', description: 'Sabanna', price: 15)
-Item.create(name:'jungle', section:'fondo', description: 'Jungle', price: 15)
+Item.create(name: 'arceR', section: 'hoja', description: 'Arce Rojo', price: 15)
+Item.create(name: 'canada', section: 'hoja', description: 'Canada Brown', price: 15)
+Item.create(name: 'golden', section: 'hoja', description: 'Golden', price: 15)
+Item.create(name: 'ocean', section: 'hoja', description: 'Ocean', price: 15)
+Item.create(name: 'sunset', section: 'hoja', description: 'Sunset', price: 15)
+Item.create(name: 'roble', section: 'hoja', description: 'Roble', price: 15)
+Item.create(name: 'forest', section: 'fondo', description: 'Forest', price: 15)
+Item.create(name: 'paradise', section: 'fondo', description: 'Paradise', price: 15)
+Item.create(name: 'sabana', section: 'fondo', description: 'Sabanna', price: 15)
+Item.create(name: 'jungle', section: 'fondo', description: 'Jungle', price: 15)

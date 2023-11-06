@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :option
@@ -8,5 +10,4 @@ class Answer < ActiveRecord::Base
   def self.createAnswer(user_id, option_id)
     Answer.create(user_id: user_id, option_id: option_id)
   end
-
 end

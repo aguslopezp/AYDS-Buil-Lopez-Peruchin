@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/base'
 require 'bundler/setup'
@@ -27,16 +29,14 @@ class App < Sinatra::Application
 
   enable :sessions
   # Configuracion de la clave secreta de sesión
+  set :root, File.dirname(__FILE__)
   set :session_secret, 'la_pelota_no_se_mancha'
   set :public_folder, File.dirname(__FILE__) + '/public'
 
-  def initialize(app = nil)
+  def initialize(_app = nil)
     super()
   end
-  set :root, File.dirname(__FILE__)
-  set :views, Proc.new { File.join(root, 'views') }
-  set :public_folder, File.dirname(__FILE__) + '/views'
-  
+
   configure :production, :development do
     enable :logging
 
@@ -44,7 +44,6 @@ class App < Sinatra::Application
     logger.level = Logger::DEBUG if development?
     set :logger, logger
   end
-
 
   configure :development do
     register Sinatra::Reloader
