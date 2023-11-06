@@ -5,18 +5,17 @@
 class StoreController < Sinatra::Application
   before do
     redirect '/' if session[:user_id].nil? && request.path_info != '/'
+    @user = User.current_user(:id, session[:user_id]) unless session[:user_id].nil?
   end
 
   # Ruta para mostrar la tienda.
   get '/store' do
-    @user = User.current_user(:id, session[:user_id])
     @coin = @user.coin
     erb :store
   end
 
   # Ruta para comprar un item de la tienda.
   get '/buyItem' do
-    @user = User.current_user(:id, session[:user_id])
     @coin = @user.coin
     @item_selected = params[:item]
     @item = Item.where(section: @item_selected)
@@ -41,13 +40,11 @@ class StoreController < Sinatra::Application
 
   # Metodo POST para comprar un elemento de la tienda.
   post '/buyItem' do
-    user = User.current_user(:id, session[:user_id])
-
     request_body = JSON.parse(request.body.read)
     name = request_body['name']
     item = Item.find_by(name: name)
 
-    user.buy_item(item.id, item.price)
-    user.set_item_in_user(params[:item], item.id)
+    @user.buy_item(item.id, item.price)
+    @user.set_item_in_user(params[:item], item.id)
   end
 end

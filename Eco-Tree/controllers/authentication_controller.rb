@@ -53,17 +53,12 @@ class AuthenticationController < Sinatra::Application
     redirect '/menu'
   end
 
-  # Metodo para establecer una hoja y un fondo por defecto.
-  def set_item_default
-    session[:hoja] = Item.find_by(id: 6).name
-    session[:fondo] = Item.find_by(id: 10).name
-  end
 
   # Metodo para iniciar sesion.
   def check_user(user)
     if user&.compare_password(user.password, params[:password])
       session[:user_id] = user.id
-      set_item_default
+      Item.set_item_default
       redirect '/menu'
     elsif user
       @password_error = '*contraseña incorrecta'
@@ -109,6 +104,6 @@ class AuthenticationController < Sinatra::Application
     send_verificated_email(user.email, session[:code])
     PurchasedItem.create(user_id: user.id, item_id: 6)
     PurchasedItem.create(user_id: user.id, item_id: 10)
-    set_item_default
+    Item.set_item_default
   end
 end
