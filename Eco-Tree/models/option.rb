@@ -13,7 +13,11 @@ class Option < ActiveRecord::Base
   end
 
   def self.incorrect_options(id)
-    return Option.where(question_id: id, isCorrect: false).pluck(:id)
+    Option.where(question_id: id, isCorrect: false).pluck(:id)
+  end
+
+  def self.find_correct_option(question_id)
+    Option.find_by(isCorrect: 1, question_id: question_id)&.description
   end
 
   private

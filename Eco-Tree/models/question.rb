@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Modelo de pregunta
 class Question < ActiveRecord::Base
   has_many :options
   has_many :users
@@ -7,7 +10,15 @@ class Question < ActiveRecord::Base
 
   # Returns the total number of questions.
   def self.total_questions
-    return Question.count
+    Question.count
+  end
+
+  def self.first_question_level(level)
+    Question.where(level: level).first
+  end
+
+  def self.all_levels
+    Question.distinct.pluck(:level)
   end
 
   def self.find_question(id)
@@ -28,7 +39,6 @@ class Question < ActiveRecord::Base
       end
       next_question_id += 1
     end
-    return nil
+    nil
   end
-
 end

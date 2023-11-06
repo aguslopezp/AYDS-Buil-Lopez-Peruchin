@@ -12,24 +12,19 @@
     
     <section class="asked">
       <h3 class="descrip"><%= @question.description %></h3>
-      <% if @answer !='Respuesta no contestada' %> 
-        <h5>Tu respuesta fue: "<%= @answer %>"</h5>
+      <% if @user_answer != 'Pregunta no contestada' %> 
+        <h5>Tu respuesta fue: "<%= @user_answer %>"</h5>
       <% end %> 
       
       <form action=<%="/asked/#{@question.id}?level=#{@level}"%> method="POST" id="asked-form">
         <div class="options">  
-          <% if @respuesta =='SE AGOTO EL TIEMPO' %> 
-            <h2 class="red"><%=@respuesta %></h2>
-            <h2 class="correct"> Respuesta correcta: "<%=@correct %>"</h2>
-          <% end %>
-          <% if @respuesta =='RESPUESTA INCORRECTA' %> 
-            <h2 class="red"><%=@respuesta %></h2>
-            <h2 class="correct"> Respuesta correcta: "<%=@correct %>"</h2>
+          <% if @result == 'true' %> 
+            <h2 class="green"><%= @respuesta %></h2>
+            <p>Llevas una racha de <strong><%= @streak %></strong> respuestas correctas</p>
+          <% else %>
+            <h2 class="red"><%= @respuesta %></h2>
+            <h2 class="correct"> Respuesta correcta: "<%= @correct_answer %>"</h2>
             <p>Perdiste tu racha</p>
-          <% end %>   
-          <% if @respuesta =='RESPUESTA CORRECTA' %> 
-            <h2 class="green"><%=@respuesta %></h2>
-            <p>Llevas una racha de <strong><%=@streak%></strong> respuestas correctas</p>
           <% end %>
           <input type="submit" value="Siguiente pregunta" id="submit-button" class="submit-button">
         </div>
