@@ -13,11 +13,11 @@
 <body>
   <header>
     <nav class="navigation">
-      <a href="/tree" class="btn"><strong>Mi Arbol</strong></a>
+      <a href=<%="/menu"%> class="btn"><strong>Menú</strong></a>
       <div class="points">
         Puntos: <%= @points %>
       </div>
-      <a href=<%="/menu"%> class="btn"><strong>Menú</strong></a>
+      <a href="/tree" class="btn"><strong>Mi Arbol</strong></a>
     </nav>
   </header>
   <% if @reset %>
@@ -28,7 +28,7 @@
   <form action="/levels" method="POST" class="form">
     <ul class="levels-list">
       <% @levels.each do |level| %>
-        <input type="submit" name="levelSelected"  value=<%=level%> class="level"/>
+        <input type="submit" name="level_selected"  value=<%=level%> class="level"/>
       <% end %>
     </ul>
     <% if @disabled_level %>

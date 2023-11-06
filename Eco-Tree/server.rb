@@ -5,13 +5,11 @@ require 'logger'
 require 'sinatra/activerecord'
 require 'sinatra/cookies'
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
-require './controllers/authentication_controller.rb'
-require './controllers/Game_controller'
 
+require './controllers/authentication_controller.rb'
+require './controllers/game_controller'
 require './controllers/store_controller'
 require './controllers/menu_controller'
-
-
 
 require_relative 'models/user'
 require_relative 'models/question'
